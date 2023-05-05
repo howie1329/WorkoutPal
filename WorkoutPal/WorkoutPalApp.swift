@@ -11,7 +11,7 @@ import SwiftUI
 struct WorkoutPalApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CalorieTracker()
         }
     }
 }
