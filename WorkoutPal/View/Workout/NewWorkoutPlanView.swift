@@ -9,7 +9,9 @@ import SwiftUI
 
 struct NewWorkoutPlanView: View {
     @EnvironmentObject var model:DataModel
+    private let iconArr = ["dumbbell.fill", "figure.run", "sportscourt.fill"]
     @State var planTitle = ""
+    @State var iconString = "figure.run"
     @Binding var viewState:Bool
     var body: some View {
         VStack{
@@ -19,8 +21,14 @@ struct NewWorkoutPlanView: View {
             }.frame(maxWidth:.infinity,alignment:.leading)
             VStack{
                 TextField("Plan Title", text: $planTitle)
+                Picker("Icon", selection: $iconString) {
+                    ForEach(iconArr, id:\.self){item in
+                        Image(systemName: item)
+                    }
+                }
+                .pickerStyle(.segmented)
                 Button {
-                    model.createWorkoutPlan(planTitle)
+                    model.createWorkoutPlan(title: planTitle, iconString: iconString)
                     viewState = false
                 } label: {
                     Text("Submit")

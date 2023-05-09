@@ -66,7 +66,7 @@ class DataModel: ObservableObject {
         saveData()
     }
     
-    //MARK: WORKOUT CODE
+    //MARK: WORKOUT PLAN CODE
     
     func fetchWorkoutPlans(){
         let request = NSFetchRequest<WorkoutPlansEntity>(entityName: "WorkoutPlansEntity")
@@ -77,10 +77,11 @@ class DataModel: ObservableObject {
         }
     }
     
-    func createWorkoutPlan(_ title:String){
+    func createWorkoutPlan(title:String,iconString:String){
         let newPlan = WorkoutPlansEntity(context: container.viewContext)
         newPlan.id = UUID()
         newPlan.focusTitle = title
+        newPlan.icon = iconString
         saveData()
     }
     

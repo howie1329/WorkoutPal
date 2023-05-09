@@ -22,6 +22,7 @@
     </entity>
     <entity name="WorkoutPlansEntity" representedClassName="WorkoutPlansEntity" syncable="YES" codeGenerationType="class">
         <attribute name="focusTitle" optional="YES" attributeType="String"/>
+        <attribute name="icon" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
     </entity>
 </model>

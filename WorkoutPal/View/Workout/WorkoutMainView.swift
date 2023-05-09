@@ -11,12 +11,15 @@ struct WorkoutMainView: View {
     @EnvironmentObject var model:DataModel
     @State var newPlanView = false
     var body: some View {
-        NavigationView{
+        NavigationStack{
             VStack{
                 List {
                     ForEach(model.workoutPlansLog){item in
                         NavigationLink(destination: WorkoutPlanRowView(planItem:item)) {
-                            Text(item.focusTitle ?? "")
+                            HStack{
+                                Image(systemName: item.icon ?? "figure.run")
+                                Text(item.focusTitle ?? "")
+                            }
                         }
                         
                     }
