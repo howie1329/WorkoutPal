@@ -24,31 +24,44 @@ struct NewSingleWorkoutView: View {
                     .font(.title.bold())
             }
             TextField("Workout Title", text: $title)
+                .padding(5)
+                .background(RoundedRectangle(cornerRadius:10).fill(Color.gray))
             Picker("Focus Group", selection: $focusGroupTitle) {
                 ForEach(focusGroup, id:\.self){item in
                     Text(item)
                 }
             }
             .pickerStyle(.segmented)
+            Divider()
+                .padding(.vertical,5)
             VStack{
                 Section(header:Text("Reps")){
                     TextField("Rep Count", value: $reps, format: .number)
+                        .padding(5)
+                        .background(RoundedRectangle(cornerRadius:10).fill(Color.gray))
                 }
                 Section(header:Text("Sets")){
                     TextField("Set Count", value: $sets, format:.number)
+                        .padding(5)
+                        .background(RoundedRectangle(cornerRadius:10).fill(Color.gray))
                 }
                 Section(header:Text("Weight")){
                     TextField("Weight",value: $weights,format:.number)
+                        .padding(5)
+                        .background(RoundedRectangle(cornerRadius:10).fill(Color.gray))
                 }
             }
             .frame(maxWidth:.infinity,alignment:.leading)
+            Divider()
+                .padding(.vertical,5)
             Button {
                 model.createSingleWorkout(plansID: planItem.id ?? UUID(), focusGroup: focusGroupTitle, reps: reps, sets: sets, weights: weights, title: title)
                 viewState = false
             } label: {
                 Text("Submit")
                     .frame(maxWidth:.infinity)
-            }.buttonStyle(.borderedProminent)
+            }
+            .buttonStyle(.borderedProminent)
 
         }
         .frame(maxWidth:.infinity, alignment:.center)

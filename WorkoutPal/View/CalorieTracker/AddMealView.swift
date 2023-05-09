@@ -24,7 +24,11 @@ struct AddMealView: View {
                     .bold()
             }
             .frame(maxWidth:.infinity,alignment: .leading)
+            Divider()
+                .padding(.vertical,5)
             TextField("Meal Title", text: $mealTitle)
+                .padding(5)
+                .background(RoundedRectangle(cornerRadius:10).fill(Color.gray))
             Stepper("Proteins: \(proteinCount)", value: $proteinCount)
             Stepper("Fats: \(fatCount)", value: $fatCount)
             Stepper("Carbs: \(carbCount)", value: $carbCount)
@@ -35,7 +39,8 @@ struct AddMealView: View {
                 }
             }
             .pickerStyle(.segmented)
-            
+            Divider()
+                .padding(.vertical,5)
             Button {
                 model.createCalorieEntry(name: mealTitle, protien: proteinCount, carbs: carbCount, fats: fatCount, mealType: mealType)
                 viewState = false

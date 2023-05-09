@@ -19,14 +19,19 @@ struct NewWorkoutPlanView: View {
                 Text("New Workout Plan")
                     .font(.title.bold())
             }.frame(maxWidth:.infinity,alignment:.leading)
-            VStack{
+            VStack(spacing:25){
                 TextField("Plan Title", text: $planTitle)
+                    .padding(5)
+                    .background(RoundedRectangle(cornerRadius:10).fill(Color.gray))
+                    
                 Picker("Icon", selection: $iconString) {
                     ForEach(iconArr, id:\.self){item in
                         Image(systemName: item)
                     }
                 }
                 .pickerStyle(.segmented)
+                Divider()
+                    .padding(.vertical,5)
                 Button {
                     model.createWorkoutPlan(title: planTitle, iconString: iconString)
                     viewState = false

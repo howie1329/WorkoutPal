@@ -64,7 +64,7 @@ struct CalorieTrackerView: View {
                 Button {
                     newMealView = true
                 } label: {
-                    Image(systemName: "plus")
+                    Image(systemName: "plus.circle")
                 }
                 
             }

@@ -29,7 +29,7 @@ struct WorkoutPlanRowView: View {
             Button {
                 newWorkoutView = true
             } label: {
-                Image(systemName: "plus")
+                Image(systemName: "plus.circle")
             }
             
         })
