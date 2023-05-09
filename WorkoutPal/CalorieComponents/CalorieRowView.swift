@@ -10,14 +10,18 @@ import SwiftUI
 struct CalorieRowView: View {
     @EnvironmentObject var model:DataModel
     var item:CalorieTrackerEntity
+    @Binding var totalCal: Int
     @Binding var proCount: Int
     @Binding var carbCount: Int
     @Binding var fatCount: Int
     var body: some View {
         VStack{
-            HStack{
-                Text(item.name ?? "")
-                Text(item.type ?? "")
+            VStack{
+                HStack{
+                    Text(item.name ?? "")
+                    Text(item.type ?? "")
+                }
+                Text("Total Calories: \(item.totalCal ?? 0)")
             }
             HStack{
                 Text("Protein: \(item.protien)")
@@ -26,6 +30,7 @@ struct CalorieRowView: View {
             }
         }
         .onAppear(perform:{
+            totalCal += Int(item.totalCal)
             proCount += Int(item.protien)
             carbCount += Int(item.carb)
             fatCount += Int(item.fat)

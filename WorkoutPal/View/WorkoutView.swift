@@ -8,13 +8,42 @@
 import SwiftUI
 
 struct WorkoutView: View {
+    @EnvironmentObject var model:DataModel
+    @State var newPlanView = false
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            VStack{
+                List {
+                    ForEach(model.workoutPlansLog){item in
+                        NavigationLink(destination: WorkoutPlanMainView(planItem:item)) {
+                            Text(item.focusTitle ?? "")
+                        }
+                        
+                    }
+                }
+            }
+            .sheet(isPresented: $newPlanView, content: {
+                NewWorkPlanView(viewState: $newPlanView)
+                    .presentationDetents([.fraction(3/8)])
+            })
+            .toolbar(content: {
+                Button {
+                    newPlanView = true
+                } label: {
+                    Image(systemName: "plus.circle")
+                }
+
+            })
+            .navigationTitle("Workout Plans")
+            
+        }
+        
     }
 }
 
 struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
         WorkoutView()
+            .environmentObject(DataModel())
     }
 }
