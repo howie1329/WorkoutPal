@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct WorkoutPalApp: App {
+    @StateObject var dataModel = DataModel()
     var body: some Scene {
         WindowGroup {
-            CalorieTracker()
+            MainTabView()
+                .environmentObject(dataModel)
+                .preferredColorScheme(.dark)
         }
     }
 }
