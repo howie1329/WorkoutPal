@@ -16,6 +16,7 @@
 		F310FFF22A0A2FC60093365E /* WorkoutPlanRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFF12A0A2FC60093365E /* WorkoutPlanRowView.swift */; };
 		F310FFF42A0A349C0093365E /* SingleWorkoutPlanRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFF32A0A349C0093365E /* SingleWorkoutPlanRowView.swift */; };
 		F310FFF72A0AB8FE0093365E /* CalorieSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFF62A0AB8FE0093365E /* CalorieSectionView.swift */; };
+		F310FFFA2A0ABDC60093365E /* WorkoutSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFF92A0ABDC60093365E /* WorkoutSectionView.swift */; };
 		F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */; };
 		F36661512A04CFEC00166299 /* CalorieTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36661502A04CFEC00166299 /* CalorieTrackerView.swift */; };
 		F36661532A04CFEC00166299 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36661522A04CFEC00166299 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		F310FFF12A0A2FC60093365E /* WorkoutPlanRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPlanRowView.swift; sourceTree = "<group>"; };
 		F310FFF32A0A349C0093365E /* SingleWorkoutPlanRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleWorkoutPlanRowView.swift; sourceTree = "<group>"; };
 		F310FFF62A0AB8FE0093365E /* CalorieSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieSectionView.swift; sourceTree = "<group>"; };
+		F310FFF92A0ABDC60093365E /* WorkoutSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSectionView.swift; sourceTree = "<group>"; };
 		F366614B2A04CFEC00166299 /* WorkoutPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPalApp.swift; sourceTree = "<group>"; };
 		F36661502A04CFEC00166299 /* CalorieTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieTrackerView.swift; sourceTree = "<group>"; };
@@ -84,6 +86,14 @@
 			path = Workout;
 			sourceTree = "<group>";
 		};
+		F310FFF82A0ABDB40093365E /* WorkoutComponents */ = {
+			isa = PBXGroup;
+			children = (
+				F310FFF92A0ABDC60093365E /* WorkoutSectionView.swift */,
+			);
+			path = WorkoutComponents;
+			sourceTree = "<group>";
+		};
 		F36661422A04CFEB00166299 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +113,7 @@
 		F366614D2A04CFEC00166299 /* WorkoutPal */ = {
 			isa = PBXGroup;
 			children = (
+				F310FFF82A0ABDB40093365E /* WorkoutComponents */,
 				F310FFE52A09FA540093365E /* CalorieComponents */,
 				F366615C2A04CFFE00166299 /* Model */,
 				F366615E2A04D00B00166299 /* View Model */,
@@ -220,6 +231,7 @@
 			files = (
 				F310FFF42A0A349C0093365E /* SingleWorkoutPlanRowView.swift in Sources */,
 				F36661512A04CFEC00166299 /* CalorieTrackerView.swift in Sources */,
+				F310FFFA2A0ABDC60093365E /* WorkoutSectionView.swift in Sources */,
 				F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */,
 				F310FFEC2A0A02500093365E /* WorkoutMainView.swift in Sources */,
 				F36661602A04D11B00166299 /* DataModel.swift in Sources */,

@@ -10,17 +10,19 @@ import SwiftUI
 struct SingleWorkoutPlanRowView: View {
     var item:SingleWorkoutEntity
     var body: some View {
-        VStack{
+        HStack{
             HStack{
                 Text(item.workoutTitle ?? "")
-                Text("Focus: \(item.focusGroup ?? "")")
             }
+            .frame(maxWidth:.infinity, alignment:.leading)
             HStack{
-                Text("Reps: \(item.reps)")
-                Text("Sets: \(item.sets)")
-                Text("Weight: \(item.weight)")
+                Text("\(item.sets)")
+                Text("•")
+                Text("\(item.reps)")
+                Text("•")
+                Text("\(item.weight) lbs")
             }
+            .frame(maxWidth:.infinity, alignment:.trailing)
         }
-        .frame(maxWidth:.infinity, alignment:.center)
     }
 }

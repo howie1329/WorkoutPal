@@ -37,7 +37,9 @@ struct WorkoutMainView: View {
                 } else if viewSelection == "Single"{
                     List{
                         ForEach(model.singleWorkoutsLog){item in
-                          SingleWorkoutPlanRowView(item: item)
+                            WorkoutSectionView(filerSection: "Full Body", singleWorkoutItem: item)
+                            WorkoutSectionView(filerSection: "Upper Body", singleWorkoutItem: item)
+                            WorkoutSectionView(filerSection: "Lower Body", singleWorkoutItem: item)
                         }
                     }
                     .listStyle(.inset)

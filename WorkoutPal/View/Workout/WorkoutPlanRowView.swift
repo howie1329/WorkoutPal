@@ -16,7 +16,9 @@ struct WorkoutPlanRowView: View {
             List{
                 ForEach(model.singleWorkoutsLog){item in
                     if item.ownerID == planItem.id{
-                        SingleWorkoutPlanRowView(item: item)
+                        WorkoutSectionView(filerSection: "Full Body", singleWorkoutItem: item)
+                        WorkoutSectionView(filerSection: "Upper Body", singleWorkoutItem: item)
+                        WorkoutSectionView(filerSection: "Lower Body", singleWorkoutItem: item)
                     }
                 }
                 .onDelete(perform: model.deleteSingleWorkout)

@@ -20,11 +20,13 @@ struct CalorieRowView: View {
                 HStack{
                     Text(item.name ?? "")
                 }
+                .frame(maxWidth:.infinity, alignment: .leading)
                 HStack{
                     Text("\(item.protien) g protein")
                     Text("\(item.carb) g carbs")
                     Text("\(item.fat) g fat")
                 }
+                .frame(maxWidth:.infinity, alignment: .leading)
             }
             Spacer()
             VStack{
@@ -37,6 +39,6 @@ struct CalorieRowView: View {
             carbCount += Int(item.carb)
             fatCount += Int(item.fat)
         })
-        .frame(maxWidth:.infinity)
+        
     }
 }
