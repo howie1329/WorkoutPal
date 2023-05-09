@@ -21,6 +21,7 @@ struct WorkoutPlanRowView: View {
                 }
                 .onDelete(perform: model.deleteSingleWorkout)
             }
+            .listStyle(.inset)
         }
         .sheet(isPresented: $newWorkoutView, content: {
             NewSingleWorkoutView(planItem: planItem, viewState: $newWorkoutView)

@@ -15,18 +15,20 @@ struct CalorieRowView: View {
     @Binding var carbCount: Int
     @Binding var fatCount: Int
     var body: some View {
-        VStack{
+        HStack{
             VStack{
                 HStack{
                     Text(item.name ?? "")
-                    Text(item.type ?? "")
                 }
-                Text("Total Calories: \(item.totalCal ?? 0)")
+                HStack{
+                    Text("\(item.protien) g protein")
+                    Text("\(item.carb) g carbs")
+                    Text("\(item.fat) g fat")
+                }
             }
-            HStack{
-                Text("Protein: \(item.protien)")
-                Text("Carbs: \(item.carb)")
-                Text("Fats: \(item.fat)")
+            Spacer()
+            VStack{
+                Text("\(item.totalCal ) cals")
             }
         }
         .onAppear(perform:{
@@ -35,6 +37,6 @@ struct CalorieRowView: View {
             carbCount += Int(item.carb)
             fatCount += Int(item.fat)
         })
-        .frame(maxWidth:.infinity, alignment:.center)
+        .frame(maxWidth:.infinity)
     }
 }

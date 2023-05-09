@@ -46,14 +46,18 @@ struct CalorieTrackerView: View {
                 List {
                     ForEach(model.calorieTrackerLog){item in
                         if model.currentDay == item.dayNumber && model.currentMonth == item.monthNumber{
-
-                            CalorieRowView(item: item,totalCal: $totalCalories, proCount: $protienCount, carbCount: $carbCount, fatCount: $fatCount)
+                            
+                            CalorieSectionView(filterSelection: "Breakfast", foodItem: item, totalCalories: $totalCalories, protienCount: $protienCount, fatCount: $fatCount, carbCount: $carbCount)
+                            CalorieSectionView(filterSelection: "Lunch", foodItem: item, totalCalories: $totalCalories, protienCount: $protienCount, fatCount: $fatCount, carbCount: $carbCount)
+                            CalorieSectionView(filterSelection: "Dinner", foodItem: item, totalCalories: $totalCalories, protienCount: $protienCount, fatCount: $fatCount, carbCount: $carbCount)
+                            CalorieSectionView(filterSelection: "Snack", foodItem: item, totalCalories: $totalCalories, protienCount: $protienCount, fatCount: $fatCount, carbCount: $carbCount)
                             
                         }
                         
                     }
                     .onDelete(perform: model.deleteCalorieEntry)
                 }
+                .listStyle(.inset)
             }
             .navigationTitle("Calorie Tracker")
             .sheet(isPresented: $newMealView, content: {

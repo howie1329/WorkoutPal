@@ -24,8 +24,6 @@ struct AddMealView: View {
                     .bold()
             }
             .frame(maxWidth:.infinity,alignment: .leading)
-            Divider()
-                .padding(.vertical,5)
             TextField("Meal Title", text: $mealTitle)
                 .padding(5)
                 .background(RoundedRectangle(cornerRadius:10).fill(Color.gray))

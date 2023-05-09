@@ -9,20 +9,38 @@ import SwiftUI
 
 struct WorkoutMainView: View {
     @EnvironmentObject var model:DataModel
+    private let viewChoice = ["Plans","Single"]
     @State var newPlanView = false
+    @State var viewSelection = "Plans"
     var body: some View {
         NavigationStack{
             VStack{
-                List {
-                    ForEach(model.workoutPlansLog){item in
-                        NavigationLink(destination: WorkoutPlanRowView(planItem:item)) {
-                            HStack{
-                                Image(systemName: item.icon ?? "figure.run")
-                                Text(item.focusTitle ?? "")
-                            }
-                        }
-                        
+                Picker("view picker", selection: $viewSelection) {
+                    ForEach(viewChoice,id:\.self){
+                        Text($0)
                     }
+                }
+                .pickerStyle(.segmented)
+                if viewSelection == "Plans"{
+                    List {
+                        ForEach(model.workoutPlansLog){item in
+                            NavigationLink(destination: WorkoutPlanRowView(planItem:item)) {
+                                HStack{
+                                    Image(systemName: item.icon ?? "figure.run")
+                                    Text(item.focusTitle ?? "")
+                                }
+                            }
+                            
+                        }
+                    }
+                    .listStyle(.inset)
+                } else if viewSelection == "Single"{
+                    List{
+                        ForEach(model.singleWorkoutsLog){item in
+                          SingleWorkoutPlanRowView(item: item)
+                        }
+                    }
+                    .listStyle(.inset)
                 }
             }
             .sheet(isPresented: $newPlanView, content: {
