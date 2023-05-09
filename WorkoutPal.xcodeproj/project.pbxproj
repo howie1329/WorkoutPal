@@ -10,10 +10,10 @@
 		F310FFE42A09F4BD0093365E /* AddMealView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFE32A09F4BD0093365E /* AddMealView.swift */; };
 		F310FFE72A09FA6A0093365E /* CalorieRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFE62A09FA6A0093365E /* CalorieRowView.swift */; };
 		F310FFE92A0A01360093365E /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFE82A0A01360093365E /* MainTabView.swift */; };
-		F310FFEC2A0A02500093365E /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFEB2A0A02500093365E /* WorkoutView.swift */; };
-		F310FFEE2A0A29EE0093365E /* NewWorkPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFED2A0A29EE0093365E /* NewWorkPlanView.swift */; };
-		F310FFF02A0A2B720093365E /* NewWorkoutPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFEF2A0A2B720093365E /* NewWorkoutPlanView.swift */; };
-		F310FFF22A0A2FC60093365E /* WorkoutPlanMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFF12A0A2FC60093365E /* WorkoutPlanMainView.swift */; };
+		F310FFEC2A0A02500093365E /* WorkoutMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFEB2A0A02500093365E /* WorkoutMainView.swift */; };
+		F310FFEE2A0A29EE0093365E /* NewWorkoutPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFED2A0A29EE0093365E /* NewWorkoutPlanView.swift */; };
+		F310FFF02A0A2B720093365E /* NewSingleWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFEF2A0A2B720093365E /* NewSingleWorkoutView.swift */; };
+		F310FFF22A0A2FC60093365E /* WorkoutPlanRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFF12A0A2FC60093365E /* WorkoutPlanRowView.swift */; };
 		F310FFF42A0A349C0093365E /* SingleWorkoutPlanRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFF32A0A349C0093365E /* SingleWorkoutPlanRowView.swift */; };
 		F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */; };
 		F36661512A04CFEC00166299 /* CalorieTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36661502A04CFEC00166299 /* CalorieTrackerView.swift */; };
@@ -27,10 +27,10 @@
 		F310FFE32A09F4BD0093365E /* AddMealView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMealView.swift; sourceTree = "<group>"; };
 		F310FFE62A09FA6A0093365E /* CalorieRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieRowView.swift; sourceTree = "<group>"; };
 		F310FFE82A0A01360093365E /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		F310FFEB2A0A02500093365E /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
-		F310FFED2A0A29EE0093365E /* NewWorkPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkPlanView.swift; sourceTree = "<group>"; };
-		F310FFEF2A0A2B720093365E /* NewWorkoutPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutPlanView.swift; sourceTree = "<group>"; };
-		F310FFF12A0A2FC60093365E /* WorkoutPlanMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPlanMainView.swift; sourceTree = "<group>"; };
+		F310FFEB2A0A02500093365E /* WorkoutMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutMainView.swift; sourceTree = "<group>"; };
+		F310FFED2A0A29EE0093365E /* NewWorkoutPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutPlanView.swift; sourceTree = "<group>"; };
+		F310FFEF2A0A2B720093365E /* NewSingleWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSingleWorkoutView.swift; sourceTree = "<group>"; };
+		F310FFF12A0A2FC60093365E /* WorkoutPlanRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPlanRowView.swift; sourceTree = "<group>"; };
 		F310FFF32A0A349C0093365E /* SingleWorkoutPlanRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleWorkoutPlanRowView.swift; sourceTree = "<group>"; };
 		F366614B2A04CFEC00166299 /* WorkoutPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPalApp.swift; sourceTree = "<group>"; };
@@ -69,6 +69,18 @@
 			path = CalorieTracker;
 			sourceTree = "<group>";
 		};
+		F310FFF52A0AA8970093365E /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				F310FFF32A0A349C0093365E /* SingleWorkoutPlanRowView.swift */,
+				F310FFEB2A0A02500093365E /* WorkoutMainView.swift */,
+				F310FFF12A0A2FC60093365E /* WorkoutPlanRowView.swift */,
+				F310FFED2A0A29EE0093365E /* NewWorkoutPlanView.swift */,
+				F310FFEF2A0A2B720093365E /* NewSingleWorkoutView.swift */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
 		F36661422A04CFEB00166299 = {
 			isa = PBXGroup;
 			children = (
@@ -96,7 +108,6 @@
 				F36661522A04CFEC00166299 /* Assets.xcassets */,
 				F36661612A04D17000166299 /* WorkoutContainer.xcdatamodeld */,
 				F36661542A04CFEC00166299 /* Preview Content */,
-				F310FFF32A0A349C0093365E /* SingleWorkoutPlanRowView.swift */,
 			);
 			path = WorkoutPal;
 			sourceTree = "<group>";
@@ -119,12 +130,9 @@
 		F366615D2A04D00400166299 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F310FFF52A0AA8970093365E /* Workout */,
 				F310FFEA2A0A02390093365E /* CalorieTracker */,
-				F310FFEF2A0A2B720093365E /* NewWorkoutPlanView.swift */,
 				F310FFE82A0A01360093365E /* MainTabView.swift */,
-				F310FFEB2A0A02500093365E /* WorkoutView.swift */,
-				F310FFED2A0A29EE0093365E /* NewWorkPlanView.swift */,
-				F310FFF12A0A2FC60093365E /* WorkoutPlanMainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -210,12 +218,12 @@
 				F310FFF42A0A349C0093365E /* SingleWorkoutPlanRowView.swift in Sources */,
 				F36661512A04CFEC00166299 /* CalorieTrackerView.swift in Sources */,
 				F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */,
-				F310FFEC2A0A02500093365E /* WorkoutView.swift in Sources */,
+				F310FFEC2A0A02500093365E /* WorkoutMainView.swift in Sources */,
 				F36661602A04D11B00166299 /* DataModel.swift in Sources */,
 				F310FFE72A09FA6A0093365E /* CalorieRowView.swift in Sources */,
-				F310FFF22A0A2FC60093365E /* WorkoutPlanMainView.swift in Sources */,
-				F310FFEE2A0A29EE0093365E /* NewWorkPlanView.swift in Sources */,
-				F310FFF02A0A2B720093365E /* NewWorkoutPlanView.swift in Sources */,
+				F310FFF22A0A2FC60093365E /* WorkoutPlanRowView.swift in Sources */,
+				F310FFEE2A0A29EE0093365E /* NewWorkoutPlanView.swift in Sources */,
+				F310FFF02A0A2B720093365E /* NewSingleWorkoutView.swift in Sources */,
 				F310FFE92A0A01360093365E /* MainTabView.swift in Sources */,
 				F36661632A04D17000166299 /* WorkoutContainer.xcdatamodeld in Sources */,
 				F310FFE42A09F4BD0093365E /* AddMealView.swift in Sources */,
@@ -344,6 +352,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WorkoutPal/Preview Content\"";
@@ -353,7 +362,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -374,6 +383,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WorkoutPal/Preview Content\"";
@@ -383,7 +393,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (

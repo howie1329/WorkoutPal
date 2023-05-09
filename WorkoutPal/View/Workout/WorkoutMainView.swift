@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WorkoutView: View {
+struct WorkoutMainView: View {
     @EnvironmentObject var model:DataModel
     @State var newPlanView = false
     var body: some View {
@@ -15,7 +15,7 @@ struct WorkoutView: View {
             VStack{
                 List {
                     ForEach(model.workoutPlansLog){item in
-                        NavigationLink(destination: WorkoutPlanMainView(planItem:item)) {
+                        NavigationLink(destination: WorkoutPlanRowView(planItem:item)) {
                             Text(item.focusTitle ?? "")
                         }
                         
@@ -23,7 +23,7 @@ struct WorkoutView: View {
                 }
             }
             .sheet(isPresented: $newPlanView, content: {
-                NewWorkPlanView(viewState: $newPlanView)
+                NewWorkoutPlanView(viewState: $newPlanView)
                     .presentationDetents([.fraction(3/8)])
             })
             .toolbar(content: {
@@ -43,7 +43,7 @@ struct WorkoutView: View {
 
 struct WorkoutView_Previews: PreviewProvider {
     static var previews: some View {
-        WorkoutView()
+        WorkoutMainView()
             .environmentObject(DataModel())
     }
 }

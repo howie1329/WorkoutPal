@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NewWorkPlanView: View {
+struct NewWorkoutPlanView: View {
     @EnvironmentObject var model:DataModel
     @State var planTitle = ""
     @Binding var viewState:Bool

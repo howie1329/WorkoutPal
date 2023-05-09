@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WorkoutPlanMainView: View {
+struct WorkoutPlanRowView: View {
     @EnvironmentObject var model:DataModel
     @State var planItem:WorkoutPlansEntity
     @State var newWorkoutView = false
@@ -23,7 +23,7 @@ struct WorkoutPlanMainView: View {
             }
         }
         .sheet(isPresented: $newWorkoutView, content: {
-            NewWorkoutPlanView(planItem: planItem, viewState: $newWorkoutView)
+            NewSingleWorkoutView(planItem: planItem, viewState: $newWorkoutView)
         })
         .toolbar(content: {
             Button {

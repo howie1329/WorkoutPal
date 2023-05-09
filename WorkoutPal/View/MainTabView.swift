@@ -15,7 +15,7 @@ struct MainTabView: View {
                     Image(systemName: "fork.knife.circle.fill")
                     Text("Calorie Tracker")
                 }
-            WorkoutView()
+            WorkoutMainView()
                 .tabItem {
                     Image(systemName: "dumbbell.fill")
                     Text("Workout")
