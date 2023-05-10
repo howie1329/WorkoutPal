@@ -20,6 +20,7 @@ class DataModel: ObservableObject {
     var currentDate = Date.now
     @Published var currentMonth: Int = 0
     @Published var currentDay: Int = 0
+    @Published var weekNumber = 0
     
     init(){
         container = NSPersistentContainer(name: "WorkoutContainer")
@@ -30,6 +31,7 @@ class DataModel: ObservableObject {
         }
         currentMonth = try! convertDateToMonthNumber(inputDate: currentDate)
         currentDay = try! convertDateToDayNumber(inputDate: currentDate)
+        weekNumber = findWeekNumber(inputDate: currentDate)
         
         fetchCalorieTracker()
         fetchWorkoutPlans()
@@ -94,47 +96,13 @@ class DataModel: ObservableObject {
     
     //MARK: Service Code
     /// -- TODO: Need to move to own file
-    
-    enum CalanderErrors: Error {
-        case noConvertMonth
-        case noConvertDay
-    }
 
     func redoCurrentDates(updatedDate: Date){
         print("REDO CURRENT DATES RAN")
         currentDate = updatedDate
         currentMonth = try! convertDateToMonthNumber(inputDate: currentDate)
         currentDay = try! convertDateToDayNumber(inputDate: currentDate)
-    }
-    
-    func convertDateToMonthNumber(inputDate:Date)throws -> Int{
-        
-        let monthNumber = Calendar.current.dateComponents([.month], from: inputDate)
-        
-        if let number = monthNumber.month{
-            return number
-        }else{
-            throw CalanderErrors.noConvertMonth
-        }
-    }
-
-    func convertDateToDayNumber(inputDate:Date) throws -> Int {
-        let dayNumber = Calendar.current.dateComponents([.day], from: inputDate)
-        
-        if let number = dayNumber.day{
-            return number
-        }else{
-            throw CalanderErrors.noConvertDay
-        }
-    }
-    
-    func findTotalCal(protien:Int, fats: Int, carbs: Int) -> Int{
-        var totalCalories = 0
-        totalCalories += (protien * 4)
-        totalCalories += (carbs * 4)
-        totalCalories += (fats * 4)
-        
-        return totalCalories
+        weekNumber = findWeekNumber(inputDate: currentDate)
     }
 
     //MARK: Calorie Tracker CODE
@@ -162,6 +130,7 @@ class DataModel: ObservableObject {
         trackerEntry.monthNumber = Int32(try! convertDateToMonthNumber(inputDate: currentDate))
         trackerEntry.type = mealType
         trackerEntry.totalCal = Int32(findTotalCal(protien: protien, fats: fats, carbs: carbs))
+        trackerEntry.weekNumber = Int32(findWeekNumber(inputDate: currentDate))
         saveData()
     }
     
