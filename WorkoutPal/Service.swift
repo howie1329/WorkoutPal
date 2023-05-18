@@ -51,6 +51,33 @@ func findTotalCal(protien:Int, fats: Int, carbs: Int) -> Int{
     return totalCalories
 }
 
+func gatherDayCalStates(currentDay: Int, mealsArr: [CalorieTrackerEntity]) -> [(Int,Int,Int,Int,Int)]{
+    var weekData: [(Int,Int,Int,Int,Int)] = []
+    
+    
+    for day in currentDay-7...currentDay{
+        var totalCal = 0
+        var proteinCount = 0
+        var carbCount = 0
+        var fatCount = 0
+        
+        for item in mealsArr{
+            if item.dayNumber == currentDay {
+                totalCal += Int(item.totalCal)
+                proteinCount += Int(item.protien)
+                carbCount += Int(item.carb)
+                fatCount += Int(item.fat)
+            }
+        }
+        
+        weekData.append((day,totalCal,proteinCount,carbCount ,fatCount))
+    }
+    
+    
+    
+    return weekData
+}
+
 func gatherWeekCalStats(currentDay: Date, mealsArr: [CalorieTrackerEntity]) -> (Int,Int,Int,Int){
     let weekNumber = findWeekNumber(inputDate: currentDay)
     

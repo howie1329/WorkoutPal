@@ -21,6 +21,7 @@ class DataModel: ObservableObject {
     @Published var currentMonth: Int = 0
     @Published var currentDay: Int = 0
     @Published var weekNumber = 0
+    @Published var weekDayData: [(Int,Int,Int,Int,Int)] = []
     
     init(){
         container = NSPersistentContainer(name: "WorkoutContainer")
@@ -36,6 +37,8 @@ class DataModel: ObservableObject {
         fetchCalorieTracker()
         fetchWorkoutPlans()
         fetchSingleWorkout()
+        
+        weekDayData = gatherDayCalStates(currentDay: currentDay, mealsArr: calorieTrackerLog)
         
     }
     

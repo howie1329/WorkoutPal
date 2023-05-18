@@ -15,6 +15,7 @@ struct HomeMainView: View {
             VStack{
                 Text("Today is \(model.currentDate.formatted(date: .abbreviated, time: .omitted)) Week: \(model.weekNumber)")
                 Text("\(weekStats.0) cals \(weekStats.1)g protien \(weekStats.2)g carbs \(weekStats.3)g fat")
+                HomeScrollView()
             }
             .onAppear(perform: {
                 weekStats = gatherWeekCalStats(currentDay: model.currentDate, mealsArr: model.calorieTrackerLog)
