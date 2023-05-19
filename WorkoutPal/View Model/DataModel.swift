@@ -17,11 +17,12 @@ class DataModel: ObservableObject {
     @Published var calorieTrackerLog: [CalorieTrackerEntity] = []
     @Published var workoutPlansLog: [WorkoutPlansEntity] = []
     @Published var singleWorkoutsLog: [SingleWorkoutEntity] = []
+    @Published var dayWorkoutLog: [DayWorkoutEntity] = []
     var currentDate = Date.now
     @Published var currentMonth: Int = 0
     @Published var currentDay: Int = 0
     @Published var weekNumber = 0
-    @Published var weekDayData: [(Int,Int,Int,Int,Int)] = []
+    @Published var weekDayData: [(Int,Int,Int,Int,Int,Bool)] = []
     
     init(){
         container = NSPersistentContainer(name: "WorkoutContainer")
@@ -37,8 +38,44 @@ class DataModel: ObservableObject {
         fetchCalorieTracker()
         fetchWorkoutPlans()
         fetchSingleWorkout()
+        fetchDayWorkout()
         
-        weekDayData = gatherDayCalStates(currentDay: currentDay, mealsArr: calorieTrackerLog)
+        weekDayData = gatherDayCalStates(currentDay: currentDay, mealsArr: calorieTrackerLog, dayWorkoutArr: dayWorkoutLog)
+        
+    }
+    
+    func updateWeekDayData(){
+        weekDayData = gatherDayCalStates(currentDay: currentDay, mealsArr: calorieTrackerLog, dayWorkoutArr: dayWorkoutLog)
+    }
+    
+    func fetchDayWorkout(){
+        let request = NSFetchRequest<DayWorkoutEntity>(entityName: "DayWorkoutEntity")
+        do{
+            dayWorkoutLog = try container.viewContext.fetch(request)
+        } catch let error{
+            print("Error fetching day workout data \(error.localizedDescription)")
+        }
+    }
+    
+    func createDayWorkout(day:Int){
+        let newDay = DayWorkoutEntity(context: container.viewContext)
+        newDay.id = UUID()
+        newDay.isCompleted = true
+        newDay.dayNumber = Int16(day)
+        newDay.monthNumber = 0
+        
+    }
+    
+    func updateDayWorkout(dayNumber: Int){
+        let item = dayWorkoutLog.firstIndex { DayWorkoutEntity in
+            DayWorkoutEntity.dayNumber == Int16(dayNumber)
+        }
+        
+        if let index = item {
+            print("item found")
+            dayWorkoutLog[index].isCompleted.toggle()
+            updateWeekDayData()
+        }
         
     }
     
@@ -151,6 +188,7 @@ class DataModel: ObservableObject {
             fetchCalorieTracker()
             fetchWorkoutPlans()
             fetchSingleWorkout()
+            fetchDayWorkout()
         }catch let error{
             print("Error Saving/fetching from Container \(error)")
         }
