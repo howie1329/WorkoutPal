@@ -63,6 +63,7 @@ class DataModel: ObservableObject {
         newDay.isCompleted = true
         newDay.dayNumber = Int16(day)
         newDay.monthNumber = 0
+        saveData()
         
     }
     
@@ -74,6 +75,7 @@ class DataModel: ObservableObject {
         if let index = item {
             print("item found")
             dayWorkoutLog[index].isCompleted.toggle()
+            saveData()
             updateWeekDayData()
         }
         
@@ -143,6 +145,7 @@ class DataModel: ObservableObject {
         currentMonth = try! convertDateToMonthNumber(inputDate: currentDate)
         currentDay = try! convertDateToDayNumber(inputDate: currentDate)
         weekNumber = findWeekNumber(inputDate: currentDate)
+        updateWeekDayData()
     }
 
     //MARK: Calorie Tracker CODE

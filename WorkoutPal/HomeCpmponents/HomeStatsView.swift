@@ -12,18 +12,11 @@ struct HomeStatsView: View {
     var body: some View {
         ScrollView(.horizontal){
             HStack{
-                StatsRectangleView(itemData: model.weekDayData[1])
-                StatsRectangleView(itemData: model.weekDayData[2])
-                StatsRectangleView(itemData: model.weekDayData[3])
-            }
-            HStack{
-                StatsRectangleView(itemData: model.weekDayData[4])
-                StatsRectangleView(itemData: model.weekDayData[5])
-                StatsRectangleView(itemData: model.weekDayData[6])
+                ForEach(model.weekDayData, id:\.0){item in
+                    StatsRectangleView(itemData: item)
+                }
             }
         }
-        .scrollIndicators(.hidden)
-        .padding()
     }
 }
 

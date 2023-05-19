@@ -22,7 +22,7 @@ struct StatsRectangleView: View {
                 }
             }
         }
-        .frame(width:182,height: 90)
+        .frame(width:200,height: 120)
         .background(Color.gray)
         .cornerRadius(20)
     }
