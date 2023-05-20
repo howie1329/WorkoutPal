@@ -56,6 +56,7 @@ struct NewSingleWorkoutView: View {
                 .padding(.vertical,5)
             Button {
                 model.workoutDataModel.createSingleWorkout(plansID: planItem.id ?? UUID(), focusGroup: focusGroupTitle, reps: reps, sets: sets, weights: weights, title: title)
+                model.saveData()
                 viewState = false
             } label: {
                 Text("Submit")

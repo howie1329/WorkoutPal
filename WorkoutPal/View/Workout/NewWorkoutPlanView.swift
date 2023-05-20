@@ -34,6 +34,7 @@ struct NewWorkoutPlanView: View {
                     .padding(.vertical,5)
                 Button {
                     model.workoutDataModel.createWorkoutPlan(title: planTitle, iconString: iconString)
+                    model.saveData()
                     viewState = false
                 } label: {
                     Text("Submit")
