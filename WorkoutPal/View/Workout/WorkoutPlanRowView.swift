@@ -14,14 +14,14 @@ struct WorkoutPlanRowView: View {
     var body: some View {
         VStack{
             List{
-                ForEach(model.singleWorkoutsLog){item in
+                ForEach(model.workoutDataModel.singleWorkoutsLog){item in
                     if item.ownerID == planItem.id{
                         WorkoutSectionView(filerSection: "Full Body", singleWorkoutItem: item)
                         WorkoutSectionView(filerSection: "Upper Body", singleWorkoutItem: item)
                         WorkoutSectionView(filerSection: "Lower Body", singleWorkoutItem: item)
                     }
                 }
-                .onDelete(perform: model.deleteSingleWorkout)
+                .onDelete(perform: model.workoutDataModel.deleteSingleWorkout)
             }
             .listStyle(.inset)
         }

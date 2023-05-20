@@ -33,7 +33,7 @@ struct NewWorkoutPlanView: View {
                 Divider()
                     .padding(.vertical,5)
                 Button {
-                    model.createWorkoutPlan(title: planTitle, iconString: iconString)
+                    model.workoutDataModel.createWorkoutPlan(title: planTitle, iconString: iconString)
                     viewState = false
                 } label: {
                     Text("Submit")

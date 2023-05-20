@@ -19,6 +19,8 @@
 		F310FFFA2A0ABDC60093365E /* WorkoutSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFF92A0ABDC60093365E /* WorkoutSectionView.swift */; };
 		F33B44042A17367C00B83FFA /* HomeStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B44032A17367C00B83FFA /* HomeStatsView.swift */; };
 		F33B44062A17372D00B83FFA /* StatsRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B44052A17372D00B83FFA /* StatsRectangleView.swift */; };
+		F33B44092A176DD900B83FFA /* CalorieDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B44082A176DD900B83FFA /* CalorieDataModel.swift */; };
+		F33B440B2A1848E300B83FFA /* WorkoutDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B440A2A1848E300B83FFA /* WorkoutDataModel.swift */; };
 		F34E6A012A0B8301002B5A53 /* HomeMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A002A0B8301002B5A53 /* HomeMainView.swift */; };
 		F34E6A032A0B84EB002B5A53 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A022A0B84EB002B5A53 /* Service.swift */; };
 		F363A9F02A15B950006B7041 /* HomeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F363A9EF2A15B950006B7041 /* HomeScrollView.swift */; };
@@ -43,6 +45,8 @@
 		F310FFF92A0ABDC60093365E /* WorkoutSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSectionView.swift; sourceTree = "<group>"; };
 		F33B44032A17367C00B83FFA /* HomeStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStatsView.swift; sourceTree = "<group>"; };
 		F33B44052A17372D00B83FFA /* StatsRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsRectangleView.swift; sourceTree = "<group>"; };
+		F33B44082A176DD900B83FFA /* CalorieDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieDataModel.swift; sourceTree = "<group>"; };
+		F33B440A2A1848E300B83FFA /* WorkoutDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDataModel.swift; sourceTree = "<group>"; };
 		F34E6A002A0B8301002B5A53 /* HomeMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainView.swift; sourceTree = "<group>"; };
 		F34E6A022A0B84EB002B5A53 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		F363A9EF2A15B950006B7041 /* HomeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScrollView.swift; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				F366615F2A04D11B00166299 /* DataModel.swift */,
+				F33B44082A176DD900B83FFA /* CalorieDataModel.swift */,
+				F33B440A2A1848E300B83FFA /* WorkoutDataModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -271,6 +277,8 @@
 				F310FFE92A0A01360093365E /* MainTabView.swift in Sources */,
 				F36661632A04D17000166299 /* WorkoutContainer.xcdatamodeld in Sources */,
 				F310FFE42A09F4BD0093365E /* AddMealView.swift in Sources */,
+				F33B44092A176DD900B83FFA /* CalorieDataModel.swift in Sources */,
+				F33B440B2A1848E300B83FFA /* WorkoutDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

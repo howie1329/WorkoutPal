@@ -34,7 +34,7 @@ struct HomeMainView: View {
                     //
                 } label: {
                     Button{
-                        model.createDayWorkout(day: model.currentDay)
+                        model.workoutDataModel.createDayWorkout(day: model.currentDay)
                         model.updateWeekDayData()
                     } label: {
                         Text("Did You Workout Today?")
@@ -45,7 +45,7 @@ struct HomeMainView: View {
                 }
             }
             .onAppear(perform: {
-                weekStats = gatherWeekCalStats(currentDay: model.currentDate, mealsArr: model.calorieTrackerLog)
+                weekStats = gatherWeekCalStats(currentDay: model.currentDate, mealsArr: model.calorieDataModel.calorieTrackerLog)
                 model.updateWeekDayData()
             })
             .navigationTitle("Workout Pal")

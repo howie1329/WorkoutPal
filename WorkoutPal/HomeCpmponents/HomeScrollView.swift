@@ -14,7 +14,7 @@ struct HomeScrollView: View {
             HStack{
                 ForEach(model.weekDayData, id:\.0){item in
                     Button {
-                        model.updateDayWorkout(dayNumber: item.0)
+                        model.workoutDataModel.updateDayWorkout(dayNumber: item.0)
                     } label: {
                         VStack(spacing:7){
                             VStack{

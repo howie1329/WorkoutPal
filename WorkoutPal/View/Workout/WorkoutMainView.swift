@@ -23,7 +23,7 @@ struct WorkoutMainView: View {
                 .pickerStyle(.segmented)
                 if viewSelection == "Plans"{
                     List {
-                        ForEach(model.workoutPlansLog){item in
+                        ForEach(model.workoutDataModel.workoutPlansLog){item in
                             NavigationLink(destination: WorkoutPlanRowView(planItem:item)) {
                                 HStack{
                                     Image(systemName: item.icon ?? "figure.run")
@@ -36,7 +36,7 @@ struct WorkoutMainView: View {
                     .listStyle(.inset)
                 } else if viewSelection == "Single"{
                     List{
-                        ForEach(model.singleWorkoutsLog){item in
+                        ForEach(model.workoutDataModel.singleWorkoutsLog){item in
                             WorkoutSectionView(filerSection: "Full Body", singleWorkoutItem: item)
                             WorkoutSectionView(filerSection: "Upper Body", singleWorkoutItem: item)
                             WorkoutSectionView(filerSection: "Lower Body", singleWorkoutItem: item)

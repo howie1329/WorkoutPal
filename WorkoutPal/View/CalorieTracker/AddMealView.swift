@@ -40,7 +40,7 @@ struct AddMealView: View {
             Divider()
                 .padding(.vertical,5)
             Button {
-                model.createCalorieEntry(name: mealTitle, protien: proteinCount, carbs: carbCount, fats: fatCount, mealType: mealType)
+                model.calorieDataModel.createCalorieEntry(name: mealTitle, protien: proteinCount, carbs: carbCount, fats: fatCount, mealType: mealType)
                 viewState = false
             } label: {
                 Text("Add Meal")

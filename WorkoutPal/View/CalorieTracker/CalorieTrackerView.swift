@@ -44,7 +44,7 @@ struct CalorieTrackerView: View {
                 }
                 .padding(.horizontal)
                 List {
-                    ForEach(model.calorieTrackerLog){item in
+                    ForEach(model.calorieDataModel.calorieTrackerLog){item in
                         if model.currentDay == item.dayNumber && model.currentMonth == item.monthNumber{
                             
                             CalorieSectionView(filterSelection: "Breakfast", foodItem: item, totalCalories: $totalCalories, protienCount: $protienCount, fatCount: $fatCount, carbCount: $carbCount)
@@ -55,7 +55,7 @@ struct CalorieTrackerView: View {
                         }
                         
                     }
-                    .onDelete(perform: model.deleteCalorieEntry)
+                    .onDelete(perform: model.calorieDataModel.deleteCalorieEntry)
                 }
                 .listStyle(.inset)
             }
