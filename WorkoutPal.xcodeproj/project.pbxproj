@@ -116,6 +116,15 @@
 			path = HomeCpmponents;
 			sourceTree = "<group>";
 		};
+		F33B440E2A19DE5400B83FFA /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				F34E6A002A0B8301002B5A53 /* HomeMainView.swift */,
+				F33B440C2A185D5E00B83FFA /* HomeWorkoutView.swift */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
 		F36661422A04CFEB00166299 = {
 			isa = PBXGroup;
 			children = (
@@ -143,7 +152,6 @@
 				F366615D2A04D00400166299 /* View */,
 				F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */,
 				F34E6A022A0B84EB002B5A53 /* Service.swift */,
-				F33B440C2A185D5E00B83FFA /* HomeWorkoutView.swift */,
 				F36661522A04CFEC00166299 /* Assets.xcassets */,
 				F36661612A04D17000166299 /* WorkoutContainer.xcdatamodeld */,
 				F36661542A04CFEC00166299 /* Preview Content */,
@@ -169,10 +177,10 @@
 		F366615D2A04D00400166299 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F33B440E2A19DE5400B83FFA /* HomeView */,
 				F310FFF52A0AA8970093365E /* Workout */,
 				F310FFEA2A0A02390093365E /* CalorieTracker */,
 				F310FFE82A0A01360093365E /* MainTabView.swift */,
-				F34E6A002A0B8301002B5A53 /* HomeMainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

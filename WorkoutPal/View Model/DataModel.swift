@@ -60,7 +60,7 @@ class DataModel: ObservableObject {
         newDay.id = UUID()
         newDay.isCompleted = true
         newDay.dayNumber = Int16(day)
-        newDay.monthNumber = 0
+        newDay.monthNumber = Int16(currentMonth)
         newDay.workoutPlanId = workoutPlanId
         saveData()
         
@@ -68,8 +68,9 @@ class DataModel: ObservableObject {
     
     func deleteDayWorkout(dayNumber: Int){
         print("\(dayWorkoutLog)")
+        print("DayNumber: \(dayNumber)")
         let item = dayWorkoutLog.firstIndex { DayWorkoutEntity in
-            DayWorkoutEntity.dayNumber == Int16(dayNumber)
+            DayWorkoutEntity.dayNumber == Int16(dayNumber) && DayWorkoutEntity.monthNumber == Int16(currentMonth)
         }
         
         if let index = item{
@@ -85,7 +86,7 @@ class DataModel: ObservableObject {
     
     func updateDayWorkout(dayNumber: Int){
         let item = dayWorkoutLog.firstIndex { DayWorkoutEntity in
-            DayWorkoutEntity.dayNumber == Int16(dayNumber)
+            DayWorkoutEntity.dayNumber == Int16(dayNumber) && DayWorkoutEntity.monthNumber == Int16(currentMonth)
         }
         
         if let index = item {

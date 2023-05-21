@@ -9,9 +9,13 @@ import SwiftUI
 
 struct HomeWorkoutView: View {
     @EnvironmentObject var model:DataModel
+    var workoutDate: Int
     @Binding var viewState: Bool
     var body: some View {
         VStack{
+            Text("Your Plans")
+                .font(.title.bold())
+                .padding(.top)
             List {
                 ForEach(model.workoutPlansLog){item in
                     HStack{
@@ -20,7 +24,7 @@ struct HomeWorkoutView: View {
                             .bold()
                         Spacer()
                         Button {
-                            model.createDayWorkout(day: model.currentDay, workoutPlanId: item.id!)
+                            model.createDayWorkout(day: workoutDate, workoutPlanId: item.id!)
                             viewState = false
                         } label: {
                             Image(systemName: "plus.circle")
@@ -31,6 +35,5 @@ struct HomeWorkoutView: View {
                 }
             }
         }
-        .navigationTitle("Your Plans")
     }
 }

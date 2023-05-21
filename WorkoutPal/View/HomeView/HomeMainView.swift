@@ -10,7 +10,6 @@ import Charts
 
 struct HomeMainView: View {
     @EnvironmentObject var model:DataModel
-    @State var workoutDayViewState = false
     @State var weekStats = (0,0,0,0)
     var body: some View {
         NavigationStack{
@@ -31,23 +30,7 @@ struct HomeMainView: View {
                 HomeStatsView()
                 Spacer()
                 Divider()
-                NavigationLink {
-                    //
-                } label: {
-                    Button{
-                        workoutDayViewState = true
-                        //model.createDayWorkout(day: model.currentDay)
-                    } label: {
-                        Text("Did You Workout Today?")
-                            .bold()
-                    }
-                    .buttonStyle(.borderedProminent)
-
-                }
             }
-            .sheet(isPresented: $workoutDayViewState, content: {
-                HomeWorkoutView(viewState: $workoutDayViewState)
-            })
             .onAppear(perform: {
                 weekStats = gatherWeekCalStats(currentDay: model.currentDate, mealsArr: model.calorieTrackerLog)
                 model.updateWeekDayData()
