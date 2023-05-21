@@ -11,8 +11,6 @@ import Foundation
 
 class DataModel: ObservableObject {
     
-    
-    
     let container: NSPersistentContainer
     @Published var calorieTrackerLog: [CalorieTrackerEntity] = []
     @Published var workoutPlansLog: [WorkoutPlansEntity] = []
@@ -57,14 +55,32 @@ class DataModel: ObservableObject {
         }
     }
     
-    func createDayWorkout(day:Int){
+    func createDayWorkout(day:Int, workoutPlanId: UUID){
         let newDay = DayWorkoutEntity(context: container.viewContext)
         newDay.id = UUID()
         newDay.isCompleted = true
         newDay.dayNumber = Int16(day)
         newDay.monthNumber = 0
+        newDay.workoutPlanId = workoutPlanId
         saveData()
         
+    }
+    
+    func deleteDayWorkout(dayNumber: Int){
+        print("\(dayWorkoutLog)")
+        let item = dayWorkoutLog.firstIndex { DayWorkoutEntity in
+            DayWorkoutEntity.dayNumber == Int16(dayNumber)
+        }
+        
+        if let index = item{
+            let entity = dayWorkoutLog[index]
+            container.viewContext.delete(entity)
+            print("Index: \(index)")
+            saveData()
+        }
+        
+        print("\(dayWorkoutLog)")
+        print("Hello")
     }
     
     func updateDayWorkout(dayNumber: Int){
@@ -74,9 +90,8 @@ class DataModel: ObservableObject {
         
         if let index = item {
             print("item found")
-            dayWorkoutLog[index].isCompleted.toggle()
+            dayWorkoutLog[index].isCompleted = true
             saveData()
-            updateWeekDayData()
         }
         
     }
@@ -192,6 +207,7 @@ class DataModel: ObservableObject {
             fetchWorkoutPlans()
             fetchSingleWorkout()
             fetchDayWorkout()
+            updateWeekDayData()
         }catch let error{
             print("Error Saving/fetching from Container \(error)")
         }

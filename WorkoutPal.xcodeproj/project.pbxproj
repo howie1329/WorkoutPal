@@ -19,6 +19,7 @@
 		F310FFFA2A0ABDC60093365E /* WorkoutSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFF92A0ABDC60093365E /* WorkoutSectionView.swift */; };
 		F33B44042A17367C00B83FFA /* HomeStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B44032A17367C00B83FFA /* HomeStatsView.swift */; };
 		F33B44062A17372D00B83FFA /* StatsRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B44052A17372D00B83FFA /* StatsRectangleView.swift */; };
+		F33B440D2A185D5E00B83FFA /* HomeWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B440C2A185D5E00B83FFA /* HomeWorkoutView.swift */; };
 		F34E6A012A0B8301002B5A53 /* HomeMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A002A0B8301002B5A53 /* HomeMainView.swift */; };
 		F34E6A032A0B84EB002B5A53 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A022A0B84EB002B5A53 /* Service.swift */; };
 		F363A9F02A15B950006B7041 /* HomeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F363A9EF2A15B950006B7041 /* HomeScrollView.swift */; };
@@ -43,6 +44,7 @@
 		F310FFF92A0ABDC60093365E /* WorkoutSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSectionView.swift; sourceTree = "<group>"; };
 		F33B44032A17367C00B83FFA /* HomeStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStatsView.swift; sourceTree = "<group>"; };
 		F33B44052A17372D00B83FFA /* StatsRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsRectangleView.swift; sourceTree = "<group>"; };
+		F33B440C2A185D5E00B83FFA /* HomeWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkoutView.swift; sourceTree = "<group>"; };
 		F34E6A002A0B8301002B5A53 /* HomeMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainView.swift; sourceTree = "<group>"; };
 		F34E6A022A0B84EB002B5A53 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		F363A9EF2A15B950006B7041 /* HomeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScrollView.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				F366615D2A04D00400166299 /* View */,
 				F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */,
 				F34E6A022A0B84EB002B5A53 /* Service.swift */,
+				F33B440C2A185D5E00B83FFA /* HomeWorkoutView.swift */,
 				F36661522A04CFEC00166299 /* Assets.xcassets */,
 				F36661612A04D17000166299 /* WorkoutContainer.xcdatamodeld */,
 				F36661542A04CFEC00166299 /* Preview Content */,
@@ -255,6 +258,7 @@
 				F310FFF42A0A349C0093365E /* SingleWorkoutPlanRowView.swift in Sources */,
 				F363A9F02A15B950006B7041 /* HomeScrollView.swift in Sources */,
 				F36661512A04CFEC00166299 /* CalorieTrackerView.swift in Sources */,
+				F33B440D2A185D5E00B83FFA /* HomeWorkoutView.swift in Sources */,
 				F310FFFA2A0ABDC60093365E /* WorkoutSectionView.swift in Sources */,
 				F34E6A012A0B8301002B5A53 /* HomeMainView.swift in Sources */,
 				F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */,
@@ -403,6 +407,7 @@
 				DEVELOPMENT_TEAM = QG3YZK6HZG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -434,6 +439,7 @@
 				DEVELOPMENT_TEAM = QG3YZK6HZG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

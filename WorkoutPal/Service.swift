@@ -56,7 +56,7 @@ func gatherDayCalStates(currentDay: Int, mealsArr: [CalorieTrackerEntity], dayWo
     var weekData: [(Int,Int,Int,Int,Int,Bool)] = []
     
     
-    for day in currentDay-7...currentDay{
+    for day in currentDay-3...currentDay+3{
         var totalCal = 0
         var proteinCount = 0
         var carbCount = 0
