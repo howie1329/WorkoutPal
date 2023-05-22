@@ -30,12 +30,6 @@ struct HomeScrollView: View {
                             showCreateView.toggle()
                         }
                         
-                        
-                        /*if item.5 {
-                            model.deleteDayWorkout(dayNumber: item.0)
-                        }else{
-                            model.updateDayWorkout(dayNumber: item.0)
-                        } */
                     } label: {
                         VStack(spacing:7){
                             VStack{

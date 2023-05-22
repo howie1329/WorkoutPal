@@ -17,6 +17,8 @@
 		F310FFF42A0A349C0093365E /* SingleWorkoutPlanRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFF32A0A349C0093365E /* SingleWorkoutPlanRowView.swift */; };
 		F310FFF72A0AB8FE0093365E /* CalorieSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFF62A0AB8FE0093365E /* CalorieSectionView.swift */; };
 		F310FFFA2A0ABDC60093365E /* WorkoutSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFF92A0ABDC60093365E /* WorkoutSectionView.swift */; };
+		F32DBD062A1B2C69007ECFFC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32DBD052A1B2C69007ECFFC /* SignUpView.swift */; };
+		F32DBD082A1B3481007ECFFC /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32DBD072A1B3480007ECFFC /* SignInView.swift */; };
 		F33B44042A17367C00B83FFA /* HomeStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B44032A17367C00B83FFA /* HomeStatsView.swift */; };
 		F33B44062A17372D00B83FFA /* StatsRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B44052A17372D00B83FFA /* StatsRectangleView.swift */; };
 		F33B440D2A185D5E00B83FFA /* HomeWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B440C2A185D5E00B83FFA /* HomeWorkoutView.swift */; };
@@ -47,6 +49,8 @@
 		F310FFF32A0A349C0093365E /* SingleWorkoutPlanRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleWorkoutPlanRowView.swift; sourceTree = "<group>"; };
 		F310FFF62A0AB8FE0093365E /* CalorieSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieSectionView.swift; sourceTree = "<group>"; };
 		F310FFF92A0ABDC60093365E /* WorkoutSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSectionView.swift; sourceTree = "<group>"; };
+		F32DBD052A1B2C69007ECFFC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		F32DBD072A1B3480007ECFFC /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		F33B44032A17367C00B83FFA /* HomeStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStatsView.swift; sourceTree = "<group>"; };
 		F33B44052A17372D00B83FFA /* StatsRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsRectangleView.swift; sourceTree = "<group>"; };
 		F33B440C2A185D5E00B83FFA /* HomeWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkoutView.swift; sourceTree = "<group>"; };
@@ -114,6 +118,29 @@
 				F310FFF92A0ABDC60093365E /* WorkoutSectionView.swift */,
 			);
 			path = WorkoutComponents;
+			sourceTree = "<group>";
+		};
+		F32DBD022A1B2C41007ECFFC /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		F32DBD032A1B2C4C007ECFFC /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		F32DBD042A1B2C58007ECFFC /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F32DBD052A1B2C69007ECFFC /* SignUpView.swift */,
+				F32DBD072A1B3480007ECFFC /* SignInView.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		F33B44072A173AD900B83FFA /* HomeCpmponents */ = {
@@ -196,6 +223,9 @@
 		F366615D2A04D00400166299 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F32DBD042A1B2C58007ECFFC /* Onboarding */,
+				F32DBD032A1B2C4C007ECFFC /* Profile */,
+				F32DBD022A1B2C41007ECFFC /* Feed */,
 				F33B440E2A19DE5400B83FFA /* HomeView */,
 				F310FFF52A0AA8970093365E /* Workout */,
 				F310FFEA2A0A02390093365E /* CalorieTracker */,
@@ -307,7 +337,9 @@
 				F310FFF22A0A2FC60093365E /* WorkoutPlanRowView.swift in Sources */,
 				F34E6A032A0B84EB002B5A53 /* Service.swift in Sources */,
 				F33B44042A17367C00B83FFA /* HomeStatsView.swift in Sources */,
+				F32DBD082A1B3481007ECFFC /* SignInView.swift in Sources */,
 				F310FFEE2A0A29EE0093365E /* NewWorkoutPlanView.swift in Sources */,
+				F32DBD062A1B2C69007ECFFC /* SignUpView.swift in Sources */,
 				F310FFF72A0AB8FE0093365E /* CalorieSectionView.swift in Sources */,
 				F310FFF02A0A2B720093365E /* NewSingleWorkoutView.swift in Sources */,
 				F310FFE92A0A01360093365E /* MainTabView.swift in Sources */,
