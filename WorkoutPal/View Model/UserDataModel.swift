@@ -9,13 +9,20 @@ import Foundation
 import Firebase
 import FirebaseAuth
 
+enum userGenderID: String, CaseIterable{
+    case male = "Male"
+    case female = "Female"
+    case none = "None"
+}
+
 class UserDataModel: ObservableObject {
     @Published var userID = ""
     @Published var userName = ""
     @Published var userEmail = ""
+    @Published var userGender:userGenderID = .none
     
     init(){
-        emailSignUp(name: "howarddasd", email: "howardasd@test.com", password: "teadsst12345")
+        emailSignUp(name: "howarddasd", email: "howardasd@test.com", password: "teadsst12345", gender: .male)
         //emailLogin(email: "howard@test.com", password: "test12345")
     }
     
@@ -34,6 +41,7 @@ class UserDataModel: ObservableObject {
                                 self.userName = data["userName"] as! String
                                 self.userID = data["userId"] as! String
                                 self.userEmail = data["userEmail"] as! String
+                                self.userGender = data["userGender"] as! userGenderID
                             }
                         }
                     }
@@ -45,14 +53,14 @@ class UserDataModel: ObservableObject {
         }
     }
     
-    func emailSignUp(name:String, email:String, password:String){
+    func emailSignUp(name:String, email:String, password:String, gender:userGenderID){
         Auth.auth().createUser(withEmail: email, password: password){result ,error in
             if error == nil{
                 if let data = result {
                     let id = data.user.uid
                     let db = Firestore.firestore()
                     let collection = db.collection("users")
-                    collection.addDocument(data: ["userName" : name, "userEmail": email, "userID": id])
+                    collection.addDocument(data: ["userName" : name, "userEmail": email, "userID": id, "userGender": gender.rawValue])
                 }
             }else if let error = error{
                 print("Error on Signup \(error.localizedDescription)")
@@ -66,6 +74,7 @@ class UserDataModel: ObservableObject {
             userID = ""
             userName = ""
             userEmail = ""
+            userGender = .none
         } catch let error {
             print("Error During Signout \(error)")
         }
