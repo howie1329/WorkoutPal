@@ -22,7 +22,7 @@ struct WorkoutPalApp: App {
             MainTabView()
                 .environmentObject(dataModel)
                 .environmentObject(userModel)
-                .preferredColorScheme(.dark)
+                //.preferredColorScheme(.dark)
         }
     }
 }

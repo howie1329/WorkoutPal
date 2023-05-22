@@ -15,15 +15,46 @@ enum userGenderID: String, CaseIterable{
     case none = "None"
 }
 
+enum appStates{
+    case signedIn,signedOut
+}
+
 class UserDataModel: ObservableObject {
     @Published var userID = ""
     @Published var userName = ""
     @Published var userEmail = ""
     @Published var userGender:userGenderID = .none
+    @Published var appState:appStates = .signedOut
     
     init(){
         emailSignUp(name: "howarddasd", email: "howardasd@test.com", password: "teadsst12345", gender: .male)
+        //checkLogin()
         //emailLogin(email: "howard@test.com", password: "test12345")
+    }
+    
+    func checkLogin(){
+        let currentUser = Auth.auth().currentUser
+        if currentUser != nil{
+            if let user = currentUser {
+                self.userID = user.uid
+                let db = Firestore.firestore().collection("users")
+                db.whereField("userID", isEqualTo: user.uid).getDocuments{ SnapShot, error in
+                    if let snapShot = SnapShot {
+                        for doc in snapShot.documents{
+                            let data = doc.data()
+                            
+                            self.userName = data["userName"] as! String
+                            self.userID = data["userId"] as! String
+                            self.userEmail = data["userEmail"] as! String
+                            self.userGender = data["userGender"] as! userGenderID
+                            
+                            self.appState = .signedIn
+                            
+                        }
+                    }
+                }
+            }
+        }
     }
     
     func emailLogin(email:String, password:String){
@@ -42,6 +73,8 @@ class UserDataModel: ObservableObject {
                                 self.userID = data["userId"] as! String
                                 self.userEmail = data["userEmail"] as! String
                                 self.userGender = data["userGender"] as! userGenderID
+                                
+                                self.appState = .signedIn
                             }
                         }
                     }
@@ -60,7 +93,7 @@ class UserDataModel: ObservableObject {
                     let id = data.user.uid
                     let db = Firestore.firestore()
                     let collection = db.collection("users")
-                    collection.addDocument(data: ["userName" : name, "userEmail": email, "userID": id, "userGender": gender.rawValue])
+                    collection.addDocument(data: ["userName" : name, "userEmail": email, "userId": id, "userGender": gender.rawValue])
                 }
             }else if let error = error{
                 print("Error on Signup \(error.localizedDescription)")
@@ -75,6 +108,7 @@ class UserDataModel: ObservableObject {
             userName = ""
             userEmail = ""
             userGender = .none
+            appState = .signedOut
         } catch let error {
             print("Error During Signout \(error)")
         }

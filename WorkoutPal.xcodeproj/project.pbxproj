@@ -19,6 +19,8 @@
 		F310FFFA2A0ABDC60093365E /* WorkoutSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310FFF92A0ABDC60093365E /* WorkoutSectionView.swift */; };
 		F32DBD062A1B2C69007ECFFC /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32DBD052A1B2C69007ECFFC /* SignUpView.swift */; };
 		F32DBD082A1B3481007ECFFC /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32DBD072A1B3480007ECFFC /* SignInView.swift */; };
+		F32DBD0A2A1B3BAF007ECFFC /* FeedStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32DBD092A1B3BAF007ECFFC /* FeedStartView.swift */; };
+		F32DBD0C2A1B3E50007ECFFC /* OnboardingSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32DBD0B2A1B3E50007ECFFC /* OnboardingSelectionView.swift */; };
 		F33B44042A17367C00B83FFA /* HomeStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B44032A17367C00B83FFA /* HomeStatsView.swift */; };
 		F33B44062A17372D00B83FFA /* StatsRectangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B44052A17372D00B83FFA /* StatsRectangleView.swift */; };
 		F33B440D2A185D5E00B83FFA /* HomeWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B440C2A185D5E00B83FFA /* HomeWorkoutView.swift */; };
@@ -51,6 +53,8 @@
 		F310FFF92A0ABDC60093365E /* WorkoutSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSectionView.swift; sourceTree = "<group>"; };
 		F32DBD052A1B2C69007ECFFC /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		F32DBD072A1B3480007ECFFC /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		F32DBD092A1B3BAF007ECFFC /* FeedStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStartView.swift; sourceTree = "<group>"; };
+		F32DBD0B2A1B3E50007ECFFC /* OnboardingSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSelectionView.swift; sourceTree = "<group>"; };
 		F33B44032A17367C00B83FFA /* HomeStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStatsView.swift; sourceTree = "<group>"; };
 		F33B44052A17372D00B83FFA /* StatsRectangleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsRectangleView.swift; sourceTree = "<group>"; };
 		F33B440C2A185D5E00B83FFA /* HomeWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkoutView.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 		F32DBD022A1B2C41007ECFFC /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				F32DBD092A1B3BAF007ECFFC /* FeedStartView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 			children = (
 				F32DBD052A1B2C69007ECFFC /* SignUpView.swift */,
 				F32DBD072A1B3480007ECFFC /* SignInView.swift */,
+				F32DBD0B2A1B3E50007ECFFC /* OnboardingSelectionView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -328,12 +334,14 @@
 				F33B440D2A185D5E00B83FFA /* HomeWorkoutView.swift in Sources */,
 				F310FFFA2A0ABDC60093365E /* WorkoutSectionView.swift in Sources */,
 				F34E6A012A0B8301002B5A53 /* HomeMainView.swift in Sources */,
+				F32DBD0C2A1B3E50007ECFFC /* OnboardingSelectionView.swift in Sources */,
 				F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */,
 				F33B44062A17372D00B83FFA /* StatsRectangleView.swift in Sources */,
 				F310FFEC2A0A02500093365E /* WorkoutMainView.swift in Sources */,
 				F33B441A2A19E3DC00B83FFA /* UserDataModel.swift in Sources */,
 				F36661602A04D11B00166299 /* DataModel.swift in Sources */,
 				F310FFE72A09FA6A0093365E /* CalorieRowView.swift in Sources */,
+				F32DBD0A2A1B3BAF007ECFFC /* FeedStartView.swift in Sources */,
 				F310FFF22A0A2FC60093365E /* WorkoutPlanRowView.swift in Sources */,
 				F34E6A032A0B84EB002B5A53 /* Service.swift in Sources */,
 				F33B44042A17367C00B83FFA /* HomeStatsView.swift in Sources */,
