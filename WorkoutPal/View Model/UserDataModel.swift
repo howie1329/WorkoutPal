@@ -27,7 +27,7 @@ class UserDataModel: ObservableObject {
     @Published var appState:appStates = .signedOut
     
     init(){
-        emailSignUp(name: "howarddasd", email: "howardasd@test.com", password: "teadsst12345", gender: .male)
+        //emailSignUp(name: "howarddasd", email: "howardasd@test.com", password: "teadsst12345", gender: .male)
         //checkLogin()
         //emailLogin(email: "howard@test.com", password: "test12345")
     }

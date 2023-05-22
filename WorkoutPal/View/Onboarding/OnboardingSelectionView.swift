@@ -9,21 +9,24 @@ import SwiftUI
 
 struct OnboardingSelectionView: View {
     @EnvironmentObject var userModel:UserDataModel
-    let choice = ["signIn","signUp"]
-    @State var userChoice = "signUp"
+    enum boardingChoice:String, CaseIterable{
+        case signIn = "signin"
+        case signUp = "signup"
+    }
+    @State var userChoice:boardingChoice = .signUp
     var body: some View {
         VStack(){
             Spacer()
             Picker("", selection: $userChoice) {
-                ForEach(choice, id:\.self){item in
-                    Text(item.uppercased())
+                ForEach(boardingChoice.allCases, id:\.self){item in
+                    Text("\(item.rawValue.uppercased())")
                 }
             }
             .pickerStyle(.segmented)
             Spacer()
-            if userChoice == "signUp"{
+            if userChoice == .signUp{
                 SignUpView()
-            }else if userChoice == "signIn"{
+            }else if userChoice == .signIn{
                 SignInView()
             }
             Spacer()
