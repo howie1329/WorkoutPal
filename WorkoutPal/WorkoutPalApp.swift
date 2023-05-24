@@ -12,6 +12,7 @@ import SwiftUI
 struct WorkoutPalApp: App {
     @StateObject var dataModel = DataModel()
     @StateObject var userModel = UserDataModel()
+    @StateObject var feedModel = FeedDataModel()
     
     init(){
         FirebaseApp.configure()
@@ -22,7 +23,8 @@ struct WorkoutPalApp: App {
             MainTabView()
                 .environmentObject(dataModel)
                 .environmentObject(userModel)
-                //.preferredColorScheme(.dark)
+                .environmentObject(feedModel)
+                .preferredColorScheme(.light)
         }
     }
 }

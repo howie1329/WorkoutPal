@@ -13,7 +13,8 @@ struct MainTabView: View {
         TabView(selection:$tabSelection){
             FeedStartView()
                 .tabItem {
-                    Image(systemName: "pencil")
+                    Image(systemName: "figure.socialdance")
+                    Text("Feed")
                 }.tag(0)
             CalorieTrackerView()
                 .tabItem {

@@ -1,5 +1,5 @@
 //
-//  InitalizationView.swift
+//  FeedStartView.swift
 //  WorkoutPal
 //
 //  Created by Howard Thomas on 5/22/23.
@@ -14,7 +14,7 @@ struct FeedStartView: View {
             if userModel.appState == .signedOut{
                 OnboardingSelectionView()
             } else if userModel.appState == .signedIn{
-                Text("Logged In")
+                FeedMainView()
             }
         }
     }

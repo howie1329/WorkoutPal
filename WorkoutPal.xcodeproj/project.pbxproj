@@ -38,6 +38,13 @@
 		F36661562A04CFEC00166299 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36661552A04CFEC00166299 /* Preview Assets.xcassets */; };
 		F36661602A04D11B00166299 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F366615F2A04D11B00166299 /* DataModel.swift */; };
 		F36661632A04D17000166299 /* WorkoutContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F36661612A04D17000166299 /* WorkoutContainer.xcdatamodeld */; };
+		F3AD77A92A1D9CE700499545 /* ProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77A82A1D9CE700499545 /* ProfileMainView.swift */; };
+		F3AD77AC2A1D9F9500499545 /* ProfileHeaderComp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */; };
+		F3AD77AE2A1DA13300499545 /* FeedMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77AD2A1DA13300499545 /* FeedMainView.swift */; };
+		F3AD77B02A1DAFAD00499545 /* FeedDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77AF2A1DAFAD00499545 /* FeedDataModel.swift */; };
+		F3AD77B22A1DC0C400499545 /* ForYouFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B12A1DC0C400499545 /* ForYouFeedView.swift */; };
+		F3AD77B42A1DC47900499545 /* FeedNewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */; };
+		F3AD77B62A1DD85900499545 /* ProfileYourPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +77,13 @@
 		F36661552A04CFEC00166299 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F366615F2A04D11B00166299 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		F36661622A04D17000166299 /* WorkoutContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkoutContainer.xcdatamodel; sourceTree = "<group>"; };
+		F3AD77A82A1D9CE700499545 /* ProfileMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainView.swift; sourceTree = "<group>"; };
+		F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderComp.swift; sourceTree = "<group>"; };
+		F3AD77AD2A1DA13300499545 /* FeedMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMainView.swift; sourceTree = "<group>"; };
+		F3AD77AF2A1DAFAD00499545 /* FeedDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDataModel.swift; sourceTree = "<group>"; };
+		F3AD77B12A1DC0C400499545 /* ForYouFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForYouFeedView.swift; sourceTree = "<group>"; };
+		F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNewMessageView.swift; sourceTree = "<group>"; };
+		F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileYourPostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +142,8 @@
 			isa = PBXGroup;
 			children = (
 				F32DBD092A1B3BAF007ECFFC /* FeedStartView.swift */,
+				F3AD77AD2A1DA13300499545 /* FeedMainView.swift */,
+				F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -135,6 +151,7 @@
 		F32DBD032A1B2C4C007ECFFC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F3AD77A82A1D9CE700499545 /* ProfileMainView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -195,6 +212,7 @@
 		F366614D2A04CFEC00166299 /* WorkoutPal */ = {
 			isa = PBXGroup;
 			children = (
+				F3AD77AA2A1D9F7700499545 /* FeedComponents */,
 				F33B44072A173AD900B83FFA /* HomeCpmponents */,
 				F310FFF82A0ABDB40093365E /* WorkoutComponents */,
 				F310FFE52A09FA540093365E /* CalorieComponents */,
@@ -245,8 +263,19 @@
 			children = (
 				F366615F2A04D11B00166299 /* DataModel.swift */,
 				F33B44192A19E3DC00B83FFA /* UserDataModel.swift */,
+				F3AD77AF2A1DAFAD00499545 /* FeedDataModel.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		F3AD77AA2A1D9F7700499545 /* FeedComponents */ = {
+			isa = PBXGroup;
+			children = (
+				F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */,
+				F3AD77B12A1DC0C400499545 /* ForYouFeedView.swift */,
+				F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */,
+			);
+			path = FeedComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,6 +364,8 @@
 				F310FFFA2A0ABDC60093365E /* WorkoutSectionView.swift in Sources */,
 				F34E6A012A0B8301002B5A53 /* HomeMainView.swift in Sources */,
 				F32DBD0C2A1B3E50007ECFFC /* OnboardingSelectionView.swift in Sources */,
+				F3AD77B42A1DC47900499545 /* FeedNewMessageView.swift in Sources */,
+				F3AD77B02A1DAFAD00499545 /* FeedDataModel.swift in Sources */,
 				F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */,
 				F33B44062A17372D00B83FFA /* StatsRectangleView.swift in Sources */,
 				F310FFEC2A0A02500093365E /* WorkoutMainView.swift in Sources */,
@@ -343,16 +374,21 @@
 				F310FFE72A09FA6A0093365E /* CalorieRowView.swift in Sources */,
 				F32DBD0A2A1B3BAF007ECFFC /* FeedStartView.swift in Sources */,
 				F310FFF22A0A2FC60093365E /* WorkoutPlanRowView.swift in Sources */,
+				F3AD77A92A1D9CE700499545 /* ProfileMainView.swift in Sources */,
 				F34E6A032A0B84EB002B5A53 /* Service.swift in Sources */,
+				F3AD77AE2A1DA13300499545 /* FeedMainView.swift in Sources */,
 				F33B44042A17367C00B83FFA /* HomeStatsView.swift in Sources */,
+				F3AD77B62A1DD85900499545 /* ProfileYourPostView.swift in Sources */,
 				F32DBD082A1B3481007ECFFC /* SignInView.swift in Sources */,
 				F310FFEE2A0A29EE0093365E /* NewWorkoutPlanView.swift in Sources */,
 				F32DBD062A1B2C69007ECFFC /* SignUpView.swift in Sources */,
 				F310FFF72A0AB8FE0093365E /* CalorieSectionView.swift in Sources */,
+				F3AD77B22A1DC0C400499545 /* ForYouFeedView.swift in Sources */,
 				F310FFF02A0A2B720093365E /* NewSingleWorkoutView.swift in Sources */,
 				F310FFE92A0A01360093365E /* MainTabView.swift in Sources */,
 				F36661632A04D17000166299 /* WorkoutContainer.xcdatamodeld in Sources */,
 				F310FFE42A09F4BD0093365E /* AddMealView.swift in Sources */,
+				F3AD77AC2A1D9F9500499545 /* ProfileHeaderComp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

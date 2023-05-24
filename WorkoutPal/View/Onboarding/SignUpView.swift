@@ -11,6 +11,7 @@ struct SignUpView: View {
     @EnvironmentObject var userModel:UserDataModel
     
     @State var name:String = ""
+    @State var handle:String = ""
     @State var gender:userGenderID = .none
     @State var email:String = ""
     @State var password:String = ""
@@ -22,6 +23,7 @@ struct SignUpView: View {
             Divider()
             VStack(spacing:15){
                 TextField("Name", text: $name)
+                TextField("@Handle",text:$handle)
                 Picker("Gender", selection: $gender) {
                     ForEach(userGenderID.allCases, id:\.self){
                         Text($0.rawValue)
@@ -39,7 +41,7 @@ struct SignUpView: View {
             if email != "" && password != "" && name != ""{
                 if password == confirmPassword{
                     Button {
-                        userModel.emailSignUp(name: name, email: email, password: password, gender: gender)
+                        userModel.emailSignUp(name: name, email: email, password: password, gender: gender, handle: handle)
                     } label: {
                         Text("Sign Up!!")
                             .frame(maxWidth:.infinity, maxHeight: 35)
