@@ -34,7 +34,7 @@ struct ForYouFeedView: View {
             }
         }
         .refreshable {
-            feedModel.fetchAllMessages()
+            //feedModel.fetchAllMessages()
             feedModel.sortFeed(userHandle: userHandle)
             feedModel.sortYourPost(userHandle: userHandle)
         }

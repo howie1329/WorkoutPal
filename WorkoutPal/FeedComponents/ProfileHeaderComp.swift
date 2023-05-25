@@ -35,7 +35,7 @@ struct ProfileHeaderComp: View {
 
             }
             .frame(maxWidth: .infinity,alignment:.leading)
-        }
+        }.padding([.horizontal])
     }
 }
 

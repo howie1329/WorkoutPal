@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseAuth
 
 class FeedDataModel: ObservableObject {
     
@@ -20,7 +21,34 @@ class FeedDataModel: ObservableObject {
         //createNewMessage(message: MessageFeed(id: "", body: "This is a test", authorId: "adasdadsa"))
         //createNewMessage(message: MessageFeed(id: "", body: "This is a test", authorId: "adasdadsa"))
         
-        fetchAllMessages()
+        //fetchAllMessages()
+        updateFetch()
+    }
+    
+    func updateFetch(){
+        
+        let db = Firestore.firestore()
+        let collection = db.collection("feed").addSnapshotListener { QuerySnapshot, Error in
+            if Error != nil {
+                print("Error \(Error?.localizedDescription)")
+            } else if let snapShot = QuerySnapshot{
+                self.feedArr = []
+                for doc in snapShot.documents{
+                    let data = doc.data()
+                    
+                    let feedId = doc.documentID
+                    let feedBody = data["feed_body"] as! String
+                    let feedAuthor = data["feed_author_id"] as! String
+                    let feedTimestamp = data["feed_timestamp"] as! Timestamp
+                    
+                    self.feedArr.append(MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, date: feedTimestamp))
+                }
+            }
+        }
+        if Auth.auth().currentUser == nil {
+            collection.remove()
+        }
+        
     }
     
     func fetchAllMessages(){

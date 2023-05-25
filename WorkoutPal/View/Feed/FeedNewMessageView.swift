@@ -23,7 +23,7 @@ struct FeedNewMessageView: View {
             
             Button {
                 feedModel.createNewMessage(message: MessageFeed(id: "", body: feedMessage, authorId: userModel.userHandle))
-                feedModel.fetchAllMessages()
+                //feedModel.fetchAllMessages()
                 viewState = false
             } label: {
                 Text("Post")

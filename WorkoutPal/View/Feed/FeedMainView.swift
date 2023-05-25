@@ -51,7 +51,7 @@ struct FeedMainView: View {
                                     .bold()
                                     .foregroundColor(.white)
                             }
-                        }
+                        }.padding(.trailing)
                     }
                 }else if feedChoiceSelection == .following{
                     VStack{
