@@ -25,11 +25,14 @@ struct SignInView: View {
             Divider()
             if email != "" && password != ""{
                 Button {
-                    userModel.emailLogin(email: email, password: password)
+                    Task{
+                        await userModel.emailLogin(email: email, password: password)
+                    }
                 } label: {
                     Text("Sign In!!")
                         .frame(maxWidth:.infinity, maxHeight: 35)
                 }
+                
                 .buttonStyle(.borderedProminent)
                 .tint(.black)
             }else{
@@ -49,9 +52,9 @@ struct SignInView: View {
     }
 }
 
-struct SignInView_Previews: PreviewProvider {
+/* struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
         SignInView()
             .environmentObject(UserDataModel())
     }
-}
+} */
