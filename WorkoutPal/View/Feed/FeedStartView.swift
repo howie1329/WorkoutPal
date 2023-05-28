@@ -17,6 +17,9 @@ struct FeedStartView: View {
                 FeedMainView()
             }
         }
+        .task {
+           await userModel.checkLogin()
+        }
     }
 }
 

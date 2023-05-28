@@ -41,7 +41,10 @@ struct SignUpView: View {
             if email != "" && password != "" && name != ""{
                 if password == confirmPassword{
                     Button {
-                        userModel.emailSignUp(name: name, email: email, password: password, gender: gender, handle: handle)
+                        Task{
+                            await userModel.emailSignUp(name: name, email: email, password: password, gender: gender, handle: handle)
+                        }
+                        
                     } label: {
                         Text("Sign Up!!")
                             .frame(maxWidth:.infinity, maxHeight: 35)
@@ -67,9 +70,9 @@ struct SignUpView: View {
     }
 }
 
-struct SignUpView_Previews: PreviewProvider {
+/* struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
         SignUpView()
             .environmentObject(UserDataModel())
     }
-}
+} */
