@@ -8,6 +8,7 @@
 import Foundation
 import Firebase
 import FirebaseAuth
+import _PhotosUI_SwiftUI
 
 enum userGenderID: String, CaseIterable{
     case male = "Male"
@@ -27,11 +28,25 @@ class UserDataModel: ObservableObject {
     @Published var userGender:String = "none"
     @Published var userHandle = ""
     @Published var appState:appStates = .signedOut
+    @Published var userProfilePhoto: UIImage? = nil
+    @Published var userPickerImage: PhotosPickerItem? = nil
     
     init(){
         //emailSignUp(name: "howarddasd", email: "howardasd@test.com", password: "teadsst12345", gender: .male)
         //emailLogin(email: "howard@test.com", password: "test12345")
     }
+    
+    @MainActor
+    func getProfilePhoto()async {
+        do{
+            guard let imageData = try await userPickerImage?.loadTransferable(type: Data.self)else{return}
+            
+            self.userProfilePhoto = UIImage(data: imageData)
+        } catch{
+            print("Error On Photo")
+        }
+    }
+    
     @MainActor
     func checkLogin() async {
         let currentUser = Auth.auth().currentUser

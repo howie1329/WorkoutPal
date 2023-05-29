@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import _PhotosUI_SwiftUI
 
 struct SignUpView: View {
     @EnvironmentObject var userModel:UserDataModel
@@ -24,6 +25,26 @@ struct SignUpView: View {
             VStack(spacing:15){
                 TextField("Name", text: $name)
                 TextField("@Handle",text:$handle)
+                
+                PhotosPicker(selection:$userModel.userPickerImage, matching:.images){
+                    if userModel.userProfilePhoto == nil{
+                        Image(systemName: "person.circle")
+                    }else{
+                        if let image = userModel.userProfilePhoto{
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        }
+                    }
+                    
+                }
+                .onChange(of: userModel.userPickerImage) { newValue in
+                    Task{
+                        await userModel.getProfilePhoto()
+                    }
+                }
+                
+                
                 Picker("Gender", selection: $gender) {
                     ForEach(userGenderID.allCases, id:\.self){
                         Text($0.rawValue)
@@ -51,7 +72,7 @@ struct SignUpView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.black)
-
+                    
                 }
             }else{
                 Button {
@@ -63,7 +84,7 @@ struct SignUpView: View {
                 .buttonStyle(.borderedProminent)
                 .tint(.black)
                 .opacity(0.75)
-
+                
             }
         }
         .padding()
@@ -71,8 +92,8 @@ struct SignUpView: View {
 }
 
 /* struct SignUpView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpView()
-            .environmentObject(UserDataModel())
-    }
-} */
+ static var previews: some View {
+ SignUpView()
+ .environmentObject(UserDataModel())
+ }
+ } */
