@@ -62,10 +62,10 @@ class FeedDataModel: ObservableObject {
                 for doc in snapShot.documents{
                     let data = doc.data()
                     
-                    var feedId = doc.documentID
-                    var feedBody = data["feed_body"] as! String
-                    var feedAuthor = data["feed_author_id"] as! String
-                    var feedTimestamp = data["feed_timestamp"] as! Timestamp
+                    let feedId = doc.documentID
+                    let feedBody = data["feed_body"] as! String
+                    let feedAuthor = data["feed_author_id"] as! String
+                    let feedTimestamp = data["feed_timestamp"] as! Timestamp
                     
                     self.feedArr.append(MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, date: feedTimestamp))
                 }

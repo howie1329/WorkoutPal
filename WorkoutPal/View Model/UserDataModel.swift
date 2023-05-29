@@ -107,6 +107,7 @@ class UserDataModel: ObservableObject {
         do{
             let userSignInfo = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userID = userSignInfo.user.uid
+            
             let databaseResults = try await Firestore.firestore().collection("users").whereField("user_id", isEqualTo: userSignInfo.user.uid).getDocuments()
             
             for doc in databaseResults.documents{
@@ -118,6 +119,7 @@ class UserDataModel: ObservableObject {
                 self.userGender = data["user_gender"] as! String
                 self.userHandle = data["user_handle"] as! String
                 self.userUrl = data["user_profileURL"] as! String
+                
                 let storageRef = Storage.storage().reference(forURL: self.userUrl)
                 storageRef.getData(maxSize: 3 * 1024 * 1024) { data, error in
                     if error == nil {
@@ -145,10 +147,12 @@ class UserDataModel: ObservableObject {
             guard let imageData = try await userPickerImage?.loadTransferable(type: Data.self) else{return}
             
             let storageRef = Storage.storage().reference().child("profile_images").child(id)
-            try await storageRef.putDataAsync(imageData)
+            let _ = try await storageRef.putDataAsync(imageData)
             let downloadURL = try await storageRef.downloadURL()
             
-            let dbResults = Firestore.firestore().collection("users").addDocument(data: ["user_name" : name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle, "user_profileURL": downloadURL.absoluteString])
+            
+            let _ = Firestore.firestore().collection("users").addDocument(data: ["user_name" : name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle, "user_profileURL": downloadURL.absoluteString])
+            
             await checkLogin()
             self.isLoading = false
         } catch{
@@ -172,7 +176,7 @@ class UserDataModel: ObservableObject {
             self.isLoading = false
             appState = .signedOut
         } catch let error {
-            self.setErrorMessage(errorCode: error)
+            self.errorMessage = setErrorMessage(errorCode: error)
         }
     }
 }
