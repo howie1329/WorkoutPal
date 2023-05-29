@@ -46,6 +46,7 @@
 		F3AD77B42A1DC47900499545 /* FeedNewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */; };
 		F3AD77B62A1DD85900499545 /* ProfileYourPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */; };
 		F3DE2AC92A2487F0000EE848 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2AC82A2487F0000EE848 /* LoadingView.swift */; };
+		F3DE2AD02A24AE45000EE848 /* FeedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2ACF2A24AE45000EE848 /* FeedMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNewMessageView.swift; sourceTree = "<group>"; };
 		F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileYourPostView.swift; sourceTree = "<group>"; };
 		F3DE2AC82A2487F0000EE848 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		F3DE2ACF2A24AE45000EE848 /* FeedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 		F366615C2A04CFFE00166299 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F3DE2ACF2A24AE45000EE848 /* FeedMessage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				F32DBD0C2A1B3E50007ECFFC /* OnboardingSelectionView.swift in Sources */,
 				F3AD77B42A1DC47900499545 /* FeedNewMessageView.swift in Sources */,
 				F3AD77B02A1DAFAD00499545 /* FeedDataModel.swift in Sources */,
+				F3DE2AD02A24AE45000EE848 /* FeedMessage.swift in Sources */,
 				F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */,
 				F33B44062A17372D00B83FFA /* StatsRectangleView.swift in Sources */,
 				F310FFEC2A0A02500093365E /* WorkoutMainView.swift in Sources */,
