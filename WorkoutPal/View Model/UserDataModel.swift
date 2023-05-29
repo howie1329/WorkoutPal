@@ -33,9 +33,21 @@ class UserDataModel: ObservableObject {
     @Published var userPickerImage: PhotosPickerItem? = nil
     @Published var userUrl:String = ""
     
+    @Published var isLoading: Bool = false
+    
+    @Published var isError: Bool = false
+    @Published var errorMessage: String = ""
+    
     init(){
         //emailSignUp(name: "howarddasd", email: "howardasd@test.com", password: "teadsst12345", gender: .male)
         //emailLogin(email: "howard@test.com", password: "test12345")
+    }
+    
+    // Move to Service File
+    func setErrorMessage(errorCode: Error) -> String{
+        self.isLoading = false
+        self.isError = true
+        return errorCode.localizedDescription
     }
     
     @MainActor
@@ -45,7 +57,8 @@ class UserDataModel: ObservableObject {
             
             self.userProfilePhoto = UIImage(data: imageData)
         } catch{
-            print("Error On Photo")
+            self.errorMessage = setErrorMessage(errorCode: error)
+            //print("Error On Photo")
         }
     }
     
@@ -80,7 +93,7 @@ class UserDataModel: ObservableObject {
                         self.appState = .signedIn
                     }
                 } catch{
-                    print("Error Getting Info \(error.localizedDescription)")
+                    self.errorMessage = setErrorMessage(errorCode: error)
                     try! Auth.auth().signOut()
                     self.appState = .signedOut
                 }
@@ -90,6 +103,7 @@ class UserDataModel: ObservableObject {
     
     @MainActor
     func emailLogin(email: String, password: String) async {
+        self.isLoading = true
         do{
             let userSignInfo = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userID = userSignInfo.user.uid
@@ -113,16 +127,17 @@ class UserDataModel: ObservableObject {
                         }
                     }
                 }
-                
+                self.isLoading = false
                 self.appState = .signedIn
             }
         } catch{
-            print("Error Signing In \(error.localizedDescription)")
+            self.errorMessage = setErrorMessage(errorCode: error)
         }
     }
     
     @MainActor
     func emailSignUp(name:String, email:String, password:String, gender:userGenderID, handle:String) async {
+        self.isLoading = true
         do{
             let newUser = try await Auth.auth().createUser(withEmail: email, password: password)
             let id = newUser.user.uid
@@ -135,14 +150,16 @@ class UserDataModel: ObservableObject {
             
             let dbResults = Firestore.firestore().collection("users").addDocument(data: ["user_name" : name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle, "user_profileURL": downloadURL.absoluteString])
             await checkLogin()
+            self.isLoading = false
         } catch{
-            print("Error on Signin \(error.localizedDescription)")
+            self.errorMessage = setErrorMessage(errorCode: error)
         }
         
     }
     
     func signOutUser(){
         do{
+            self.isLoading = true
             try Auth.auth().signOut()
             userID = ""
             userName = ""
@@ -152,9 +169,10 @@ class UserDataModel: ObservableObject {
             userUrl = ""
             userProfilePhoto = nil
             userPickerImage = nil
+            self.isLoading = false
             appState = .signedOut
         } catch let error {
-            print("Error During Signout \(error)")
+            self.setErrorMessage(errorCode: error)
         }
     }
 }
