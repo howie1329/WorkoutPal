@@ -45,6 +45,7 @@
 		F3AD77B22A1DC0C400499545 /* ForYouFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B12A1DC0C400499545 /* ForYouFeedView.swift */; };
 		F3AD77B42A1DC47900499545 /* FeedNewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */; };
 		F3AD77B62A1DD85900499545 /* ProfileYourPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */; };
+		F3DE2AC92A2487F0000EE848 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2AC82A2487F0000EE848 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		F3AD77B12A1DC0C400499545 /* ForYouFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForYouFeedView.swift; sourceTree = "<group>"; };
 		F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNewMessageView.swift; sourceTree = "<group>"; };
 		F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileYourPostView.swift; sourceTree = "<group>"; };
+		F3DE2AC82A2487F0000EE848 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +276,7 @@
 				F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */,
 				F3AD77B12A1DC0C400499545 /* ForYouFeedView.swift */,
 				F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */,
+				F3DE2AC82A2487F0000EE848 /* LoadingView.swift */,
 			);
 			path = FeedComponents;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				F310FFEC2A0A02500093365E /* WorkoutMainView.swift in Sources */,
 				F33B441A2A19E3DC00B83FFA /* UserDataModel.swift in Sources */,
 				F36661602A04D11B00166299 /* DataModel.swift in Sources */,
+				F3DE2AC92A2487F0000EE848 /* LoadingView.swift in Sources */,
 				F310FFE72A09FA6A0093365E /* CalorieRowView.swift in Sources */,
 				F32DBD0A2A1B3BAF007ECFFC /* FeedStartView.swift in Sources */,
 				F310FFF22A0A2FC60093365E /* WorkoutPlanRowView.swift in Sources */,
