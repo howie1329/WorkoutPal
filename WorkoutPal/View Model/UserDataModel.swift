@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 import FirebaseAuth
 import _PhotosUI_SwiftUI
 
@@ -103,10 +104,18 @@ class UserDataModel: ObservableObject {
         do{
             let newUser = try await Auth.auth().createUser(withEmail: email, password: password)
             let id = newUser.user.uid
-            let dbResults = Firestore.firestore().collection("users").addDocument(data: ["user_name" : name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle])
+            
+            guard let imageData = try await userPickerImage?.loadTransferable(type: Data.self) else{return}
+            
+            let storageRef = Storage.storage().reference().child("profile_images").child(id)
+            let item = Storage.storage().reference().child("profile_images").child(id)
+            try await storageRef.putDataAsync(imageData)
+            let downloadURL = try await storageRef.downloadURL()
+            
+            let dbResults = Firestore.firestore().collection("users").addDocument(data: ["user_name" : name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle, "user_profileURL": downloadURL.absoluteString])
             await checkLogin()
         } catch{
-            print("Error on Signin")
+            print("Error on Signin \(error.localizedDescription)")
         }
         
     }
