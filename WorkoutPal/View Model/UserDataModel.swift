@@ -7,7 +7,9 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 import FirebaseAuth
+import _PhotosUI_SwiftUI
 
 enum userGenderID: String, CaseIterable{
     case male = "Male"
@@ -27,11 +29,26 @@ class UserDataModel: ObservableObject {
     @Published var userGender:String = "none"
     @Published var userHandle = ""
     @Published var appState:appStates = .signedOut
+    @Published var userProfilePhoto: UIImage? = nil
+    @Published var userPickerImage: PhotosPickerItem? = nil
+    @Published var userUrl:String = ""
     
     init(){
         //emailSignUp(name: "howarddasd", email: "howardasd@test.com", password: "teadsst12345", gender: .male)
         //emailLogin(email: "howard@test.com", password: "test12345")
     }
+    
+    @MainActor
+    func getProfilePhoto()async {
+        do{
+            guard let imageData = try await userPickerImage?.loadTransferable(type: Data.self)else{return}
+            
+            self.userProfilePhoto = UIImage(data: imageData)
+        } catch{
+            print("Error On Photo")
+        }
+    }
+    
     @MainActor
     func checkLogin() async {
         let currentUser = Auth.auth().currentUser
@@ -50,6 +67,16 @@ class UserDataModel: ObservableObject {
                         self.userEmail = data["user_email"] as! String
                         self.userGender = data["user_gender"] as! String
                         self.userHandle = data["user_handle"] as! String
+                        self.userUrl = data["user_profileURL"] as! String
+                        let storageRef = Storage.storage().reference(forURL: self.userUrl)
+                        storageRef.getData(maxSize: 3 * 1024 * 1024) { data, error in
+                            if error == nil {
+                                if let data = data{
+                                    self.userProfilePhoto = UIImage(data: data)
+                                    print("Image test")
+                                }
+                            }
+                        }
                         self.appState = .signedIn
                     }
                 } catch{
@@ -76,6 +103,17 @@ class UserDataModel: ObservableObject {
                 self.userEmail = data["user_email"] as! String
                 self.userGender = data["user_gender"] as! String
                 self.userHandle = data["user_handle"] as! String
+                self.userUrl = data["user_profileURL"] as! String
+                let storageRef = Storage.storage().reference(forURL: self.userUrl)
+                storageRef.getData(maxSize: 3 * 1024 * 1024) { data, error in
+                    if error == nil {
+                        if let data = data{
+                            self.userProfilePhoto = UIImage(data: data)
+                            print("Image test")
+                        }
+                    }
+                }
+                
                 self.appState = .signedIn
             }
         } catch{
@@ -88,10 +126,17 @@ class UserDataModel: ObservableObject {
         do{
             let newUser = try await Auth.auth().createUser(withEmail: email, password: password)
             let id = newUser.user.uid
-            let dbResults = Firestore.firestore().collection("users").addDocument(data: ["user_name" : name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle])
+            
+            guard let imageData = try await userPickerImage?.loadTransferable(type: Data.self) else{return}
+            
+            let storageRef = Storage.storage().reference().child("profile_images").child(id)
+            try await storageRef.putDataAsync(imageData)
+            let downloadURL = try await storageRef.downloadURL()
+            
+            let dbResults = Firestore.firestore().collection("users").addDocument(data: ["user_name" : name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle, "user_profileURL": downloadURL.absoluteString])
             await checkLogin()
         } catch{
-            print("Error on Signin")
+            print("Error on Signin \(error.localizedDescription)")
         }
         
     }
@@ -104,6 +149,9 @@ class UserDataModel: ObservableObject {
             userEmail = ""
             userHandle = ""
             userGender = "none"
+            userUrl = ""
+            userProfilePhoto = nil
+            userPickerImage = nil
             appState = .signedOut
         } catch let error {
             print("Error During Signout \(error)")
