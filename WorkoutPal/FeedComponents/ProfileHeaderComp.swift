@@ -16,7 +16,14 @@ struct ProfileHeaderComp: View {
                 Text("@\(userModel.userHandle)")
             }.frame(maxWidth: .infinity,alignment:.leading)
             HStack(spacing:50){
-                Circle().frame(maxWidth:50)
+                if let profileImage = userModel.userProfilePhoto{
+                    Image(uiImage: profileImage)
+                        .resizable()
+                        .frame(width:50, height: 50)
+                        .cornerRadius(20)
+                        .clipped()
+                }else{
+                    Circle().frame(maxWidth:50)}
                 VStack{
                     Text("200")
                         .bold()

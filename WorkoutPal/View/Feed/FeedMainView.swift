@@ -28,7 +28,14 @@ struct FeedMainView: View {
                     NavigationLink {
                         ProfileMainView()
                     } label: {
-                        Circle().frame(maxWidth: 50)
+                        if let profileImage = userModel.userProfilePhoto{
+                            Image(uiImage: profileImage)
+                                .resizable()
+                                .frame(width:50, height: 50)
+                                .cornerRadius(20)
+                                .clipped()
+                        }else{
+                            Circle().frame(maxWidth:50)}
                     }
                 }
                 .padding(.horizontal)

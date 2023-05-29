@@ -31,6 +31,7 @@ class UserDataModel: ObservableObject {
     @Published var appState:appStates = .signedOut
     @Published var userProfilePhoto: UIImage? = nil
     @Published var userPickerImage: PhotosPickerItem? = nil
+    @Published var userUrl:String = ""
     
     init(){
         //emailSignUp(name: "howarddasd", email: "howardasd@test.com", password: "teadsst12345", gender: .male)
@@ -66,6 +67,16 @@ class UserDataModel: ObservableObject {
                         self.userEmail = data["user_email"] as! String
                         self.userGender = data["user_gender"] as! String
                         self.userHandle = data["user_handle"] as! String
+                        self.userUrl = data["user_profileURL"] as! String
+                        let storageRef = Storage.storage().reference(forURL: self.userUrl)
+                        storageRef.getData(maxSize: 3 * 1024 * 1024) { data, error in
+                            if error == nil {
+                                if let data = data{
+                                    self.userProfilePhoto = UIImage(data: data)
+                                    print("Image test")
+                                }
+                            }
+                        }
                         self.appState = .signedIn
                     }
                 } catch{
@@ -92,6 +103,17 @@ class UserDataModel: ObservableObject {
                 self.userEmail = data["user_email"] as! String
                 self.userGender = data["user_gender"] as! String
                 self.userHandle = data["user_handle"] as! String
+                self.userUrl = data["user_profileURL"] as! String
+                let storageRef = Storage.storage().reference(forURL: self.userUrl)
+                storageRef.getData(maxSize: 3 * 1024 * 1024) { data, error in
+                    if error == nil {
+                        if let data = data{
+                            self.userProfilePhoto = UIImage(data: data)
+                            print("Image test")
+                        }
+                    }
+                }
+                
                 self.appState = .signedIn
             }
         } catch{
@@ -108,7 +130,6 @@ class UserDataModel: ObservableObject {
             guard let imageData = try await userPickerImage?.loadTransferable(type: Data.self) else{return}
             
             let storageRef = Storage.storage().reference().child("profile_images").child(id)
-            let item = Storage.storage().reference().child("profile_images").child(id)
             try await storageRef.putDataAsync(imageData)
             let downloadURL = try await storageRef.downloadURL()
             
@@ -128,6 +149,9 @@ class UserDataModel: ObservableObject {
             userEmail = ""
             userHandle = ""
             userGender = "none"
+            userUrl = ""
+            userProfilePhoto = nil
+            userPickerImage = nil
             appState = .signedOut
         } catch let error {
             print("Error During Signout \(error)")
