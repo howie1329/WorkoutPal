@@ -58,7 +58,6 @@ class UserDataModel: ObservableObject {
             self.userProfilePhoto = UIImage(data: imageData)
         } catch{
             self.errorMessage = setErrorMessage(errorCode: error)
-            //print("Error On Photo")
         }
     }
     
@@ -81,15 +80,7 @@ class UserDataModel: ObservableObject {
                         self.userGender = data["user_gender"] as! String
                         self.userHandle = data["user_handle"] as! String
                         self.userUrl = data["user_profileURL"] as! String
-                        let storageRef = Storage.storage().reference(forURL: self.userUrl)
-                        storageRef.getData(maxSize: 3 * 1024 * 1024) { data, error in
-                            if error == nil {
-                                if let data = data{
-                                    self.userProfilePhoto = UIImage(data: data)
-                                    print("Image test")
-                                }
-                            }
-                        }
+                        
                         self.appState = .signedIn
                     }
                 } catch{
@@ -120,15 +111,6 @@ class UserDataModel: ObservableObject {
                 self.userHandle = data["user_handle"] as! String
                 self.userUrl = data["user_profileURL"] as! String
                 
-                let storageRef = Storage.storage().reference(forURL: self.userUrl)
-                storageRef.getData(maxSize: 3 * 1024 * 1024) { data, error in
-                    if error == nil {
-                        if let data = data{
-                            self.userProfilePhoto = UIImage(data: data)
-                            print("Image test")
-                        }
-                    }
-                }
                 self.isLoading = false
                 self.appState = .signedIn
             }
@@ -137,10 +119,17 @@ class UserDataModel: ObservableObject {
         }
     }
     
+    enum SignupErrors: String, LocalizedError {
+        case signUpError
+    }
+    
     @MainActor
     func emailSignUp(name:String, email:String, password:String, gender:userGenderID, handle:String) async {
         self.isLoading = true
         do{
+            if userPickerImage == nil {
+                throw SignupErrors.signUpError
+            }
             let newUser = try await Auth.auth().createUser(withEmail: email, password: password)
             let id = newUser.user.uid
             

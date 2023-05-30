@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct FeedMainView: View {
     @EnvironmentObject var model:DataModel
@@ -17,7 +18,6 @@ struct FeedMainView: View {
         case following = "Following"
     }
     
-    
     @State var feedChoiceSelection:feedChoices = .forYou
     @State var newMessageViewState = false
     
@@ -28,14 +28,17 @@ struct FeedMainView: View {
                     NavigationLink {
                         ProfileMainView()
                     } label: {
-                        if let profileImage = userModel.userProfilePhoto{
-                            Image(uiImage: profileImage)
-                                .resizable()
+                        WebImage(url: URL(string: userModel.userUrl )).placeholder(content: {
+                            Circle()
+                                .fill(.black)
                                 .frame(width:50, height: 50)
-                                .cornerRadius(20)
+                                .cornerRadius(100)
                                 .clipped()
-                        }else{
-                            Circle().frame(maxWidth:50)}
+                        })
+                        .resizable()
+                        .frame(width:50, height: 50)
+                        .cornerRadius(100)
+                        .clipped()
                     }
                 }
                 .padding(.horizontal)
@@ -48,18 +51,18 @@ struct FeedMainView: View {
                 .pickerStyle(.segmented)
                 if feedChoiceSelection == .forYou{
                     ForYouFeedView(userHandle: userModel.userHandle)
-                    .overlay(alignment:.bottomTrailing){
-                        Button {
-                            newMessageViewState = true
-                        } label: {
-                            ZStack{
-                                Circle().frame(maxWidth: 50)
-                                Image(systemName: "plus")
-                                    .bold()
-                                    .foregroundColor(.white)
-                            }
-                        }.padding(.trailing)
-                    }
+                        .overlay(alignment:.bottomTrailing){
+                            Button {
+                                newMessageViewState = true
+                            } label: {
+                                ZStack{
+                                    Circle().frame(maxWidth: 50)
+                                    Image(systemName: "plus")
+                                        .bold()
+                                        .foregroundColor(.white)
+                                }
+                            }.padding(.trailing)
+                        }
                 }else if feedChoiceSelection == .following{
                     VStack{
                         Text("Following")

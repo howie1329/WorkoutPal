@@ -8,15 +8,18 @@
 import Foundation
 import Firebase
 import FirebaseAuth
+import _PhotosUI_SwiftUI
+import FirebaseStorage
 
 class FeedDataModel: ObservableObject {
-    
     
     @Published var feedArr: [MessageFeed] = []
     @Published var forYouArr: [MessageFeed] = []
     @Published var yourPost:[MessageFeed] = []
     @Published var isError: Bool = false
     @Published var errorMessage: String = ""
+    @Published var feedPhotoPickerItem: PhotosPickerItem? = nil
+    @Published var feedUIImage: UIImage? = nil
     
     init(){
         //createNewMessage(message: MessageFeed(id: "", body: "This is a test", authorId: "adasdadsa"))
@@ -27,9 +30,36 @@ class FeedDataModel: ObservableObject {
         updateFetch()
     }
     
+    @MainActor
+    func convertPhoto() async {
+        do{
+            guard let imageData = try await feedPhotoPickerItem?.loadTransferable(type: Data.self) else {return}
+            self.feedUIImage = UIImage(data: imageData)
+        }catch{
+            print(error)
+        }
+    }
+    
     func setErrorMessage(errorCode: Error) -> String{
         self.isError = true
         return errorCode.localizedDescription
+    }
+    
+    @MainActor
+    func deleteMessage(messageId: String) async {
+        do{
+            let index = forYouArr.firstIndex { MessageFeed in
+                messageId == MessageFeed.id
+            }
+            if let index = index{
+                forYouArr.remove(at: index)
+                
+            }
+            let _ = try await Firestore.firestore().collection("feed").document(messageId).delete()
+        } catch {
+            self.errorMessage = setErrorMessage(errorCode: error)
+        }
+        
     }
     
     func updateFetch(){
@@ -44,12 +74,14 @@ class FeedDataModel: ObservableObject {
                         let feedBody = data["feed_body"] as! String
                         let feedAuthor = data["feed_author_id"] as! String
                         let feedTimestamp = data["feed_timestamp"] as! Timestamp
+                        let feedMedia = data["feed_media"] as? String
+                        //let feedAuthorURL = data["feed_author_url"] as! String
                         
-                        self.feedArr.append(MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, date: feedTimestamp))
+                        self.feedArr.append(MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, mediaURL: feedMedia ,date: feedTimestamp))
                     }
                 }
-            }else{
-                self.errorMessage = setErrorMessage(errorCode: Error)
+            }else if let Error = Error{
+                self.errorMessage = self.setErrorMessage(errorCode: Error)
             }
         }
         if Auth.auth().currentUser == nil {
@@ -57,26 +89,29 @@ class FeedDataModel: ObservableObject {
         }
     }
     
-    func fetchAllMessages(){
+    @MainActor
+    func fetchAllMessages() async{
         self.feedArr = []
-        let db = Firestore.firestore()
-        let collection = db.collection("feed")
-        collection.getDocuments { SnapShot, Error in
-            if Error != nil {
-                self.errorMessage = setErrorMessage(errorCode: Error)
-            }else if let snapShot = SnapShot {
-                for doc in snapShot.documents{
-                    let data = doc.data()
-                    
-                    let feedId = doc.documentID
-                    let feedBody = data["feed_body"] as! String
-                    let feedAuthor = data["feed_author_id"] as! String
-                    let feedTimestamp = data["feed_timestamp"] as! Timestamp
-                    
-                    self.feedArr.append(MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, date: feedTimestamp))
-                }
+        self.feedPhotoPickerItem = nil
+        self.feedUIImage = nil
+        do{
+            let db = try await Firestore.firestore().collection("feed").getDocuments()
+            for doc in db.documents{
+                let data = doc.data()
+                
+                let feedId = doc.documentID
+                let feedBody = data["feed_body"] as! String
+                let feedAuthor = data["feed_author_id"] as! String
+                let feedTimestamp = data["feed_timestamp"] as! Timestamp
+                let feedMedia = data["feed_media"] as? String
+                //let feedAuthorURL = data["feed_author_url"] as! String
+                
+                self.feedArr.append(MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, mediaURL: feedMedia ,date: feedTimestamp))
             }
+        } catch{
+            self.errorMessage = setErrorMessage(errorCode: error)
         }
+        updateFetch()
     }
     
     func sortFeed(userHandle:String){
@@ -100,13 +135,36 @@ class FeedDataModel: ObservableObject {
         yourPost = newArr
     }
     
-    func createNewMessage(message: MessageFeed){
+    func createNewMessage(message: MessageFeed) async {
         
-        let dbRef = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId, "feed_timestamp":message.date], completion: { Error in
-            if let error = Error{
-                self.errorMessage = self.setErrorMessage(errorCode: error)
+        do{
+            if feedPhotoPickerItem != nil{
+                guard let imageData = try await self.feedPhotoPickerItem?.loadTransferable(type: Data.self) else {return}
+                
+                
+                let storageRef = Storage.storage().reference().child("feed_images").child("\(UUID())")
+                let _ = try await storageRef.putDataAsync(imageData)
+                let downloadURL = try await storageRef.downloadURL()
+                
+                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId, "feed_timestamp":message.date, "feed_media": downloadURL.absoluteString], completion: { Error in
+                    if let error = Error{
+                        self.errorMessage = self.setErrorMessage(errorCode: error)
+                    }
+                })
+            } else {
+                
+                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId, "feed_timestamp":message.date], completion: { Error in
+                    if let error = Error{
+                        self.errorMessage = self.setErrorMessage(errorCode: error)
+                    }
+                })
             }
-        })
+            
+        } catch {
+            self.errorMessage = self.setErrorMessage(errorCode: error)
+        }
+        
+        
     }
 }
 

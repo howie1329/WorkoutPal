@@ -13,24 +13,7 @@ struct ForYouFeedView: View {
     var body: some View {
         List{
             ForEach(feedModel.forYouArr){item in
-                VStack{
-                    HStack{
-                        Text("@\(item.authorId)")
-                    }
-                    .frame(maxWidth:.infinity,alignment: .leading)
-                    .font(.footnote.bold())
-                    .foregroundColor(.gray)
-                    HStack{
-                        Text(item.body)
-                    }.frame(maxWidth:.infinity,alignment:.center)
-                    HStack{
-                        Text("\(item.date.dateValue().formatted(date: .abbreviated, time: .shortened))")
-                            .font(.caption2)
-                            .foregroundColor(.gray)
-                    }.frame(maxWidth:.infinity,alignment: .bottomTrailing)
-                }
-                .frame(maxWidth:.infinity)
-                
+                PostView(postItem: item)
             }
         }
         .refreshable {
