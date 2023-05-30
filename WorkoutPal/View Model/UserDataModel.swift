@@ -39,8 +39,6 @@ class UserDataModel: ObservableObject {
     @Published var errorMessage: String = ""
     
     init(){
-        //emailSignUp(name: "howarddasd", email: "howardasd@test.com", password: "teadsst12345", gender: .male)
-        //emailLogin(email: "howard@test.com", password: "test12345")
     }
     
     // Move to Service File
@@ -50,6 +48,7 @@ class UserDataModel: ObservableObject {
         return errorCode.localizedDescription
     }
     
+    // Get users profile picture
     @MainActor
     func getProfilePhoto()async {
         do{
@@ -61,6 +60,7 @@ class UserDataModel: ObservableObject {
         }
     }
     
+    // Check if a used is cached
     @MainActor
     func checkLogin() async {
         let currentUser = Auth.auth().currentUser
@@ -92,6 +92,7 @@ class UserDataModel: ObservableObject {
         }
     }
     
+    // Email Login Function
     @MainActor
     func emailLogin(email: String, password: String) async {
         self.isLoading = true
@@ -119,10 +120,12 @@ class UserDataModel: ObservableObject {
         }
     }
     
+    // MARK: Move TO Own File
     enum SignupErrors: String, LocalizedError {
         case signUpError
     }
     
+    // Email Signup Function
     @MainActor
     func emailSignUp(name:String, email:String, password:String, gender:userGenderID, handle:String) async {
         self.isLoading = true
@@ -150,6 +153,7 @@ class UserDataModel: ObservableObject {
         
     }
     
+    // Signout Current User
     func signOutUser(){
         do{
             self.isLoading = true
