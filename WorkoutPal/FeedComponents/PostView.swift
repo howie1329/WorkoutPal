@@ -15,8 +15,13 @@ struct PostView: View {
             HStack{
                 HStack{
                     if let url = postItem.authorProfileURL{
-                        WebImage(url: URL(string: url))
+                        WebImage(url: URL(string: url)).placeholder(content: {
+                            Circle().fill(.black)
+                                .frame(width:50, height: 50)
+                                .cornerRadius(100)
+                        })
                             .resizable()
+                            .aspectRatio(contentMode: .fill)
                             .frame(width:50, height: 50)
                             .cornerRadius(100)
                             .clipped()
@@ -24,7 +29,6 @@ struct PostView: View {
                         Circle().fill(.black)
                             .frame(width:50, height: 50)
                             .cornerRadius(100)
-                            .clipped()
                     }
                     Text("@\(postItem.authorId)")
                 }
@@ -40,11 +44,13 @@ struct PostView: View {
             if let image = postItem.mediaURL{
                 WebImage(url: URL(string: image))
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(maxWidth: .infinity,maxHeight: 200)
+                    .clipped()
             }
             HStack{
                 Text(postItem.body)
-            }.frame(maxWidth:.infinity,alignment:.center)
+            }.frame(maxWidth:.infinity,alignment:.leading)
         }
     }
 }

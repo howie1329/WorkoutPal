@@ -17,12 +17,12 @@ struct ForYouFeedView: View {
             }
         }
         .refreshable {
-            //feedModel.fetchAllMessages()
             feedModel.sortFeed(userHandle: userHandle)
             feedModel.sortYourPost(userHandle: userHandle)
         }
         .onAppear(perform: {
             feedModel.sortFeed(userHandle: userHandle)
+            feedModel.sortYourPost(userHandle: userHandle)
         })
         .frame(maxWidth: .infinity, maxHeight:.infinity, alignment:.top)
     }

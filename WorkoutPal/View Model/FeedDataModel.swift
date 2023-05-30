@@ -22,11 +22,6 @@ class FeedDataModel: ObservableObject {
     @Published var feedUIImage: UIImage? = nil
     
     init(){
-        //createNewMessage(message: MessageFeed(id: "", body: "This is a test", authorId: "adasdadsa"))
-        //createNewMessage(message: MessageFeed(id: "", body: "This is a test", authorId: "adasdadsa"))
-        //createNewMessage(message: MessageFeed(id: "", body: "This is a test", authorId: "adasdadsa"))
-        
-        //fetchAllMessages()
         updateFetch()
     }
     
@@ -87,31 +82,6 @@ class FeedDataModel: ObservableObject {
         if Auth.auth().currentUser == nil {
             dbRef.remove()
         }
-    }
-    
-    @MainActor
-    func fetchAllMessages() async{
-        self.feedArr = []
-        self.feedPhotoPickerItem = nil
-        self.feedUIImage = nil
-        do{
-            let db = try await Firestore.firestore().collection("feed").getDocuments()
-            for doc in db.documents{
-                let data = doc.data()
-                
-                let feedId = doc.documentID
-                let feedBody = data["feed_body"] as! String
-                let feedAuthor = data["feed_author_id"] as! String
-                let feedTimestamp = data["feed_timestamp"] as! Timestamp
-                let feedMedia = data["feed_media"] as? String
-                let feedAuthorURL = data["feed_author_url"] as? String
-                
-                self.feedArr.append(MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, authorProfileURL: feedAuthorURL, mediaURL: feedMedia ,date: feedTimestamp))
-            }
-        } catch{
-            self.errorMessage = setErrorMessage(errorCode: error)
-        }
-        updateFetch()
     }
     
     func sortFeed(userHandle:String){
