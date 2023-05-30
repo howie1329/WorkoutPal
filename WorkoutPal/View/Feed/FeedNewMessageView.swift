@@ -41,7 +41,7 @@ struct FeedNewMessageView: View {
             
             Button {
                 Task{
-                    await feedModel.createNewMessage(message: MessageFeed(id: "", body: feedMessage, authorId: userModel.userHandle))
+                    await feedModel.createNewMessage(message: MessageFeed(id: "", body: feedMessage, authorId: userModel.userHandle, authorProfileURL: userModel.userUrl))
                 }
                 viewState = false
             } label: {

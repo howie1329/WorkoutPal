@@ -13,8 +13,21 @@ struct PostView: View {
     var body: some View {
         VStack{
             HStack{
-                Text("@\(postItem.authorId)")
-                //WebImage(url: URL(string: postItem.authorProfileURL))
+                HStack{
+                    if let url = postItem.authorProfileURL{
+                        WebImage(url: URL(string: url))
+                            .resizable()
+                            .frame(width:50, height: 50)
+                            .cornerRadius(100)
+                            .clipped()
+                    } else {
+                        Circle().fill(.black)
+                            .frame(width:50, height: 50)
+                            .cornerRadius(100)
+                            .clipped()
+                    }
+                    Text("@\(postItem.authorId)")
+                }
                 Spacer()
                 Text("\(postItem.date.dateValue().formatted(date: .abbreviated, time: .shortened))")
                     .font(.caption2)

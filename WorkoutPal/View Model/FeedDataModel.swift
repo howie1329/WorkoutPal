@@ -75,9 +75,9 @@ class FeedDataModel: ObservableObject {
                         let feedAuthor = data["feed_author_id"] as! String
                         let feedTimestamp = data["feed_timestamp"] as! Timestamp
                         let feedMedia = data["feed_media"] as? String
-                        //let feedAuthorURL = data["feed_author_url"] as! String
+                        let feedAuthorURL = data["feed_author_url"] as? String
                         
-                        self.feedArr.append(MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, mediaURL: feedMedia ,date: feedTimestamp))
+                        self.feedArr.append(MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, authorProfileURL: feedAuthorURL, mediaURL: feedMedia ,date: feedTimestamp))
                     }
                 }
             }else if let Error = Error{
@@ -104,9 +104,9 @@ class FeedDataModel: ObservableObject {
                 let feedAuthor = data["feed_author_id"] as! String
                 let feedTimestamp = data["feed_timestamp"] as! Timestamp
                 let feedMedia = data["feed_media"] as? String
-                //let feedAuthorURL = data["feed_author_url"] as! String
+                let feedAuthorURL = data["feed_author_url"] as? String
                 
-                self.feedArr.append(MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, mediaURL: feedMedia ,date: feedTimestamp))
+                self.feedArr.append(MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, authorProfileURL: feedAuthorURL, mediaURL: feedMedia ,date: feedTimestamp))
             }
         } catch{
             self.errorMessage = setErrorMessage(errorCode: error)
@@ -139,6 +139,7 @@ class FeedDataModel: ObservableObject {
         
         do{
             if feedPhotoPickerItem != nil{
+                
                 guard let imageData = try await self.feedPhotoPickerItem?.loadTransferable(type: Data.self) else {return}
                 
                 
@@ -146,14 +147,14 @@ class FeedDataModel: ObservableObject {
                 let _ = try await storageRef.putDataAsync(imageData)
                 let downloadURL = try await storageRef.downloadURL()
                 
-                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId, "feed_timestamp":message.date, "feed_media": downloadURL.absoluteString], completion: { Error in
+                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId,"feed_author_url":message.authorProfileURL, "feed_timestamp":message.date, "feed_media": downloadURL.absoluteString], completion: { Error in
                     if let error = Error{
                         self.errorMessage = self.setErrorMessage(errorCode: error)
                     }
                 })
             } else {
                 
-                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId, "feed_timestamp":message.date], completion: { Error in
+                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId, "feed_author_url":message.authorProfileURL, "feed_timestamp":message.date], completion: { Error in
                     if let error = Error{
                         self.errorMessage = self.setErrorMessage(errorCode: error)
                     }
