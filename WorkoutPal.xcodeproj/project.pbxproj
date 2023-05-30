@@ -46,7 +46,9 @@
 		F3AD77B42A1DC47900499545 /* FeedNewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */; };
 		F3AD77B62A1DD85900499545 /* ProfileYourPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */; };
 		F3DE2AC92A2487F0000EE848 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2AC82A2487F0000EE848 /* LoadingView.swift */; };
-		F3DE2AD02A24AE45000EE848 /* FeedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2ACF2A24AE45000EE848 /* FeedMessage.swift */; };
+		F3DE2AD02A24AE45000EE848 /* MessageFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2ACF2A24AE45000EE848 /* MessageFeed.swift */; };
+		F3DE2AD32A259E7B000EE848 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2AD22A259E7B000EE848 /* PostView.swift */; };
+		F3DE2AD62A25A252000EE848 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = F3DE2AD52A25A252000EE848 /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,7 +89,8 @@
 		F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNewMessageView.swift; sourceTree = "<group>"; };
 		F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileYourPostView.swift; sourceTree = "<group>"; };
 		F3DE2AC82A2487F0000EE848 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		F3DE2ACF2A24AE45000EE848 /* FeedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMessage.swift; sourceTree = "<group>"; };
+		F3DE2ACF2A24AE45000EE848 /* MessageFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageFeed.swift; sourceTree = "<group>"; };
+		F3DE2AD22A259E7B000EE848 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3DE2AD62A25A252000EE848 /* SDWebImageSwiftUI in Frameworks */,
 				F33B44132A19E22A00B83FFA /* FirebaseAuth in Frameworks */,
 				F33B44152A19E22A00B83FFA /* FirebaseFirestore in Frameworks */,
 				F33B44182A19E24600B83FFA /* FirebaseStorage in Frameworks */,
@@ -216,6 +220,7 @@
 		F366614D2A04CFEC00166299 /* WorkoutPal */ = {
 			isa = PBXGroup;
 			children = (
+				F3DE2AD12A2577B8000EE848 /* ProfileComponents */,
 				F3AD77AA2A1D9F7700499545 /* FeedComponents */,
 				F33B44072A173AD900B83FFA /* HomeCpmponents */,
 				F310FFF82A0ABDB40093365E /* WorkoutComponents */,
@@ -244,7 +249,7 @@
 		F366615C2A04CFFE00166299 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F3DE2ACF2A24AE45000EE848 /* FeedMessage.swift */,
+				F3DE2ACF2A24AE45000EE848 /* MessageFeed.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,12 +281,20 @@
 		F3AD77AA2A1D9F7700499545 /* FeedComponents */ = {
 			isa = PBXGroup;
 			children = (
-				F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */,
 				F3AD77B12A1DC0C400499545 /* ForYouFeedView.swift */,
-				F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */,
 				F3DE2AC82A2487F0000EE848 /* LoadingView.swift */,
+				F3DE2AD22A259E7B000EE848 /* PostView.swift */,
 			);
 			path = FeedComponents;
+			sourceTree = "<group>";
+		};
+		F3DE2AD12A2577B8000EE848 /* ProfileComponents */ = {
+			isa = PBXGroup;
+			children = (
+				F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */,
+				F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */,
+			);
+			path = ProfileComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +317,7 @@
 				F33B44122A19E22A00B83FFA /* FirebaseAuth */,
 				F33B44142A19E22A00B83FFA /* FirebaseFirestore */,
 				F33B44172A19E24600B83FFA /* FirebaseStorage */,
+				F3DE2AD52A25A252000EE848 /* SDWebImageSwiftUI */,
 			);
 			productName = WorkoutPal;
 			productReference = F366614B2A04CFEC00166299 /* WorkoutPal.app */;
@@ -335,6 +349,7 @@
 			mainGroup = F36661422A04CFEB00166299;
 			packageReferences = (
 				F33B44112A19E22A00B83FFA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				F3DE2AD42A25A252000EE848 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = F366614C2A04CFEC00166299 /* Products */;
 			projectDirPath = "";
@@ -372,7 +387,7 @@
 				F32DBD0C2A1B3E50007ECFFC /* OnboardingSelectionView.swift in Sources */,
 				F3AD77B42A1DC47900499545 /* FeedNewMessageView.swift in Sources */,
 				F3AD77B02A1DAFAD00499545 /* FeedDataModel.swift in Sources */,
-				F3DE2AD02A24AE45000EE848 /* FeedMessage.swift in Sources */,
+				F3DE2AD02A24AE45000EE848 /* MessageFeed.swift in Sources */,
 				F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */,
 				F33B44062A17372D00B83FFA /* StatsRectangleView.swift in Sources */,
 				F310FFEC2A0A02500093365E /* WorkoutMainView.swift in Sources */,
@@ -391,6 +406,7 @@
 				F310FFEE2A0A29EE0093365E /* NewWorkoutPlanView.swift in Sources */,
 				F32DBD062A1B2C69007ECFFC /* SignUpView.swift in Sources */,
 				F310FFF72A0AB8FE0093365E /* CalorieSectionView.swift in Sources */,
+				F3DE2AD32A259E7B000EE848 /* PostView.swift in Sources */,
 				F3AD77B22A1DC0C400499545 /* ForYouFeedView.swift in Sources */,
 				F310FFF02A0A2B720093365E /* NewSingleWorkoutView.swift in Sources */,
 				F310FFE92A0A01360093365E /* MainTabView.swift in Sources */,
@@ -613,6 +629,14 @@
 				version = 9.6.0;
 			};
 		};
+		F3DE2AD42A25A252000EE848 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -630,6 +654,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F33B44112A19E22A00B83FFA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		F3DE2AD52A25A252000EE848 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3DE2AD42A25A252000EE848 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 

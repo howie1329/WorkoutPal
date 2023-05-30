@@ -13,32 +13,26 @@ struct ProfileYourPostView: View {
     var body: some View {
         List{
             ForEach(feedModel.yourPost){item in
-                VStack{
-                    HStack{
-                        Text("@\(item.authorId)")
+                PostView(postItem: item)
+                .swipeActions {
+                    Button(role:.destructive){
+                        Task{
+                            await feedModel.deleteMessage(messageId:item.id )
+                        }
+                    } label: {
+                        Image(systemName: "minus.circle")
                     }
-                    .frame(maxWidth:.infinity,alignment: .leading)
-                    .font(.footnote.bold())
-                    .foregroundColor(.gray)
-                    HStack{
-                        Text(item.body)
-                    }.frame(maxWidth:.infinity,alignment:.center)
-                    HStack{
-                        Text("\(item.date.dateValue().formatted(date: .abbreviated, time: .shortened))")
-                            .font(.caption2)
-                            .foregroundColor(.gray)
-                    }.frame(maxWidth:.infinity,alignment: .bottomTrailing)
+                    
                 }
-                .frame(maxWidth:.infinity)
                 
             }
         }
         .refreshable {
-            //feedModel.fetchAllMessages()
             feedModel.sortFeed(userHandle: userHandle)
             feedModel.sortYourPost(userHandle: userHandle)
         }
         .onAppear(perform: {
+            feedModel.sortFeed(userHandle: userHandle)
             feedModel.sortYourPost(userHandle: userHandle)
         })
         .frame(maxWidth: .infinity, maxHeight:.infinity, alignment:.top)
