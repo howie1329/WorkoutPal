@@ -120,10 +120,7 @@ class UserDataModel: ObservableObject {
         }
     }
     
-    // MARK: Move TO Own File
-    enum SignupErrors: String, LocalizedError {
-        case signUpError
-    }
+    
     
     // Email Signup Function
     @MainActor
@@ -131,7 +128,7 @@ class UserDataModel: ObservableObject {
         self.isLoading = true
         do{
             if userPickerImage == nil {
-                throw SignupErrors.signUpError
+                throw AuthErrors.noProfilePic
             }
             let newUser = try await Auth.auth().createUser(withEmail: email, password: password)
             let id = newUser.user.uid

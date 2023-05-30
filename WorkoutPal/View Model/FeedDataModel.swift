@@ -32,7 +32,7 @@ class FeedDataModel: ObservableObject {
             guard let imageData = try await feedPhotoPickerItem?.loadTransferable(type: Data.self) else {return}
             self.feedUIImage = UIImage(data: imageData)
         }catch{
-            print(error)
+            self.errorMessage = setErrorMessage(errorCode: error)
         }
     }
     // Service Code

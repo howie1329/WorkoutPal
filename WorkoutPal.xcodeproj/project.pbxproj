@@ -45,6 +45,7 @@
 		F3AD77B22A1DC0C400499545 /* ForYouFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B12A1DC0C400499545 /* ForYouFeedView.swift */; };
 		F3AD77B42A1DC47900499545 /* FeedNewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */; };
 		F3AD77B62A1DD85900499545 /* ProfileYourPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */; };
+		F3CD92FF2A25E83700EE4125 /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CD92FE2A25E83700EE4125 /* CustomErrors.swift */; };
 		F3DE2AC92A2487F0000EE848 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2AC82A2487F0000EE848 /* LoadingView.swift */; };
 		F3DE2AD02A24AE45000EE848 /* MessageFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2ACF2A24AE45000EE848 /* MessageFeed.swift */; };
 		F3DE2AD32A259E7B000EE848 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2AD22A259E7B000EE848 /* PostView.swift */; };
@@ -88,6 +89,7 @@
 		F3AD77B12A1DC0C400499545 /* ForYouFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForYouFeedView.swift; sourceTree = "<group>"; };
 		F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNewMessageView.swift; sourceTree = "<group>"; };
 		F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileYourPostView.swift; sourceTree = "<group>"; };
+		F3CD92FE2A25E83700EE4125 /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
 		F3DE2AC82A2487F0000EE848 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		F3DE2ACF2A24AE45000EE848 /* MessageFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageFeed.swift; sourceTree = "<group>"; };
 		F3DE2AD22A259E7B000EE848 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				F366615D2A04D00400166299 /* View */,
 				F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */,
 				F34E6A022A0B84EB002B5A53 /* Service.swift */,
+				F3CD92FE2A25E83700EE4125 /* CustomErrors.swift */,
 				F33B440F2A19E11400B83FFA /* GoogleService-Info.plist */,
 				F36661522A04CFEC00166299 /* Assets.xcassets */,
 				F36661612A04D17000166299 /* WorkoutContainer.xcdatamodeld */,
@@ -379,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F310FFF42A0A349C0093365E /* SingleWorkoutPlanRowView.swift in Sources */,
+				F3CD92FF2A25E83700EE4125 /* CustomErrors.swift in Sources */,
 				F363A9F02A15B950006B7041 /* HomeScrollView.swift in Sources */,
 				F36661512A04CFEC00166299 /* CalorieTrackerView.swift in Sources */,
 				F33B440D2A185D5E00B83FFA /* HomeWorkoutView.swift in Sources */,
