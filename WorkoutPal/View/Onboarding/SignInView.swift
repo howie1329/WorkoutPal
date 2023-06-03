@@ -40,7 +40,7 @@ struct SignInView: View {
                     .tint(.black)
                 }else{
                     Button {
-                        //
+                        userModel.errorMessage = userModel.setErrorMessage(errorCode: AuthErrors.failedSignup)
                     } label: {
                         Text("Sign In!!")
                             .frame(maxWidth: .infinity, maxHeight: 35)

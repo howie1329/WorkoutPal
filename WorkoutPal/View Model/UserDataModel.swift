@@ -169,4 +169,13 @@ class UserDataModel: ObservableObject {
             self.errorMessage = setErrorMessage(errorCode: error)
         }
     }
+    
+    func checkingSignupValidation(email: String, password: String, confirm: String, handle: String, name:String) throws -> Bool{
+        
+        if email != "",password != "", handle != "", name != "" && password == confirm{
+            return true
+        }else{
+            return false
+        }
+    }
 }
