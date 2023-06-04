@@ -13,7 +13,7 @@ struct OnboardingSelectionView: View {
         case signIn = "signin"
         case signUp = "signup"
     }
-    @State var userChoice:boardingChoice = .signUp
+    @State var userChoice:boardingChoice = .signIn
     var body: some View {
         VStack(){
             Spacer()

@@ -92,6 +92,16 @@ class UserDataModel: ObservableObject {
         }
     }
     
+    // Reset Password Function
+    @MainActor
+    func resetPassword(email: String) async{
+        do{
+            try await Auth.auth().sendPasswordReset(withEmail: email)
+        } catch{
+            self.errorMessage = setErrorMessage(errorCode: AuthErrors.failedReset)
+        }
+    }
+    
     // Email Login Function
     @MainActor
     func emailLogin(email: String, password: String) async {
