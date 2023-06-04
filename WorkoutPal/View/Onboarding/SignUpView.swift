@@ -17,6 +17,7 @@ struct SignUpView: View {
     @State var email:String = ""
     @State var password:String = ""
     @State var confirmPassword:String = ""
+    @State var showSiginUp = false
     var body: some View {
         if userModel.isLoading {
             LoadingView()
@@ -65,35 +66,36 @@ struct SignUpView: View {
                 .textFieldStyle(.roundedBorder)
                 .padding()
                 Divider()
-                if email != "" && password != "" && name != ""{
-                    if password == confirmPassword{
-                        Button {
-                            Task{
-                                await userModel.emailSignUp(name: name, email: email, password: password, gender: gender, handle: handle)
-                            }
-                            
-                        } label: {
-                            Text("Sign Up!!")
-                                .frame(maxWidth:.infinity, maxHeight: 35)
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .tint(.black)
-                        
-                    }
-                }else{
+                
+                if showSiginUp {
                     Button {
-                        //
+                        Task{
+                            await userModel.emailSignUp(name: name, email: email, password: password, gender: gender, handle: handle)
+                        }
+                        
                     } label: {
                         Text("Sign Up!!")
-                            .frame(maxWidth: .infinity, maxHeight: 30)
+                            .frame(maxWidth:.infinity, maxHeight: 35)
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.black)
-                    .opacity(0.75)
-                    
+                } else{
+                    Button {
+                        userModel.errorMessage = userModel.setErrorMessage(errorCode: AuthErrors.failedSignup)
+                        
+                    } label: {
+                        Text("Sign Up!!")
+                            .frame(maxWidth:.infinity, maxHeight: 35)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.black)
                 }
             }
             .alert(userModel.errorMessage, isPresented: $userModel.isError, actions: {})
+            .onChange(of: confirmPassword, perform: { newValue in
+                
+                showSiginUp = try! userModel.checkingSignupValidation(email: email, password: password, confirm: confirmPassword, handle: handle, name: name)
+            })
             .padding()
         }
     }

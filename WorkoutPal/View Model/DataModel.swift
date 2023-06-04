@@ -79,9 +79,6 @@ class DataModel: ObservableObject {
             print("Index: \(index)")
             saveData()
         }
-        
-        print("\(dayWorkoutLog)")
-        print("Hello")
     }
     
     func updateDayWorkout(dayNumber: Int){
@@ -98,6 +95,7 @@ class DataModel: ObservableObject {
     }
     
     //MARK: Single Workout Code
+    // get all single workouts
     func fetchSingleWorkout(){
         let request = NSFetchRequest<SingleWorkoutEntity>(entityName: "SingleWorkoutEntity")
         do{
@@ -106,7 +104,7 @@ class DataModel: ObservableObject {
             print("Error fetching single workouts \(error)")
         }
     }
-    
+    // create a single workout
     func createSingleWorkout(plansID: UUID, focusGroup:String, reps:Int,sets:Int, weights:Int, title:String ){
         let newWorkout = SingleWorkoutEntity(context: container.viewContext)
         newWorkout.id = UUID()
@@ -118,7 +116,7 @@ class DataModel: ObservableObject {
         newWorkout.workoutTitle = title
         saveData()
     }
-    
+    // Delete a single workout
     func deleteSingleWorkout(indexSet: IndexSet){
         guard let index = indexSet.first else {return}
         let entity = singleWorkoutsLog[index]
@@ -127,7 +125,7 @@ class DataModel: ObservableObject {
     }
     
     //MARK: WORKOUT PLAN CODE
-    
+    // Fetch all workout plans
     func fetchWorkoutPlans(){
         let request = NSFetchRequest<WorkoutPlansEntity>(entityName: "WorkoutPlansEntity")
         do{
@@ -136,7 +134,7 @@ class DataModel: ObservableObject {
             print("Error Loading workout plans \(error)")
         }
     }
-    
+    // Create New Workout Plan
     func createWorkoutPlan(title:String,iconString:String){
         let newPlan = WorkoutPlansEntity(context: container.viewContext)
         newPlan.id = UUID()
@@ -144,28 +142,15 @@ class DataModel: ObservableObject {
         newPlan.icon = iconString
         saveData()
     }
-    
+    // Delete Workout Plan
     func deleteWorkoutPlan(indexSet:IndexSet){
         guard let index = indexSet.first else {return}
         let entity = workoutPlansLog[index]
         container.viewContext.delete(entity)
         saveData()
     }
-    
-    //MARK: Service Code
-    /// -- TODO: Need to move to own file
-
-    func redoCurrentDates(updatedDate: Date){
-        print("REDO CURRENT DATES RAN")
-        currentDate = updatedDate
-        currentMonth = try! convertDateToMonthNumber(inputDate: currentDate)
-        currentDay = try! convertDateToDayNumber(inputDate: currentDate)
-        weekNumber = findWeekNumber(inputDate: currentDate)
-        updateWeekDayData()
-    }
 
     //MARK: Calorie Tracker CODE
-    
     ///Fetch all data from calorie tracker entity
     ///CalorieTrackerEntity holds all meal information/Data
     func fetchCalorieTracker(){
@@ -177,7 +162,7 @@ class DataModel: ObservableObject {
         }
     }
     
-    ///create and save a entry to container
+    // create and save a entry to container
     func createCalorieEntry(name:String, protien:Int, carbs:Int, fats:Int, mealType:String){
         let trackerEntry = CalorieTrackerEntity(context: container.viewContext)
         trackerEntry.id = UUID()
@@ -192,7 +177,7 @@ class DataModel: ObservableObject {
         trackerEntry.weekNumber = Int32(findWeekNumber(inputDate: currentDate))
         saveData()
     }
-    
+    // Delete Calorie Entry
     func deleteCalorieEntry(indexSet: IndexSet){
         guard let index = indexSet.first else {return}
         let entity = calorieTrackerLog[index]
@@ -200,7 +185,7 @@ class DataModel: ObservableObject {
         saveData()
     }
     
-    /// save data and fetch from container
+    // MARK: Save Data And Fetch From Container
     func saveData(){
         do{
             try container.viewContext.save()
@@ -212,5 +197,15 @@ class DataModel: ObservableObject {
         }catch let error{
             print("Error Saving/fetching from Container \(error)")
         }
+    }
+    
+    //MARK: Service Code
+    func redoCurrentDates(updatedDate: Date){
+        print("REDO CURRENT DATES RAN")
+        currentDate = updatedDate
+        currentMonth = try! convertDateToMonthNumber(inputDate: currentDate)
+        currentDay = try! convertDateToDayNumber(inputDate: currentDate)
+        weekNumber = findWeekNumber(inputDate: currentDate)
+        updateWeekDayData()
     }
 }

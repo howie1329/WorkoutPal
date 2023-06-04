@@ -14,6 +14,7 @@ struct PostView: View {
         VStack{
             HStack{
                 HStack{
+                    // MARK: Creators Profile Picture
                     if let url = postItem.authorProfileURL{
                         WebImage(url: URL(string: url)).placeholder(content: {
                             Circle().fill(.black)

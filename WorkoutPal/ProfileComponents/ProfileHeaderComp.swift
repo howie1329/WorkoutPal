@@ -16,6 +16,7 @@ struct ProfileHeaderComp: View {
             HStack{
                 Text("@\(userModel.userHandle)")
             }.frame(maxWidth: .infinity,alignment:.leading)
+            // MARK: Display Profile Picture
             HStack(spacing:50){
                 WebImage(url: URL(string: userModel.userUrl )).placeholder(content: {
                     Circle()
@@ -38,6 +39,7 @@ struct ProfileHeaderComp: View {
                         .bold()
                     Text("Following")
                 }
+                // MARK: Sign out button
                 Button {
                     userModel.signOutUser()
                 } label: {

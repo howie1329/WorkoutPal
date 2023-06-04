@@ -25,21 +25,24 @@ class FeedDataModel: ObservableObject {
         updateFetch()
     }
     
+    // convert picker item to data
     @MainActor
     func convertPhoto() async {
         do{
             guard let imageData = try await feedPhotoPickerItem?.loadTransferable(type: Data.self) else {return}
             self.feedUIImage = UIImage(data: imageData)
         }catch{
-            print(error)
+            self.errorMessage = setErrorMessage(errorCode: error)
         }
     }
-    
+    // Service Code
     func setErrorMessage(errorCode: Error) -> String{
         self.isError = true
         return errorCode.localizedDescription
     }
     
+    // Delete message
+    // Need to also delete picture if not nil
     @MainActor
     func deleteMessage(messageId: String) async {
         do{
@@ -57,6 +60,7 @@ class FeedDataModel: ObservableObject {
         
     }
     
+    // Method to look for new messages
     func updateFetch(){
         let dbRef = Firestore.firestore().collection("feed").addSnapshotListener { QuerySnapshot, Error in
             if Error == nil{
@@ -84,6 +88,7 @@ class FeedDataModel: ObservableObject {
         }
     }
     
+    // Sort new messages into for you array
     func sortFeed(userHandle:String){
         var newArr: [MessageFeed] = []
         for item in feedArr{
@@ -95,6 +100,7 @@ class FeedDataModel: ObservableObject {
         forYouArr = newArr
     }
     
+    // sort messages that were created by creator
     func sortYourPost(userHandle:String){
         var newArr:[MessageFeed] = []
         for item in feedArr{
@@ -105,6 +111,7 @@ class FeedDataModel: ObservableObject {
         yourPost = newArr
     }
     
+    // Create a new message
     func createNewMessage(message: MessageFeed) async {
         
         do{
@@ -134,8 +141,6 @@ class FeedDataModel: ObservableObject {
         } catch {
             self.errorMessage = self.setErrorMessage(errorCode: error)
         }
-        
-        
     }
 }
 

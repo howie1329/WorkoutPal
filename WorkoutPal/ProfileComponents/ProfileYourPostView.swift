@@ -28,10 +28,12 @@ struct ProfileYourPostView: View {
             }
         }
         .refreshable {
+            // Pull down refresh
             feedModel.sortFeed(userHandle: userHandle)
             feedModel.sortYourPost(userHandle: userHandle)
         }
         .onAppear(perform: {
+            // To be done when view first appears
             feedModel.sortFeed(userHandle: userHandle)
             feedModel.sortYourPost(userHandle: userHandle)
         })

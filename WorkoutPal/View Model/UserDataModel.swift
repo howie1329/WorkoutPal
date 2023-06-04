@@ -39,8 +39,6 @@ class UserDataModel: ObservableObject {
     @Published var errorMessage: String = ""
     
     init(){
-        //emailSignUp(name: "howarddasd", email: "howardasd@test.com", password: "teadsst12345", gender: .male)
-        //emailLogin(email: "howard@test.com", password: "test12345")
     }
     
     // Move to Service File
@@ -50,6 +48,7 @@ class UserDataModel: ObservableObject {
         return errorCode.localizedDescription
     }
     
+    // Get users profile picture
     @MainActor
     func getProfilePhoto()async {
         do{
@@ -61,6 +60,7 @@ class UserDataModel: ObservableObject {
         }
     }
     
+    // Check if a used is cached
     @MainActor
     func checkLogin() async {
         let currentUser = Auth.auth().currentUser
@@ -92,6 +92,7 @@ class UserDataModel: ObservableObject {
         }
     }
     
+    // Email Login Function
     @MainActor
     func emailLogin(email: String, password: String) async {
         self.isLoading = true
@@ -119,16 +120,15 @@ class UserDataModel: ObservableObject {
         }
     }
     
-    enum SignupErrors: String, LocalizedError {
-        case signUpError
-    }
     
+    
+    // Email Signup Function
     @MainActor
     func emailSignUp(name:String, email:String, password:String, gender:userGenderID, handle:String) async {
         self.isLoading = true
         do{
             if userPickerImage == nil {
-                throw SignupErrors.signUpError
+                throw AuthErrors.noProfilePic
             }
             let newUser = try await Auth.auth().createUser(withEmail: email, password: password)
             let id = newUser.user.uid
@@ -150,6 +150,7 @@ class UserDataModel: ObservableObject {
         
     }
     
+    // Signout Current User
     func signOutUser(){
         do{
             self.isLoading = true
@@ -166,6 +167,15 @@ class UserDataModel: ObservableObject {
             appState = .signedOut
         } catch let error {
             self.errorMessage = setErrorMessage(errorCode: error)
+        }
+    }
+    
+    func checkingSignupValidation(email: String, password: String, confirm: String, handle: String, name:String) throws -> Bool{
+        
+        if email != "",password != "", handle != "", name != "" && password == confirm{
+            return true
+        }else{
+            return false
         }
     }
 }

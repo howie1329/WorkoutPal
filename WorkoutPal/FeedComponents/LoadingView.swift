@@ -7,18 +7,14 @@
 
 import SwiftUI
 
+// View To Be Displayed When View Is Loading
 struct LoadingView: View {
     @EnvironmentObject var userModel:UserDataModel
     var body: some View {
         ZStack{
-            Group{
-                //RoundedRectangle(cornerRadius: 10,style: .continuous)
-                    //.fill(.black.opacity(0.25))
-                    //.ignoresSafeArea()
-                VStack{
-                    ProgressView()
-                        .animation(.easeIn(duration: 0.25), value: true)
-                }
+            VStack{
+                ProgressView()
+                    .animation(.easeIn(duration: 0.25), value: true)
             }
         }
         .frame(maxWidth:.infinity,maxHeight: .infinity)
