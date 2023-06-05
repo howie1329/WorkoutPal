@@ -26,10 +26,11 @@ struct AddMealView: View {
             .frame(maxWidth:.infinity,alignment: .leading)
             TextField("Meal Title", text: $mealTitle)
                 .padding(5)
-                .background(RoundedRectangle(cornerRadius:10).fill(Color.gray))
-            Stepper("Proteins: \(proteinCount)", value: $proteinCount)
-            Stepper("Fats: \(fatCount)", value: $fatCount)
-            Stepper("Carbs: \(carbCount)", value: $carbCount)
+            HStack{
+                TextField("Proteins: \(proteinCount)", value: $proteinCount, format: .number)
+                TextField("Fats: \(fatCount)", value: $fatCount, format: .number)
+                TextField("Carbs: \(carbCount)", value: $carbCount, format: .number)
+            }
             
             Picker("Meal Type", selection: $mealType) {
                 ForEach(mealTypes, id:\.self){item in

@@ -50,6 +50,14 @@ struct SignInView: View {
                     .opacity(0.75)
                     
                 }
+                Button {
+                    Task{
+                        await userModel.resetPassword(email: email)
+                    }
+                } label: {
+                    Text("Forgotten Password")
+                }
+
             }
             .alert(userModel.errorMessage, isPresented: $userModel.isError, actions: {})
             .padding()
