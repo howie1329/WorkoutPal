@@ -29,9 +29,9 @@ class DataModel: ObservableObject {
                 print("Error Loading Container \(error)")
             }
         }
-        currentMonth = try! convertDateToMonthNumber(inputDate: currentDate)
-        currentDay = try! convertDateToDayNumber(inputDate: currentDate)
-        weekNumber = findWeekNumber(inputDate: currentDate)
+        currentMonth = currentDate.findMonthNumber()
+        currentDay = currentDate.findDayNumber()
+        weekNumber = currentDate.findWeekNumber()
         
         fetchCalorieTracker()
         fetchWorkoutPlans()
@@ -170,11 +170,11 @@ class DataModel: ObservableObject {
         trackerEntry.protien = Int32(protien)
         trackerEntry.carb = Int32(carbs)
         trackerEntry.fat = Int32(fats)
-        trackerEntry.dayNumber = Int32(try! convertDateToDayNumber(inputDate: currentDate))
-        trackerEntry.monthNumber = Int32(try! convertDateToMonthNumber(inputDate: currentDate))
+        trackerEntry.dayNumber = Int32(currentDate.findDayNumber())
+        trackerEntry.monthNumber = Int32(currentDate.findMonthNumber())
         trackerEntry.type = mealType
         trackerEntry.totalCal = Int32(findTotalCal(protien: protien, fats: fats, carbs: carbs))
-        trackerEntry.weekNumber = Int32(findWeekNumber(inputDate: currentDate))
+        trackerEntry.weekNumber = Int32(currentDate.findWeekNumber())
         saveData()
     }
     // Delete Calorie Entry
@@ -203,9 +203,9 @@ class DataModel: ObservableObject {
     func redoCurrentDates(updatedDate: Date){
         print("REDO CURRENT DATES RAN")
         currentDate = updatedDate
-        currentMonth = try! convertDateToMonthNumber(inputDate: currentDate)
-        currentDay = try! convertDateToDayNumber(inputDate: currentDate)
-        weekNumber = findWeekNumber(inputDate: currentDate)
+        currentMonth = currentDate.findMonthNumber()
+        currentDay = currentDate.findDayNumber()
+        weekNumber = currentDate.findWeekNumber()
         updateWeekDayData()
     }
 }
