@@ -233,9 +233,7 @@
 				F366615E2A04D00B00166299 /* View Model */,
 				F366615D2A04D00400166299 /* View */,
 				F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */,
-				F34E6A022A0B84EB002B5A53 /* Service.swift */,
-				F37CB3932A2DB620005E3E82 /* DateExtensions.swift */,
-				F3CD92FE2A25E83700EE4125 /* CustomErrors.swift */,
+				F37CB3952A2DBA03005E3E82 /* Service */,
 				F33B440F2A19E11400B83FFA /* GoogleService-Info.plist */,
 				F36661522A04CFEC00166299 /* Assets.xcassets */,
 				F36661612A04D17000166299 /* WorkoutContainer.xcdatamodeld */,
@@ -282,6 +280,16 @@
 				F3AD77AF2A1DAFAD00499545 /* FeedDataModel.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		F37CB3952A2DBA03005E3E82 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				F34E6A022A0B84EB002B5A53 /* Service.swift */,
+				F37CB3932A2DB620005E3E82 /* DateExtensions.swift */,
+				F3CD92FE2A25E83700EE4125 /* CustomErrors.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		F3AD77AA2A1D9F7700499545 /* FeedComponents */ = {
