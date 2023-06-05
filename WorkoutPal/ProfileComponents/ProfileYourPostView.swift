@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// View that shows only the users post
 struct ProfileYourPostView: View {
     @State var userHandle:String
     @EnvironmentObject var feedModel:FeedDataModel

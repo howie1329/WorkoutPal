@@ -8,6 +8,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
+/// A Singluar post component
 struct PostView: View {
     let postItem: MessageFeed
     var body: some View {
