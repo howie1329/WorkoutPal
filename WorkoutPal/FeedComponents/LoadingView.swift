@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// View To Be Displayed When View Is Loading
+/// View To Be Displayed When View Is Loading
 struct LoadingView: View {
     @EnvironmentObject var userModel:UserDataModel
     var body: some View {

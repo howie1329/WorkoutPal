@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// The feed the gets showed to the user which represents a "For You Feed"
 struct ForYouFeedView: View {
     @State var userHandle:String
     @EnvironmentObject var feedModel:FeedDataModel

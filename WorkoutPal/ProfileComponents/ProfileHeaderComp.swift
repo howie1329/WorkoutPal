@@ -8,6 +8,7 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
+/// The Header for the profile view
 struct ProfileHeaderComp: View {
     @EnvironmentObject var userModel:UserDataModel
     var userHandle:String
