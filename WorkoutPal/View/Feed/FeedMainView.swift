@@ -87,7 +87,7 @@ struct FeedMainView: View {
         }
         .sheet(isPresented: $newMessageViewState) {
             FeedNewMessageView(viewState: $newMessageViewState)
-                .presentationDetents([.medium])
+                .presentationDetents([.medium,.large])
         }
     }
 }
