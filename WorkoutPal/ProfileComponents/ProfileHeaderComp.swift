@@ -15,7 +15,7 @@ struct ProfileHeaderComp: View {
     var body: some View {
         HStack{
             VStack{
-                // MARK: Display Profile Picture
+                /// Display Profile Picture
                 WebImage(url: URL(string: userModel.userUrl )).placeholder(content: {
                     Circle()
                         .fill(.black)
@@ -44,13 +44,12 @@ struct ProfileHeaderComp: View {
             .frame(maxWidth: .infinity,alignment:.leading)
         }
         .toolbar{
-            // MARK: Sign out button
+            /// Sign out button
             ToolbarItem{
                 Button {
                     userModel.signOutUser()
                 } label: {
                     Text("Log Out")
-                    Image(systemName: "rectangle.portrait.and.arrow.right")
                 }
             }
         }

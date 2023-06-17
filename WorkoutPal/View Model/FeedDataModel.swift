@@ -76,7 +76,26 @@ class FeedDataModel: ObservableObject {
                         let feedMedia = data["feed_media"] as? String
                         let feedAuthorURL = data["feed_author_url"] as? String
                         
-                        self.feedArr.append(MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, authorProfileURL: feedAuthorURL, mediaURL: feedMedia ,date: feedTimestamp))
+                        var commentArry: [Comment] = []
+                        let commentRef = Firestore.firestore().collection("feed").document(feedId).collection("comments").getDocuments { QuerySnapshot, Error in
+                            if Error == nil {
+                                if let snapShot = QuerySnapshot {
+                                    
+                                    for doc in snapShot.documents {
+                                        let data = doc.data()
+                                        
+                                        let commentId = doc.documentID
+                                        let commentAuthor = data["author_Id"] as! String
+                                        let commentMessage = data["message"] as! String
+                                        
+                                        commentArry.append(Comment(id: commentId, authorId: commentAuthor, body: commentMessage))
+                                        
+                                        let feedMessage = MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, authorProfileURL: feedAuthorURL, mediaURL: feedMedia, comments: commentArry ,date: feedTimestamp)
+                                        self.feedArr.append(feedMessage)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }else if let Error = Error{
@@ -88,27 +107,32 @@ class FeedDataModel: ObservableObject {
         }
     }
     
-    // Sort new messages into for you array
-    func sortFeed(userHandle:String){
-        var newArr: [MessageFeed] = []
-        for item in feedArr{
-            if item.authorId != userHandle {
-                newArr.append(item)
+    func createComment(newComment: Comment, oringalMessage: MessageFeed) async{
+        do{
+            let ref = Firestore.firestore().collection("feed").document(oringalMessage.id).collection("comments")
+                
+                .addDocument(data: ["author_Id" : newComment.authorId, "message":newComment.body])
+            
+        } catch{
+            print("Error")
+        }
+        
+    }
+    
+    /// Sort messages from feed array
+    func sortFeedMessages(userHandle:String){
+        var youArr:[MessageFeed] = []
+        var newFeedArr:[MessageFeed] = []
+        for message in feedArr {
+            if message.authorId == userHandle {
+                youArr.append(message)
+            } else if message.authorId != userHandle {
+                newFeedArr.append(message)
             }
         }
         
-        forYouArr = newArr
-    }
-    
-    // sort messages that were created by creator
-    func sortYourPost(userHandle:String){
-        var newArr:[MessageFeed] = []
-        for item in feedArr{
-            if item.authorId == userHandle{
-                newArr.append(item)
-            }
-        }
-        yourPost = newArr
+        self.yourPost = youArr
+        self.forYouArr = newFeedArr
     }
     
     // Create a new message
@@ -124,14 +148,14 @@ class FeedDataModel: ObservableObject {
                 let _ = try await storageRef.putDataAsync(imageData)
                 let downloadURL = try await storageRef.downloadURL()
                 
-                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId,"feed_author_url":message.authorProfileURL, "feed_timestamp":message.date, "feed_media": downloadURL.absoluteString], completion: { Error in
+                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId,"feed_author_url":message.authorProfileURL, "feed_timestamp":message.date, "feed_media": downloadURL.absoluteString, "feed_comments": message.comments], completion: { Error in
                     if let error = Error{
                         self.errorMessage = self.setErrorMessage(errorCode: error)
                     }
                 })
             } else {
                 
-                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId, "feed_author_url":message.authorProfileURL, "feed_timestamp":message.date], completion: { Error in
+                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId, "feed_author_url":message.authorProfileURL, "feed_timestamp":message.date, "feed_comments": message.comments], completion: { Error in
                     if let error = Error{
                         self.errorMessage = self.setErrorMessage(errorCode: error)
                     }

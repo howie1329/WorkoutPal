@@ -14,17 +14,20 @@ struct ForYouFeedView: View {
     var body: some View {
         List{
             ForEach(feedModel.forYouArr){item in
-                PostView(postItem: item)
+                NavigationLink {
+                    CommentView(post: item)
+                } label: {
+                    PostView(postItem: item)
+                }
             }
         }
         .refreshable {
-            feedModel.sortFeed(userHandle: userHandle)
-            feedModel.sortYourPost(userHandle: userHandle)
+            /// Pull down refresh
+            feedModel.sortFeedMessages(userHandle: userHandle)
         }
         .onAppear(perform: {
-            // To be done when view first appears
-            feedModel.sortFeed(userHandle: userHandle)
-            feedModel.sortYourPost(userHandle: userHandle)
+            /// To be done when view first appears
+            feedModel.sortFeedMessages(userHandle: userHandle)
         })
         .frame(maxWidth: .infinity, maxHeight:.infinity, alignment:.top)
     }

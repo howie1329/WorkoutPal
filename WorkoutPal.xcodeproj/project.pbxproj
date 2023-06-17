@@ -38,6 +38,8 @@
 		F36661562A04CFEC00166299 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36661552A04CFEC00166299 /* Preview Assets.xcassets */; };
 		F36661602A04D11B00166299 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F366615F2A04D11B00166299 /* DataModel.swift */; };
 		F36661632A04D17000166299 /* WorkoutContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F36661612A04D17000166299 /* WorkoutContainer.xcdatamodeld */; };
+		F36AF0C32A32DBCE0057C9D4 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0C22A32DBCE0057C9D4 /* CommentView.swift */; };
+		F36AF0C52A32E6C60057C9D4 /* NewCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0C42A32E6C60057C9D4 /* NewCommentView.swift */; };
 		F37CB3942A2DB620005E3E82 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37CB3932A2DB620005E3E82 /* DateExtensions.swift */; };
 		F3AD77A92A1D9CE700499545 /* ProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77A82A1D9CE700499545 /* ProfileMainView.swift */; };
 		F3AD77AC2A1D9F9500499545 /* ProfileHeaderComp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */; };
@@ -83,6 +85,8 @@
 		F36661552A04CFEC00166299 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F366615F2A04D11B00166299 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		F36661622A04D17000166299 /* WorkoutContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkoutContainer.xcdatamodel; sourceTree = "<group>"; };
+		F36AF0C22A32DBCE0057C9D4 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		F36AF0C42A32E6C60057C9D4 /* NewCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentView.swift; sourceTree = "<group>"; };
 		F37CB3932A2DB620005E3E82 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		F3AD77A82A1D9CE700499545 /* ProfileMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainView.swift; sourceTree = "<group>"; };
 		F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderComp.swift; sourceTree = "<group>"; };
@@ -153,9 +157,11 @@
 		F32DBD022A1B2C41007ECFFC /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				F36AF0C22A32DBCE0057C9D4 /* CommentView.swift */,
 				F32DBD092A1B3BAF007ECFFC /* FeedStartView.swift */,
 				F3AD77AD2A1DA13300499545 /* FeedMainView.swift */,
 				F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */,
+				F36AF0C42A32E6C60057C9D4 /* NewCommentView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -412,6 +418,7 @@
 				F3DE2AC92A2487F0000EE848 /* LoadingView.swift in Sources */,
 				F310FFE72A09FA6A0093365E /* CalorieRowView.swift in Sources */,
 				F32DBD0A2A1B3BAF007ECFFC /* FeedStartView.swift in Sources */,
+				F36AF0C32A32DBCE0057C9D4 /* CommentView.swift in Sources */,
 				F310FFF22A0A2FC60093365E /* WorkoutPlanRowView.swift in Sources */,
 				F3AD77A92A1D9CE700499545 /* ProfileMainView.swift in Sources */,
 				F34E6A032A0B84EB002B5A53 /* Service.swift in Sources */,
@@ -421,6 +428,7 @@
 				F32DBD082A1B3481007ECFFC /* SignInView.swift in Sources */,
 				F310FFEE2A0A29EE0093365E /* NewWorkoutPlanView.swift in Sources */,
 				F32DBD062A1B2C69007ECFFC /* SignUpView.swift in Sources */,
+				F36AF0C52A32E6C60057C9D4 /* NewCommentView.swift in Sources */,
 				F310FFF72A0AB8FE0093365E /* CalorieSectionView.swift in Sources */,
 				F3DE2AD32A259E7B000EE848 /* PostView.swift in Sources */,
 				F3AD77B22A1DC0C400499545 /* ForYouFeedView.swift in Sources */,

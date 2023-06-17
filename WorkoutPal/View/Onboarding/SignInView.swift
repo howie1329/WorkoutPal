@@ -19,9 +19,12 @@ struct SignInView: View {
                 Text("Sign In")
                     .font(.largeTitle.bold())
                 Divider()
-                VStack(spacing:15){
+                VStack(spacing:20){
                     TextField("Email", text: $email)
+                        .font(.headline)
+    
                     TextField("Password", text: $password)
+                        .font(.headline)
                 }
                 .textFieldStyle(.roundedBorder)
                 .padding()
@@ -33,6 +36,7 @@ struct SignInView: View {
                         }
                     } label: {
                         Text("Sign In!!")
+                            .font(.headline)
                             .frame(maxWidth:.infinity, maxHeight: 35)
                     }
                     
@@ -43,6 +47,7 @@ struct SignInView: View {
                         userModel.errorMessage = userModel.setErrorMessage(errorCode: AuthErrors.failedSignup)
                     } label: {
                         Text("Sign In!!")
+                            .font(.headline)
                             .frame(maxWidth: .infinity, maxHeight: 35)
                     }
                     .buttonStyle(.borderedProminent)

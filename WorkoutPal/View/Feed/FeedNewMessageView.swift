@@ -60,7 +60,7 @@ struct FeedNewMessageView: View {
                 ToolbarItem{
                     Button {
                         Task{
-                            await feedModel.createNewMessage(message: MessageFeed(id: "", body: feedMessage, authorId: userModel.userHandle, authorProfileURL: userModel.userUrl))
+                            await feedModel.createNewMessage(message: MessageFeed(id: "", body: feedMessage, authorId: userModel.userHandle, authorProfileURL: userModel.userUrl, comments: []))
                         }
                         viewState = false
                     } label: {
