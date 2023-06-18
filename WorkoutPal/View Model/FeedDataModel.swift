@@ -75,6 +75,7 @@ class FeedDataModel: ObservableObject {
                         let feedTimestamp = data["feed_timestamp"] as! Timestamp
                         let feedMedia = data["feed_media"] as? String
                         let feedAuthorURL = data["feed_author_url"] as? String
+                        let feedLikeCount  = data["feed_like_count"] as? Int ?? 0
                         
                         var commentArry: [Comment] = []
                         let commentRef = Firestore.firestore().collection("feed").document(feedId).collection("comments").getDocuments { QuerySnapshot, Error in
@@ -90,7 +91,7 @@ class FeedDataModel: ObservableObject {
                                         
                                         commentArry.append(Comment(id: commentId, authorId: commentAuthor, body: commentMessage))
                                         
-                                        let feedMessage = MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, authorProfileURL: feedAuthorURL, mediaURL: feedMedia, comments: commentArry ,date: feedTimestamp)
+                                        let feedMessage = MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, authorProfileURL: feedAuthorURL, mediaURL: feedMedia, comments: commentArry, likeCounter: feedLikeCount, date: feedTimestamp)
                                         self.feedArr.append(feedMessage)
                                     }
                                 }
@@ -148,14 +149,14 @@ class FeedDataModel: ObservableObject {
                 let _ = try await storageRef.putDataAsync(imageData)
                 let downloadURL = try await storageRef.downloadURL()
                 
-                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId,"feed_author_url":message.authorProfileURL, "feed_timestamp":message.date, "feed_media": downloadURL.absoluteString, "feed_comments": message.comments], completion: { Error in
+                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId,"feed_author_url":message.authorProfileURL, "feed_timestamp":message.date, "feed_media": downloadURL.absoluteString, "feed_comments": message.comments, "feed_like_count": 0], completion: { Error in
                     if let error = Error{
                         self.errorMessage = self.setErrorMessage(errorCode: error)
                     }
                 })
             } else {
                 
-                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId, "feed_author_url":message.authorProfileURL, "feed_timestamp":message.date, "feed_comments": message.comments], completion: { Error in
+                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId, "feed_author_url":message.authorProfileURL, "feed_timestamp":message.date, "feed_comments": message.comments, "feed_like_count": 0], completion: { Error in
                     if let error = Error{
                         self.errorMessage = self.setErrorMessage(errorCode: error)
                     }

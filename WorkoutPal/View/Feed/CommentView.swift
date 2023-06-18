@@ -13,7 +13,6 @@ struct CommentView: View {
     
     @State var newCommentViewState = false
     let post : MessageFeed
-    //let comments : [Comment]
     var body: some View {
         NavigationView{
             VStack{

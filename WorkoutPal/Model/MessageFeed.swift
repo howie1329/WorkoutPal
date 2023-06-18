@@ -23,6 +23,8 @@ struct MessageFeed: Identifiable{
     var authorProfileURL: String?
     var mediaURL: String?
     var comments : [Comment]
+    var likeCounter : Int = 0
+    var userLike: Bool = false
     var date = Timestamp(date: Date.now)
 
 }

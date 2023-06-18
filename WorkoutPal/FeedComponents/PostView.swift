@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 /// A Singluar post component
 struct PostView: View {
+    @EnvironmentObject var userModel: UserDataModel
     let postItem: MessageFeed
     var body: some View {
         VStack{
@@ -35,6 +36,25 @@ struct PostView: View {
                     Text("@\(postItem.authorId)")
                 }
                 Spacer()
+                VStack{
+                    if userModel.userLikedPost.contains(postItem.id){
+                        Button {
+                            userModel.removeLike(post: postItem)
+                        } label: {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.red)
+                        }
+                    }else{
+                        Button {
+                            userModel.likePost(post: postItem)
+                        } label: {
+                            Image(systemName: "heart")
+                        }
+                    }
+
+                    
+                    Text("\(postItem.likeCounter)")
+                }
                 Text("\(postItem.date.dateValue().formatted(date: .abbreviated, time: .shortened))")
                     .font(.caption2)
                     .foregroundColor(.gray)

@@ -32,6 +32,7 @@ class UserDataModel: ObservableObject {
     @Published var userProfilePhoto: UIImage? = nil
     @Published var userPickerImage: PhotosPickerItem? = nil
     @Published var userUrl:String = ""
+    @Published var userLikedPost :[String] = []
     
     @Published var isLoading: Bool = false
     
@@ -80,6 +81,7 @@ class UserDataModel: ObservableObject {
                         self.userGender = data["user_gender"] as! String
                         self.userHandle = data["user_handle"] as! String
                         self.userUrl = data["user_profileURL"] as! String
+                        self.userLikedPost = data["liked_post"] as! [String]
                         
                         self.appState = .signedIn
                     }
@@ -121,6 +123,8 @@ class UserDataModel: ObservableObject {
                 self.userGender = data["user_gender"] as! String
                 self.userHandle = data["user_handle"] as! String
                 self.userUrl = data["user_profileURL"] as! String
+                self.userLikedPost = data["liked_post"] as! [String]
+                
                 
                 self.isLoading = false
                 self.appState = .signedIn
@@ -150,7 +154,7 @@ class UserDataModel: ObservableObject {
             let downloadURL = try await storageRef.downloadURL()
             
             
-            let _ = Firestore.firestore().collection("users").addDocument(data: ["user_name" : name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle, "user_profileURL": downloadURL.absoluteString])
+            let _ = Firestore.firestore().collection("users").addDocument(data: ["user_name" : name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle, "user_profileURL": downloadURL.absoluteString, "liked_post": ["none"]])
             
             await checkLogin()
             self.isLoading = false
@@ -158,6 +162,38 @@ class UserDataModel: ObservableObject {
             self.errorMessage = setErrorMessage(errorCode: error)
         }
         
+    }
+    
+    func removeLike(post: MessageFeed){
+        let _ = Firestore.firestore().collection("users").whereField("user_id", isEqualTo: self.userID).getDocuments { QuerySnapshot, Error in
+            if Error == nil {
+                if let snapShot = QuerySnapshot {
+                    for doc in snapShot.documents{
+                        let documentID = doc.documentID
+                        
+                        let _ = Firestore.firestore().collection("users").document(documentID).updateData(["liked_post" : FieldValue.arrayRemove([post.id])])
+                        
+                        let _ = Firestore.firestore().collection("feed").document(post.id).updateData(["feed_like_count" : -1])
+                    }
+                }
+            }
+        }
+    }
+    
+    func likePost(post: MessageFeed){
+        let _ = Firestore.firestore().collection("users").whereField("user_id", isEqualTo: self.userID).getDocuments(completion: { QuerySnapshot, Error in
+            if Error == nil {
+                if let snapShot = QuerySnapshot {
+                    for doc in snapShot.documents {
+                        let documentID = doc.documentID
+                        
+                        let _ = Firestore.firestore().collection("users").document(documentID).updateData(["liked_post" : FieldValue.arrayUnion([post.id])])
+                        
+                        let _ = Firestore.firestore().collection("feed").document(post.id).updateData(["feed_like_count" : +1])
+                    }
+                }
+            }
+        })
     }
     
     // Signout Current User
@@ -173,6 +209,7 @@ class UserDataModel: ObservableObject {
             userUrl = ""
             userProfilePhoto = nil
             userPickerImage = nil
+            userLikedPost = []
             self.isLoading = false
             appState = .signedOut
         } catch let error {
