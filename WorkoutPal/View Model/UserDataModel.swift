@@ -61,7 +61,7 @@ class UserDataModel: ObservableObject {
         }
     }
     
-    // Check if a used is cached
+    // Check if a user is already logged in
     @MainActor
     func checkLogin() async {
         let currentUser = Auth.auth().currentUser
@@ -69,26 +69,31 @@ class UserDataModel: ObservableObject {
             if let userInfo = currentUser{
                 self.userID = userInfo.uid
                 
-                do{
-                    let dbResults = try await Firestore.firestore().collection("users").whereField("user_id", isEqualTo: userInfo.uid).getDocuments()
-                    
-                    for doc in dbResults.documents {
-                        let data = doc.data()
-                        
-                        self.userName = data["user_name"] as! String
-                        self.userID = data["user_id"] as! String
-                        self.userEmail = data["user_email"] as! String
-                        self.userGender = data["user_gender"] as! String
-                        self.userHandle = data["user_handle"] as! String
-                        self.userUrl = data["user_profileURL"] as! String
-                        self.userLikedPost = data["liked_post"] as! [String]
-                        
-                        self.appState = .signedIn
+                let userRef = Firestore.firestore().collection("users").whereField("user_id", isEqualTo: userInfo.uid).addSnapshotListener { QuerySnapshot, Error in
+                    if Error == nil {
+                        if let snapShot = QuerySnapshot {
+                            for doc in snapShot.documents{
+                                let data = doc.data()
+                                
+                                self.userName = data["user_name"] as! String
+                                self.userID = data["user_id"] as! String
+                                self.userEmail = data["user_email"] as! String
+                                self.userGender = data["user_gender"] as! String
+                                self.userHandle = data["user_handle"] as! String
+                                self.userUrl = data["user_profileURL"] as! String
+                                self.userLikedPost = data["liked_post"] as! [String]
+                                
+                                self.appState = .signedIn
+                            }
+                        }
+                    } else{
+                        self.errorMessage = self.setErrorMessage(errorCode: Error!)
+                        try! Auth.auth().signOut()
+                        self.appState = .signedOut
                     }
-                } catch{
-                    self.errorMessage = setErrorMessage(errorCode: error)
-                    try! Auth.auth().signOut()
-                    self.appState = .signedOut
+                }
+                if Auth.auth().currentUser == nil {
+                    userRef.remove()
                 }
             }
         }
@@ -112,23 +117,35 @@ class UserDataModel: ObservableObject {
             let userSignInfo = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userID = userSignInfo.user.uid
             
-            let databaseResults = try await Firestore.firestore().collection("users").whereField("user_id", isEqualTo: userSignInfo.user.uid).getDocuments()
-            
-            for doc in databaseResults.documents{
-                let data = doc.data()
-                
-                self.userName = data["user_name"] as! String
-                self.userID = data["user_id"] as! String
-                self.userEmail = data["user_email"] as! String
-                self.userGender = data["user_gender"] as! String
-                self.userHandle = data["user_handle"] as! String
-                self.userUrl = data["user_profileURL"] as! String
-                self.userLikedPost = data["liked_post"] as! [String]
-                
-                
-                self.isLoading = false
-                self.appState = .signedIn
+            let userRef = Firestore.firestore().collection("users").whereField("user_id", isEqualTo: userSignInfo.user.uid).addSnapshotListener { QuerySnapshot, Error in
+                if Error == nil {
+                    if let snapShot = QuerySnapshot {
+                        for doc in snapShot.documents{
+                            let data = doc.data()
+                            
+                            self.userName = data["user_name"] as! String
+                            self.userID = data["user_id"] as! String
+                            self.userEmail = data["user_email"] as! String
+                            self.userGender = data["user_gender"] as! String
+                            self.userHandle = data["user_handle"] as! String
+                            self.userUrl = data["user_profileURL"] as! String
+                            self.userLikedPost = data["liked_post"] as! [String]
+                            
+                            self.isLoading = false
+                            self.appState = .signedIn
+                        }
+                    }
+                } else{
+                    self.errorMessage = self.setErrorMessage(errorCode: Error!)
+                    try! Auth.auth().signOut()
+                    self.appState = .signedOut
+                }
             }
+            
+            if Auth.auth().currentUser == nil {
+                userRef.remove()
+            }
+            
         } catch{
             self.errorMessage = setErrorMessage(errorCode: error)
         }
