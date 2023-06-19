@@ -29,14 +29,13 @@ struct ProfileYourPostView: View {
             }
         }
         .refreshable {
-            // Pull down refresh
-            feedModel.sortFeed(userHandle: userHandle)
-            feedModel.sortYourPost(userHandle: userHandle)
+            /// Pull down refresh
+            feedModel.sortFeedMessages(userHandle: userHandle)
+            
         }
         .onAppear(perform: {
-            // To be done when view first appears
-            feedModel.sortFeed(userHandle: userHandle)
-            feedModel.sortYourPost(userHandle: userHandle)
+            /// To be done when view first appears
+            feedModel.sortFeedMessages(userHandle: userHandle)
         })
         .frame(maxWidth: .infinity, maxHeight:.infinity, alignment:.top)
     }

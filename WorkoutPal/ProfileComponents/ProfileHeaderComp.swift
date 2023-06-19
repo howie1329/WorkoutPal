@@ -13,12 +13,9 @@ struct ProfileHeaderComp: View {
     @EnvironmentObject var userModel:UserDataModel
     var userHandle:String
     var body: some View {
-        VStack(spacing:0){
-            HStack{
-                Text("@\(userModel.userHandle)")
-            }.frame(maxWidth: .infinity,alignment:.leading)
-            // MARK: Display Profile Picture
-            HStack(spacing:50){
+        HStack{
+            VStack{
+                /// Display Profile Picture
                 WebImage(url: URL(string: userModel.userUrl )).placeholder(content: {
                     Circle()
                         .fill(.black)
@@ -30,6 +27,9 @@ struct ProfileHeaderComp: View {
                 .frame(width:50, height: 50)
                 .cornerRadius(100)
                 .clipped()
+                Text("@\(userModel.userHandle)")
+            }
+            HStack(spacing:50){
                 VStack{
                     Text("200")
                         .bold()
@@ -40,16 +40,20 @@ struct ProfileHeaderComp: View {
                         .bold()
                     Text("Following")
                 }
-                // MARK: Sign out button
+            }
+            .frame(maxWidth: .infinity,alignment:.leading)
+        }
+        .toolbar{
+            /// Sign out button
+            ToolbarItem{
                 Button {
                     userModel.signOutUser()
                 } label: {
-                    Image(systemName: "rectangle.portrait.and.arrow.right")
+                    Text("Log Out")
                 }
-                
             }
-            .frame(maxWidth: .infinity,alignment:.leading)
-        }.padding([.horizontal])
+        }
+        .padding([.horizontal])
     }
 }
 

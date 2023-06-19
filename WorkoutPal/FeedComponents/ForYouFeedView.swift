@@ -12,21 +12,28 @@ struct ForYouFeedView: View {
     @State var userHandle:String
     @EnvironmentObject var feedModel:FeedDataModel
     var body: some View {
-        List{
-            ForEach(feedModel.forYouArr){item in
-                PostView(postItem: item)
+        if feedModel.isLoading{
+            ProgressView()
+        }else{
+            List{
+                ForEach(feedModel.forYouArr){item in
+                    NavigationLink {
+                        CommentView(post: item)
+                    } label: {
+                        PostView(postItem: item)
+                    }
+                }
             }
+            .refreshable {
+                /// Pull down refresh
+                feedModel.sortFeedMessages(userHandle: userHandle)
+            }
+            .onAppear(perform: {
+                /// To be done when view first appears
+                feedModel.sortFeedMessages(userHandle: userHandle)
+            })
+            .frame(maxWidth: .infinity, maxHeight:.infinity, alignment:.top)
         }
-        .refreshable {
-            feedModel.sortFeed(userHandle: userHandle)
-            feedModel.sortYourPost(userHandle: userHandle)
-        }
-        .onAppear(perform: {
-            // To be done when view first appears
-            feedModel.sortFeed(userHandle: userHandle)
-            feedModel.sortYourPost(userHandle: userHandle)
-        })
-        .frame(maxWidth: .infinity, maxHeight:.infinity, alignment:.top)
     }
 }
 
