@@ -93,12 +93,13 @@ class FeedDataModel: ObservableObject {
                                         
                                         commentArry.append(Comment(id: commentId, authorId: commentAuthor, body: commentMessage))
                                         
-                                        let feedMessage = MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, authorProfileURL: feedAuthorURL, mediaURL: feedMedia, comments: commentArry, likeCounter: feedLikeCount, date: feedTimestamp)
-                                        self.feedArr.append(feedMessage)
+                                        
                                     }
                                 }
                             }
                         }
+                        let feedMessage = MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, authorProfileURL: feedAuthorURL, mediaURL: feedMedia, comments: commentArry, likeCounter: feedLikeCount, date: feedTimestamp)
+                        self.feedArr.append(feedMessage)
                     }
                     self.isLoading = false
                 }
