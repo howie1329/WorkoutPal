@@ -74,5 +74,23 @@ struct PostView: View {
                 Text(postItem.body)
             }.frame(maxWidth:.infinity,alignment:.leading)
         }
+        .swipeActions {
+            if userModel.userLikedPost.contains(postItem.id){
+                Button {
+                    userModel.removeLike(post: postItem)
+                } label: {
+                    Image(systemName: "heart.slash.fill")
+                        .foregroundColor(.red)
+                }
+                .tint(.red)
+            }else{
+                Button {
+                    userModel.likePost(post: postItem)
+                } label: {
+                    Image(systemName: "heart.fill")
+                }
+                .tint(.red)
+            }
+        }
     }
 }

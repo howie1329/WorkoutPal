@@ -114,12 +114,15 @@ class FeedDataModel: ObservableObject {
     
     func createComment(newComment: Comment, oringalMessage: MessageFeed) async{
         do{
-            let ref = Firestore.firestore().collection("feed").document(oringalMessage.id).collection("comments")
+            let _ = try await Firestore.firestore().collection("feed").document(oringalMessage.id).collection("comments").document().setData(["author_Id" : newComment.authorId, "message":newComment.body])
+            /*
+            _ = Firestore.firestore().collection("feed").document(oringalMessage.id).collection("comments")
                 
                 .addDocument(data: ["author_Id" : newComment.authorId, "message":newComment.body])
+             */
             
         } catch{
-            print("Error")
+            self.errorMessage = self.setErrorMessage(errorCode: error)
         }
         
     }
@@ -153,14 +156,14 @@ class FeedDataModel: ObservableObject {
                 let _ = try await storageRef.putDataAsync(imageData)
                 let downloadURL = try await storageRef.downloadURL()
                 
-                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId,"feed_author_url":message.authorProfileURL, "feed_timestamp":message.date, "feed_media": downloadURL.absoluteString, "feed_comments": message.comments, "feed_like_count": 0], completion: { Error in
+                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId,"feed_author_url":message.authorProfileURL, "feed_timestamp":message.date, "feed_media": downloadURL.absoluteString, "feed_like_count": 0], completion: { Error in
                     if let error = Error{
                         self.errorMessage = self.setErrorMessage(errorCode: error)
                     }
                 })
             } else {
                 
-                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId, "feed_author_url":message.authorProfileURL, "feed_timestamp":message.date, "feed_comments": message.comments, "feed_like_count": 0], completion: { Error in
+                _ = Firestore.firestore().collection("feed").addDocument(data: ["feed_body":message.body,"feed_author_id":message.authorId, "feed_author_url":message.authorProfileURL, "feed_timestamp":message.date, "feed_like_count": 0], completion: { Error in
                     if let error = Error{
                         self.errorMessage = self.setErrorMessage(errorCode: error)
                     }

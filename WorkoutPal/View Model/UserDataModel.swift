@@ -190,7 +190,24 @@ class UserDataModel: ObservableObject {
                         
                         let _ = Firestore.firestore().collection("users").document(documentID).updateData(["liked_post" : FieldValue.arrayRemove([post.id])])
                         
-                        let _ = Firestore.firestore().collection("feed").document(post.id).updateData(["feed_like_count" : -1])
+                        let _ = Firestore.firestore().collection("feed").document(post.id).getDocument { DocumentSnapshot, Error in
+                            if Error == nil {
+                                if let doc = DocumentSnapshot{
+                                    if let data = doc.data(){
+                                        
+                                        var oldLikeCount = data["feed_like_count"] as! Int
+                                        
+                                        oldLikeCount -= 1
+                                        
+                                        if oldLikeCount <= 0 {
+                                            oldLikeCount = 0
+                                        }
+                                        
+                                        let _ = Firestore.firestore().collection("feed").document(post.id).updateData(["feed_like_count" : oldLikeCount])
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -206,7 +223,24 @@ class UserDataModel: ObservableObject {
                         
                         let _ = Firestore.firestore().collection("users").document(documentID).updateData(["liked_post" : FieldValue.arrayUnion([post.id])])
                         
-                        let _ = Firestore.firestore().collection("feed").document(post.id).updateData(["feed_like_count" : +1])
+                        let _ = Firestore.firestore().collection("feed").document(post.id).getDocument { DocumentSnapshot, Error in
+                            if Error == nil {
+                                if let doc = DocumentSnapshot{
+                                    if let data = doc.data(){
+                                        
+                                        var oldLikeCount = data["feed_like_count"] as! Int
+                                        
+                                        oldLikeCount += 1
+                                        
+                                        if oldLikeCount <= 0 {
+                                            oldLikeCount = 0
+                                        }
+                                        
+                                        let _ = Firestore.firestore().collection("feed").document(post.id).updateData(["feed_like_count" : oldLikeCount])
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

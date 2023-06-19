@@ -44,6 +44,7 @@ struct CommentView: View {
             .sheet(isPresented: $newCommentViewState) {
                 NewCommentView(orignalMessage: post, viewState: $newCommentViewState)
             }
+            .alert(feedModel.errorMessage, isPresented: $feedModel.isError, actions: {})
         }
     }
 }
