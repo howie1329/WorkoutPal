@@ -20,6 +20,7 @@ class FeedDataModel: ObservableObject {
     @Published var errorMessage: String = ""
     @Published var feedPhotoPickerItem: PhotosPickerItem? = nil
     @Published var feedUIImage: UIImage? = nil
+    @Published var isLoading: Bool = false
     
     init(){
         updateFetch()
@@ -65,6 +66,7 @@ class FeedDataModel: ObservableObject {
         let dbRef = Firestore.firestore().collection("feed").addSnapshotListener { QuerySnapshot, Error in
             if Error == nil{
                 if let snapShot = QuerySnapshot{
+                    self.isLoading = true
                     self.feedArr = []
                     for doc in snapShot.documents{
                         let data = doc.data()
@@ -98,6 +100,7 @@ class FeedDataModel: ObservableObject {
                             }
                         }
                     }
+                    self.isLoading = false
                 }
             }else if let Error = Error{
                 self.errorMessage = self.setErrorMessage(errorCode: Error)
