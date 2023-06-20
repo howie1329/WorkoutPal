@@ -9,10 +9,12 @@ import Foundation
 import Firebase
 import PhotosUI
 
-struct Comment: Identifiable, Decodable {
+struct Comment: Identifiable {
     var id: String
     var authorId: String
     var body: String
+    var authorProfileURL: String?
+    var date = Timestamp(date: Date.now)
 }
 
 struct MessageFeed: Identifiable{

@@ -79,8 +79,15 @@ class FeedDataModel: ObservableObject {
                         let feedAuthorURL = data["feed_author_url"] as? String
                         let feedLikeCount  = data["feed_like_count"] as? Int ?? 0
                         
-                        var commentArry: [Comment] = []
-                        let commentRef = Firestore.firestore().collection("feed").document(feedId).collection("comments").getDocuments { QuerySnapshot, Error in
+                        var feedMessage = MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, authorProfileURL: feedAuthorURL, mediaURL: feedMedia, comments: [], likeCounter: feedLikeCount, date: feedTimestamp)
+                        self.feedArr.append(feedMessage)
+                    }
+                    
+                    for messageItem in self.feedArr{
+                        var id = messageItem.id
+                        var commentArr: [Comment] = []
+                        
+                        var commentRef = Firestore.firestore().collection("feed").document(id).collection("comments").getDocuments { QuerySnapshot, Error in
                             if Error == nil {
                                 if let snapShot = QuerySnapshot {
                                     
@@ -90,17 +97,23 @@ class FeedDataModel: ObservableObject {
                                         let commentId = doc.documentID
                                         let commentAuthor = data["author_Id"] as! String
                                         let commentMessage = data["message"] as! String
+                                        let commentAuthorURL = data["author_Url"] as? String
+                                        let commentDate = data["date"] as? Timestamp ?? Timestamp.init(date: Date.now)
                                         
-                                        commentArry.append(Comment(id: commentId, authorId: commentAuthor, body: commentMessage))
+                                        commentArr.append(Comment(id: commentId, authorId: commentAuthor, body: commentMessage, authorProfileURL: commentAuthorURL))
                                         
-                                        
+                                        let index = self.feedArr.firstIndex { MessageFeed in
+                                            MessageFeed.id == id
+                                        }
+                                        if let index = index {
+                                            self.feedArr[index].comments = commentArr
+                                        }
                                     }
                                 }
                             }
                         }
-                        let feedMessage = MessageFeed(id: feedId, body: feedBody, authorId: feedAuthor, authorProfileURL: feedAuthorURL, mediaURL: feedMedia, comments: commentArry, likeCounter: feedLikeCount, date: feedTimestamp)
-                        self.feedArr.append(feedMessage)
                     }
+                    
                     self.isLoading = false
                 }
             }else if let Error = Error{
@@ -114,7 +127,7 @@ class FeedDataModel: ObservableObject {
     
     func createComment(newComment: Comment, oringalMessage: MessageFeed) async{
         do{
-            let _ = try await Firestore.firestore().collection("feed").document(oringalMessage.id).collection("comments").document().setData(["author_Id" : newComment.authorId, "message":newComment.body])
+            let _ = try await Firestore.firestore().collection("feed").document(oringalMessage.id).collection("comments").document().setData(["author_Id" : newComment.authorId, "message":newComment.body, "author_Url": newComment.authorProfileURL, "date":newComment.date])
             /*
             _ = Firestore.firestore().collection("feed").document(oringalMessage.id).collection("comments")
                 

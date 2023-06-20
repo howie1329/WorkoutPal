@@ -18,13 +18,14 @@ struct NewCommentView: View {
     var body: some View {
         VStack{
             VStack{
+                
                 Text("@\(userModel.userHandle)")
                 TextField("Comment", text: $commentMessage)
             }
             
             Button {
                 Task{
-                    await feedModel.createComment(newComment: Comment(id: "", authorId: userModel.userHandle, body: commentMessage) ,oringalMessage: orignalMessage)
+                    await feedModel.createComment(newComment: Comment(id: "", authorId: userModel.userHandle, body: commentMessage, authorProfileURL: userModel.userUrl) ,oringalMessage: orignalMessage)
                 }
             } label: {
                 Text("Comment")
