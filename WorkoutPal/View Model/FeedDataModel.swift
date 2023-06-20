@@ -100,7 +100,7 @@ class FeedDataModel: ObservableObject {
                                         let commentAuthorURL = data["author_Url"] as? String
                                         let commentDate = data["date"] as? Timestamp ?? Timestamp.init(date: Date.now)
                                         
-                                        commentArr.append(Comment(id: commentId, authorId: commentAuthor, body: commentMessage, authorProfileURL: commentAuthorURL))
+                                        commentArr.append(Comment(id: commentId, authorId: commentAuthor, body: commentMessage, authorProfileURL: commentAuthorURL, date: commentDate))
                                         
                                         let index = self.feedArr.firstIndex { MessageFeed in
                                             MessageFeed.id == id
@@ -128,11 +128,6 @@ class FeedDataModel: ObservableObject {
     func createComment(newComment: Comment, oringalMessage: MessageFeed) async{
         do{
             let _ = try await Firestore.firestore().collection("feed").document(oringalMessage.id).collection("comments").document().setData(["author_Id" : newComment.authorId, "message":newComment.body, "author_Url": newComment.authorProfileURL, "date":newComment.date])
-            /*
-            _ = Firestore.firestore().collection("feed").document(oringalMessage.id).collection("comments")
-                
-                .addDocument(data: ["author_Id" : newComment.authorId, "message":newComment.body])
-             */
             
         } catch{
             self.errorMessage = self.setErrorMessage(errorCode: error)

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct NewCommentView: View {
     @EnvironmentObject var userModel:UserDataModel
@@ -16,19 +17,43 @@ struct NewCommentView: View {
     @Binding var viewState:Bool
     
     var body: some View {
-        VStack{
+        NavigationView{
             VStack{
-                
-                Text("@\(userModel.userHandle)")
-                TextField("Comment", text: $commentMessage)
-            }
-            
-            Button {
-                Task{
-                    await feedModel.createComment(newComment: Comment(id: "", authorId: userModel.userHandle, body: commentMessage, authorProfileURL: userModel.userUrl) ,oringalMessage: orignalMessage)
+                HStack{
+                    WebImage(url: URL(string: userModel.userUrl)).placeholder(content: {
+                        Circle().fill(.black)
+                            .frame(width:50, height: 50)
+                            .cornerRadius(100)
+                    })
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width:50, height: 50)
+                    .cornerRadius(100)
+                    .clipped()
+                    
+                    Text("@\(userModel.userHandle)")
+                        .font(.caption)
+                        .foregroundColor(.gray)
                 }
-            } label: {
-                Text("Comment")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding([.leading,.top])
+                HStack{
+                    TextField("Comment", text: $commentMessage)
+                }
+                .frame(maxWidth:.infinity, alignment: .leading)
+                .padding(.horizontal)
+                Spacer()
+            }
+            .toolbar {
+                Button {
+                    Task{
+                        await feedModel.createComment(newComment: Comment(id: "", authorId: userModel.userHandle, body: commentMessage, authorProfileURL: userModel.userUrl) ,oringalMessage: orignalMessage)
+                    }
+                    viewState = false
+                } label: {
+                    Text("Comment")
+                }
+                .buttonStyle(.borderedProminent)
             }
         }
     }
