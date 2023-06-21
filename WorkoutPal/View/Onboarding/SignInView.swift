@@ -35,7 +35,7 @@ struct SignInView: View {
                             await userModel.emailLogin(email: email, password: password)
                         }
                     } label: {
-                        Text("Sign In!!")
+                        Text("SIGN IN!!")
                             .font(.headline)
                             .frame(maxWidth:.infinity, maxHeight: 35)
                     }
@@ -46,13 +46,12 @@ struct SignInView: View {
                     Button {
                         userModel.errorMessage = userModel.setErrorMessage(errorCode: AuthErrors.failedSignup)
                     } label: {
-                        Text("Sign In!!")
+                        Text("SIGN IN!!")
                             .font(.headline)
                             .frame(maxWidth: .infinity, maxHeight: 35)
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(.black)
-                    .opacity(0.75)
+                    .tint(.gray)
                     
                 }
                 Button {

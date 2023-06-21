@@ -12,9 +12,9 @@ import FirebaseAuth
 import _PhotosUI_SwiftUI
 
 enum userGenderID: String, CaseIterable{
+    case none = "None"
     case male = "Male"
     case female = "Female"
-    case none = "None"
 }
 
 enum appStates{
