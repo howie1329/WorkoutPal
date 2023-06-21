@@ -74,7 +74,7 @@ struct SignUpView: View {
                 if showSiginUp {
                     Button {
                         Task{
-                            await userModel.emailSignUp(name: name, email: email, password: password, gender: gender, handle: handle)
+                            await userModel.emailSignUp(name: name, email: email, password: password, gender: gender, handle: handle, bio: bio)
                         }
                         
                     } label: {

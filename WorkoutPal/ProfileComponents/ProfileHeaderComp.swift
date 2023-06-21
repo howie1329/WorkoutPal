@@ -11,10 +11,12 @@ import SDWebImageSwiftUI
 /// The Header for the profile view
 struct ProfileHeaderComp: View {
     @EnvironmentObject var userModel:UserDataModel
+    @EnvironmentObject var feedModel:FeedDataModel
     var userHandle:String
     var body: some View {
-        HStack{
-            VStack{
+        
+        VStack(spacing:15){
+            HStack{
                 /// Display Profile Picture
                 WebImage(url: URL(string: userModel.userUrl )).placeholder(content: {
                     Circle()
@@ -27,23 +29,37 @@ struct ProfileHeaderComp: View {
                 .frame(width:50, height: 50)
                 .cornerRadius(100)
                 .clipped()
-                Text("@\(userModel.userHandle)")
-            }
-            HStack(spacing:50){
-                VStack{
-                    Text("200")
-                        .bold()
-                    Text("Followers")
+                
+                Spacer()
+                
+                HStack(spacing:20){
+                    VStack{
+                        Text("\(feedModel.yourPost.count)")
+                        Text("Posts")
+                    }
+                    VStack{
+                        Text("200")
+                        Text("Followers")
+                    }
+                    VStack{
+                        Text("1,000")
+                        Text("Following")
+                    }
                 }
-                VStack{
-                    Text("1,000")
-                        .bold()
-                    Text("Following")
-                }
+                Spacer()
             }
-            .frame(maxWidth: .infinity,alignment:.leading)
-        }
-        .toolbar{
+            .frame(maxWidth:.infinity, alignment: .center)
+            HStack{
+                Text("\(userModel.userHandle)")
+                    .bold()
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            HStack{
+                Text("\(userModel.userBio)")
+                    .font(.body)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }.toolbar{
             /// Sign out button
             ToolbarItem{
                 Button {

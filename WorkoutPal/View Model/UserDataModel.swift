@@ -33,6 +33,7 @@ class UserDataModel: ObservableObject {
     @Published var userPickerImage: PhotosPickerItem? = nil
     @Published var userUrl:String = ""
     @Published var userLikedPost :[String] = []
+    @Published var userBio: String = ""
     
     @Published var isLoading: Bool = false
     
@@ -82,6 +83,7 @@ class UserDataModel: ObservableObject {
                                 self.userHandle = data["user_handle"] as! String
                                 self.userUrl = data["user_profileURL"] as! String
                                 self.userLikedPost = data["liked_post"] as! [String]
+                                self.userBio = data["user_bio"] as? String ?? "No Bio Please Update"
                                 
                                 self.appState = .signedIn
                             }
@@ -130,6 +132,7 @@ class UserDataModel: ObservableObject {
                             self.userHandle = data["user_handle"] as! String
                             self.userUrl = data["user_profileURL"] as! String
                             self.userLikedPost = data["liked_post"] as! [String]
+                            self.userBio = data["user_bio"] as? String ?? "No Bio Please Update"
                             
                             self.isLoading = false
                             self.appState = .signedIn
@@ -155,7 +158,7 @@ class UserDataModel: ObservableObject {
     
     // Email Signup Function
     @MainActor
-    func emailSignUp(name:String, email:String, password:String, gender:userGenderID, handle:String) async {
+    func emailSignUp(name:String, email:String, password:String, gender:userGenderID, handle:String, bio: String) async {
         self.isLoading = true
         do{
             if userPickerImage == nil {
@@ -171,7 +174,7 @@ class UserDataModel: ObservableObject {
             let downloadURL = try await storageRef.downloadURL()
             
             
-            let _ = Firestore.firestore().collection("users").addDocument(data: ["user_name" : name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle, "user_profileURL": downloadURL.absoluteString, "liked_post": ["none"]])
+            let _ = Firestore.firestore().collection("users").addDocument(data: ["user_name" : name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle, "user_profileURL": downloadURL.absoluteString, "liked_post": ["none"], "user_bio": bio])
             
             await checkLogin()
             self.isLoading = false
