@@ -87,7 +87,7 @@ class UserDataModel: ObservableObject {
                             }
                         }
                     } else{
-                        self.errorMessage = self.setErrorMessage(errorCode: Error!)
+                        self.errorMessage = self.setErrorMessage(errorCode: AuthErrors.failedSignIn)
                         try! Auth.auth().signOut()
                         self.appState = .signedOut
                     }

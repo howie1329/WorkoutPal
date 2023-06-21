@@ -67,6 +67,13 @@ struct PostView: View {
                     Text("\(postItem.likeCounter)")
                         .font(.caption2)
                         .foregroundColor(.gray)
+                    Image(systemName: "message")
+                        .resizable()
+                        .frame(width:13, height: 13)
+                        .foregroundColor(.gray)
+                    Text("\(postItem.comments.count)")
+                        .font(.caption2)
+                        .foregroundColor(.gray)
                     
                     Spacer()
                     Text("\(postItem.date.dateValue().formatted(date: .abbreviated, time: .shortened))")

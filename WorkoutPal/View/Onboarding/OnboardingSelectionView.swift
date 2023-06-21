@@ -24,9 +24,10 @@ struct OnboardingSelectionView: View {
             }
             .pickerStyle(.segmented)
             Spacer()
-            if userChoice == .signUp{
+            switch userChoice {
+            case .signUp:
                 SignUpView()
-            }else if userChoice == .signIn{
+            case .signIn:
                 SignInView()
             }
             Spacer()

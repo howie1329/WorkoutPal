@@ -26,7 +26,6 @@ extension Date{
     /// returns the number of the day given from a date
     /// - Returns: a the number of the day given from a date
     func findDayNumber() -> Int {
-        
         return Calendar.current.component(.day, from: self)
     }
     

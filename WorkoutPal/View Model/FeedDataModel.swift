@@ -12,6 +12,13 @@ import _PhotosUI_SwiftUI
 import FirebaseStorage
 
 class FeedDataModel: ObservableObject {
+    let placeholderArr: [MessageFeed] = [
+        MessageFeed(id: "", body: "adjasdksadbs", authorId: "Test Author", comments: []),
+        MessageFeed(id: "", body: "adjasdksadbs", authorId: "Test Author", comments: []),
+        MessageFeed(id: "", body: "adjasdksadbs", authorId: "Test Author", comments: []),
+        MessageFeed(id: "", body: "adjasdksadbs", authorId: "Test Author", comments: []),
+        MessageFeed(id: "", body: "adjasdksadbs", authorId: "Test Author", comments: [])
+    ]
     
     @Published var feedArr: [MessageFeed] = []
     @Published var forYouArr: [MessageFeed] = []
@@ -20,7 +27,7 @@ class FeedDataModel: ObservableObject {
     @Published var errorMessage: String = ""
     @Published var feedPhotoPickerItem: PhotosPickerItem? = nil
     @Published var feedUIImage: UIImage? = nil
-    @Published var isLoading: Bool = false
+    @Published var isLoading: loadingState = .loading
     
     init(){
         updateFetch()
@@ -66,7 +73,7 @@ class FeedDataModel: ObservableObject {
         let dbRef = Firestore.firestore().collection("feed").addSnapshotListener { QuerySnapshot, Error in
             if Error == nil{
                 if let snapShot = QuerySnapshot{
-                    self.isLoading = true
+                    self.isLoading = .loading
                     self.feedArr = []
                     for doc in snapShot.documents{
                         let data = doc.data()
@@ -114,7 +121,7 @@ class FeedDataModel: ObservableObject {
                         }
                     }
                     
-                    self.isLoading = false
+                    self.isLoading = .success
                 }
             }else if let Error = Error{
                 self.errorMessage = self.setErrorMessage(errorCode: Error)

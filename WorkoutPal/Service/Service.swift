@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum loadingState{
+    case loading
+    case success
+}
+
 func findTotalCal(protien:Int, fats: Int, carbs: Int) -> Int{
     var totalCalories = 0
     totalCalories += (protien * 4)
