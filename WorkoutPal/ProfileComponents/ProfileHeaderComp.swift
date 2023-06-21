@@ -32,17 +32,20 @@ struct ProfileHeaderComp: View {
                 
                 Spacer()
                 
-                HStack(spacing:20){
+                HStack(spacing:25){
                     VStack{
                         Text("\(feedModel.yourPost.count)")
+                            .bold()
                         Text("Posts")
                     }
                     VStack{
                         Text("200")
+                            .bold()
                         Text("Followers")
                     }
                     VStack{
                         Text("1,000")
+                            .bold()
                         Text("Following")
                     }
                 }
@@ -59,6 +62,20 @@ struct ProfileHeaderComp: View {
                     .font(.body)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            HStack{
+                /// TODO: Create method to edit user bio and profile
+                Button {
+                    //
+                } label: {
+                    Text("Edit Profile")
+                        .font(.system(size: 15))
+                        .bold()
+                        .padding(.horizontal)
+                }
+                .tint(.gray)
+                .buttonStyle(.borderedProminent)
+            }
+            .frame(maxWidth: .infinity, alignment: .center)
         }.toolbar{
             /// Sign out button
             ToolbarItem{
