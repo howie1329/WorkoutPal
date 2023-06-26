@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalorieSectionView: View {
     var filterSelection:String
-    var foodItem:CalorieTrackerEntity
+    var foodItem:FoodItemEntity
     @Binding var totalCalories: Int
     @Binding var protienCount: Int
     @Binding var fatCount: Int

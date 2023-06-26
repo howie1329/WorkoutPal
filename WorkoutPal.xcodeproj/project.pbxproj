@@ -31,15 +31,17 @@
 		F33B441A2A19E3DC00B83FFA /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B44192A19E3DC00B83FFA /* UserDataModel.swift */; };
 		F34E6A012A0B8301002B5A53 /* HomeMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A002A0B8301002B5A53 /* HomeMainView.swift */; };
 		F34E6A032A0B84EB002B5A53 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A022A0B84EB002B5A53 /* Service.swift */; };
-		F363A9F02A15B950006B7041 /* HomeScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F363A9EF2A15B950006B7041 /* HomeScrollView.swift */; };
 		F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */; };
 		F36661512A04CFEC00166299 /* CalorieTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36661502A04CFEC00166299 /* CalorieTrackerView.swift */; };
 		F36661532A04CFEC00166299 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36661522A04CFEC00166299 /* Assets.xcassets */; };
 		F36661562A04CFEC00166299 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36661552A04CFEC00166299 /* Preview Assets.xcassets */; };
 		F36661602A04D11B00166299 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F366615F2A04D11B00166299 /* DataModel.swift */; };
-		F36661632A04D17000166299 /* WorkoutContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F36661612A04D17000166299 /* WorkoutContainer.xcdatamodeld */; };
 		F36AF0C32A32DBCE0057C9D4 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0C22A32DBCE0057C9D4 /* CommentView.swift */; };
 		F36AF0C52A32E6C60057C9D4 /* NewCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0C42A32E6C60057C9D4 /* NewCommentView.swift */; };
+		F36AF0CC2A4377980057C9D4 /* WorkoutPalContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0CA2A4377980057C9D4 /* WorkoutPalContainer.xcdatamodeld */; };
+		F36AF0CE2A47CC080057C9D4 /* StatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0CD2A47CC080057C9D4 /* StatsModel.swift */; };
+		F36AF0D02A48028B0057C9D4 /* testLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0CF2A48028B0057C9D4 /* testLogView.swift */; };
+		F36AF0D22A4826280057C9D4 /* ScrollViewHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0D12A4826280057C9D4 /* ScrollViewHome.swift */; };
 		F37CB3942A2DB620005E3E82 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37CB3932A2DB620005E3E82 /* DateExtensions.swift */; };
 		F3AD77A92A1D9CE700499545 /* ProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77A82A1D9CE700499545 /* ProfileMainView.swift */; };
 		F3AD77AC2A1D9F9500499545 /* ProfileHeaderComp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */; };
@@ -77,16 +79,18 @@
 		F33B44192A19E3DC00B83FFA /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
 		F34E6A002A0B8301002B5A53 /* HomeMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainView.swift; sourceTree = "<group>"; };
 		F34E6A022A0B84EB002B5A53 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		F363A9EF2A15B950006B7041 /* HomeScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScrollView.swift; sourceTree = "<group>"; };
 		F366614B2A04CFEC00166299 /* WorkoutPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPalApp.swift; sourceTree = "<group>"; };
 		F36661502A04CFEC00166299 /* CalorieTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieTrackerView.swift; sourceTree = "<group>"; };
 		F36661522A04CFEC00166299 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F36661552A04CFEC00166299 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F366615F2A04D11B00166299 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		F36661622A04D17000166299 /* WorkoutContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkoutContainer.xcdatamodel; sourceTree = "<group>"; };
 		F36AF0C22A32DBCE0057C9D4 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		F36AF0C42A32E6C60057C9D4 /* NewCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentView.swift; sourceTree = "<group>"; };
+		F36AF0CB2A4377980057C9D4 /* WorkoutPalContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkoutPalContainer.xcdatamodel; sourceTree = "<group>"; };
+		F36AF0CD2A47CC080057C9D4 /* StatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsModel.swift; sourceTree = "<group>"; };
+		F36AF0CF2A48028B0057C9D4 /* testLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testLogView.swift; sourceTree = "<group>"; };
+		F36AF0D12A4826280057C9D4 /* ScrollViewHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewHome.swift; sourceTree = "<group>"; };
 		F37CB3932A2DB620005E3E82 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		F3AD77A82A1D9CE700499545 /* ProfileMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainView.swift; sourceTree = "<group>"; };
 		F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderComp.swift; sourceTree = "<group>"; };
@@ -189,7 +193,7 @@
 			children = (
 				F33B44032A17367C00B83FFA /* HomeStatsView.swift */,
 				F33B44052A17372D00B83FFA /* StatsRectangleView.swift */,
-				F363A9EF2A15B950006B7041 /* HomeScrollView.swift */,
+				F36AF0D12A4826280057C9D4 /* ScrollViewHome.swift */,
 			);
 			path = HomeCpmponents;
 			sourceTree = "<group>";
@@ -242,8 +246,8 @@
 				F37CB3952A2DBA03005E3E82 /* Service */,
 				F33B440F2A19E11400B83FFA /* GoogleService-Info.plist */,
 				F36661522A04CFEC00166299 /* Assets.xcassets */,
-				F36661612A04D17000166299 /* WorkoutContainer.xcdatamodeld */,
 				F36661542A04CFEC00166299 /* Preview Content */,
+				F36AF0CA2A4377980057C9D4 /* WorkoutPalContainer.xcdatamodeld */,
 			);
 			path = WorkoutPal;
 			sourceTree = "<group>";
@@ -260,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				F3DE2ACF2A24AE45000EE848 /* MessageFeed.swift */,
+				F36AF0CD2A47CC080057C9D4 /* StatsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 				F310FFF52A0AA8970093365E /* Workout */,
 				F310FFEA2A0A02390093365E /* CalorieTracker */,
 				F310FFE82A0A01360093365E /* MainTabView.swift */,
+				F36AF0CF2A48028B0057C9D4 /* testLogView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -400,10 +406,10 @@
 			files = (
 				F310FFF42A0A349C0093365E /* SingleWorkoutPlanRowView.swift in Sources */,
 				F3CD92FF2A25E83700EE4125 /* CustomErrors.swift in Sources */,
-				F363A9F02A15B950006B7041 /* HomeScrollView.swift in Sources */,
 				F36661512A04CFEC00166299 /* CalorieTrackerView.swift in Sources */,
 				F33B440D2A185D5E00B83FFA /* HomeWorkoutView.swift in Sources */,
 				F310FFFA2A0ABDC60093365E /* WorkoutSectionView.swift in Sources */,
+				F36AF0CC2A4377980057C9D4 /* WorkoutPalContainer.xcdatamodeld in Sources */,
 				F34E6A012A0B8301002B5A53 /* HomeMainView.swift in Sources */,
 				F32DBD0C2A1B3E50007ECFFC /* OnboardingSelectionView.swift in Sources */,
 				F3AD77B42A1DC47900499545 /* FeedNewMessageView.swift in Sources */,
@@ -416,6 +422,7 @@
 				F33B441A2A19E3DC00B83FFA /* UserDataModel.swift in Sources */,
 				F36661602A04D11B00166299 /* DataModel.swift in Sources */,
 				F3DE2AC92A2487F0000EE848 /* LoadingView.swift in Sources */,
+				F36AF0CE2A47CC080057C9D4 /* StatsModel.swift in Sources */,
 				F310FFE72A09FA6A0093365E /* CalorieRowView.swift in Sources */,
 				F32DBD0A2A1B3BAF007ECFFC /* FeedStartView.swift in Sources */,
 				F36AF0C32A32DBCE0057C9D4 /* CommentView.swift in Sources */,
@@ -425,6 +432,8 @@
 				F3AD77AE2A1DA13300499545 /* FeedMainView.swift in Sources */,
 				F33B44042A17367C00B83FFA /* HomeStatsView.swift in Sources */,
 				F3AD77B62A1DD85900499545 /* ProfileYourPostView.swift in Sources */,
+				F36AF0D22A4826280057C9D4 /* ScrollViewHome.swift in Sources */,
+				F36AF0D02A48028B0057C9D4 /* testLogView.swift in Sources */,
 				F32DBD082A1B3481007ECFFC /* SignInView.swift in Sources */,
 				F310FFEE2A0A29EE0093365E /* NewWorkoutPlanView.swift in Sources */,
 				F32DBD062A1B2C69007ECFFC /* SignUpView.swift in Sources */,
@@ -434,7 +443,6 @@
 				F3AD77B22A1DC0C400499545 /* ForYouFeedView.swift in Sources */,
 				F310FFF02A0A2B720093365E /* NewSingleWorkoutView.swift in Sources */,
 				F310FFE92A0A01360093365E /* MainTabView.swift in Sources */,
-				F36661632A04D17000166299 /* WorkoutContainer.xcdatamodeld in Sources */,
 				F310FFE42A09F4BD0093365E /* AddMealView.swift in Sources */,
 				F3AD77AC2A1D9F9500499545 /* ProfileHeaderComp.swift in Sources */,
 			);
@@ -687,13 +695,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		F36661612A04D17000166299 /* WorkoutContainer.xcdatamodeld */ = {
+		F36AF0CA2A4377980057C9D4 /* WorkoutPalContainer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				F36661622A04D17000166299 /* WorkoutContainer.xcdatamodel */,
+				F36AF0CB2A4377980057C9D4 /* WorkoutPalContainer.xcdatamodel */,
 			);
-			currentVersion = F36661622A04D17000166299 /* WorkoutContainer.xcdatamodel */;
-			path = WorkoutContainer.xcdatamodeld;
+			currentVersion = F36AF0CB2A4377980057C9D4 /* WorkoutPalContainer.xcdatamodel */;
+			path = WorkoutPalContainer.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

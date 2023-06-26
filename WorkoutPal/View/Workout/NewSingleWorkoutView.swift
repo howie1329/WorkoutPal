@@ -10,7 +10,7 @@ import SwiftUI
 struct NewSingleWorkoutView: View {
     @EnvironmentObject var model:DataModel
     private let focusGroup = ["Full Body","Upper Body","Lower Body"]
-    @State var planItem:WorkoutPlansEntity
+    @State var planItem: MasterWorkoutPlansEntity
     @State var title = ""
     @State var reps = 0
     @State var sets = 0

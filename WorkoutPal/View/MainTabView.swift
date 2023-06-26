@@ -32,6 +32,10 @@ struct MainTabView: View {
                     Image(systemName: "dumbbell.fill")
                     Text("Workout")
                 }.tag(3)
+            testLogView()
+                .tabItem {
+                    Text("Debug")
+                }.tag(4)
         }
     }
 }

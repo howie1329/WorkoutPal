@@ -9,20 +9,17 @@ import SwiftUI
 
 struct HomeStatsView: View {
     @EnvironmentObject var model:DataModel
+    @State var weekData: weekModel
     var body: some View {
         ScrollView(.horizontal){
             HStack{
-                ForEach(model.weekDayData, id:\.0){item in
+                ForEach(weekData.dayInfo){item in
                     StatsRectangleView(itemData: item)
                 }
             }
         }
-    }
-}
-
-struct HomeStatsView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeStatsView()
-            .environmentObject(DataModel())
+        .onChange(of: model.currentDate) { newValue in
+            weekData = getWeekStats(currentDate: model.currentDate, foodItem: model.foodItemTrackerLog, dayStats: model.dayLogTrackerLog)
+        }
     }
 }

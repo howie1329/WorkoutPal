@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HomeWorkoutView: View {
     @EnvironmentObject var model:DataModel
-    var workoutDate: Int
     @Binding var viewState: Bool
     var body: some View {
         VStack{
@@ -17,14 +16,14 @@ struct HomeWorkoutView: View {
                 .font(.title.bold())
                 .padding(.top)
             List {
-                ForEach(model.workoutPlansLog){item in
+                ForEach(model.masterWorkoutPlanLog){item in
                     HStack{
                         Image(systemName: item.icon ?? "")
                         Text(item.focusTitle ?? "")
                             .bold()
                         Spacer()
                         Button {
-                            model.createDayWorkout(day: workoutDate, workoutPlanId: item.id!)
+                            model.updateDayWorkout(workoutPlan: item.id!)
                             viewState = false
                         } label: {
                             Image(systemName: "plus.circle")

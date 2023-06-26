@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalorieRowView: View {
     @EnvironmentObject var model:DataModel
-    var item:CalorieTrackerEntity
+    var item:FoodItemEntity
     @Binding var totalCal: Int
     @Binding var proCount: Int
     @Binding var carbCount: Int
