@@ -12,6 +12,7 @@ import SDWebImageSwiftUI
 struct ProfileHeaderComp: View {
     @EnvironmentObject var userModel:UserDataModel
     @EnvironmentObject var feedModel:FeedDataModel
+    @State var editView = false
     var userHandle:String
     var body: some View {
         
@@ -63,9 +64,8 @@ struct ProfileHeaderComp: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             HStack{
-                /// TODO: Create method to edit user bio and profile
                 Button {
-                    //
+                    editView.toggle()
                 } label: {
                     Text("Edit Profile")
                         .font(.system(size: 15))
@@ -76,7 +76,11 @@ struct ProfileHeaderComp: View {
                 .buttonStyle(.borderedProminent)
             }
             .frame(maxWidth: .infinity, alignment: .center)
-        }.toolbar{
+        }
+        .sheet(isPresented: $editView, content: {
+            EditProfileView(viewState: $editView)
+        })
+        .toolbar{
             /// Sign out button
             ToolbarItem{
                 Button {

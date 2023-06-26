@@ -28,8 +28,14 @@ struct HomeMainView: View {
                 .frame(maxWidth:.infinity, maxHeight: 200)
                 .padding()
                 Divider()
-                ScrollViewHome(weekStats: weekStats)
-                HomeStatsView(weekData: weekStats)
+                if weekStats.dayInfo.isEmpty{
+                    Text("No Data")
+                }else{
+                    VStack{
+                        ScrollViewHome(weekStats: weekStats)
+                        HomeStatsView(weekData: weekStats)
+                    }.padding(.horizontal)
+                }
                 Spacer()
                 Divider()
             }

@@ -34,6 +34,7 @@ class UserDataModel: ObservableObject {
     @Published var userUrl:String = ""
     @Published var userLikedPost :[String] = []
     @Published var userBio: String = ""
+    @Published var userDocID: String = ""
     
     @Published var isLoading: Bool = false
     
@@ -76,6 +77,7 @@ class UserDataModel: ObservableObject {
                             for doc in snapShot.documents{
                                 let data = doc.data()
                                 
+                                self.userDocID = doc.documentID
                                 self.userName = data["user_name"] as! String
                                 self.userID = data["user_id"] as! String
                                 self.userEmail = data["user_email"] as! String
@@ -98,6 +100,15 @@ class UserDataModel: ObservableObject {
                     userRef.remove()
                 }
             }
+        }
+    }
+    
+    @MainActor
+    func updateBio(newBio: String) async{
+        do{
+            let userRef = try await Firestore.firestore().collection("users").document(self.userDocID).setData(["user_bio" : newBio], merge: true)
+        } catch{
+            self.errorMessage = setErrorMessage(errorCode: AuthErrors.failedUpdate)
         }
     }
     
@@ -125,6 +136,7 @@ class UserDataModel: ObservableObject {
                         for doc in snapShot.documents{
                             let data = doc.data()
                             
+                            self.userDocID = doc.documentID
                             self.userName = data["user_name"] as! String
                             self.userID = data["user_id"] as! String
                             self.userEmail = data["user_email"] as! String
