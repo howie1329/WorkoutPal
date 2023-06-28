@@ -12,11 +12,11 @@ struct EditProfileView: View {
     @State var userBio = ""
     @Binding var viewState: Bool
     var body: some View {
-        VStack{
+        VStack {
             TextField("Bio", text: $userBio)
             Button {
-                Task{
-                    await userModel.updateBio(newBio:userBio)
+                Task {
+                    await userModel.updateBio(newBio: userBio)
                     viewState.toggle()
                 }
             } label: {

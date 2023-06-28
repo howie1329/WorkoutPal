@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct OnboardingSelectionView: View {
-    @EnvironmentObject var userModel:UserDataModel
-    enum boardingChoice:String, CaseIterable{
+    @EnvironmentObject var userModel: UserDataModel
+    enum BoardingChoice: String, CaseIterable {
         case signIn = "signin"
         case signUp = "signup"
     }
-    @State var userChoice:boardingChoice = .signIn
+    @State var userChoice: BoardingChoice = .signIn
     var body: some View {
-        VStack(){
+        VStack {
             Spacer()
             Picker("", selection: $userChoice) {
-                ForEach(boardingChoice.allCases, id:\.self){item in
+                ForEach(BoardingChoice.allCases, id: \.self) {item in
                     Text("\(item.rawValue.uppercased())")
                 }
             }

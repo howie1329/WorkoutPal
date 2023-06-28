@@ -11,55 +11,54 @@ import SDWebImageSwiftUI
 struct CommentView: View {
     @EnvironmentObject var userModel: UserDataModel
     @EnvironmentObject var feedModel: FeedDataModel
-    
     @State var newCommentViewState = false
-    let post : MessageFeed
+    let post: MessageFeed
     var body: some View {
-        NavigationView{
-            VStack{
+        NavigationView {
+            VStack {
                 PostView(postItem: post)
                     .padding(.horizontal)
-                if post.comments.isEmpty{
+                if post.comments.isEmpty {
                     Text("No Comments")
                     Spacer()
-                }else{
+                } else {
                     List(post.comments) { comment in
-                        VStack{
-                            HStack{
+                        VStack {
+                            HStack {
                                 WebImage(url: URL(string: comment.authorProfileURL ?? "" )).placeholder(content: {
                                     Circle()
                                         .fill(.black)
-                                        .frame(width:50, height: 50)
+                                        .frame(width: 50, height: 50)
                                         .cornerRadius(100)
                                 })
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width:50, height: 50)
+                                .frame(width: 50, height: 50)
                                 .cornerRadius(100)
                                 .clipped()
                                 Text("@\(comment.authorId)")
                                     .font(.caption)
                                     .foregroundColor(.gray)
                             }
-                            .frame(maxWidth: .infinity, alignment:.leading)
-                            HStack{
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            HStack {
                                 Text(comment.body)
                             }
-                            .frame(maxWidth:.infinity, alignment:.leading)
-                            HStack{
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            HStack {
                                 Text(comment.date.dateValue().formatted(date: .abbreviated, time: .shortened))
                             }
-                            .frame(maxWidth:.infinity, alignment:.trailing)
+                            .frame(maxWidth: .infinity, alignment: .trailing)
                             .font(.caption2)
                             .foregroundColor(.gray)
                         }
                     }}
             }
-            .overlay(alignment:.bottomTrailing){
+            .overlay(alignment: .bottomTrailing) {
                 Button {
                     newCommentViewState = true
                 } label: {
-                    ZStack{
+                    ZStack {
                         Circle().frame(maxWidth: 50)
                         Image(systemName: "plus")
                             .bold()

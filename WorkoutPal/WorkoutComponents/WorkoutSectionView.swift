@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct WorkoutSectionView: View {
-    var filerSection:String
+    var filerSection: String
     var singleWorkoutItem: SingleWorkoutEntity
     var body: some View {
-        if filerSection == singleWorkoutItem.focusGroup{
-            Section(header:Text(filerSection)){
+        if filerSection == singleWorkoutItem.focusGroup {
+            Section(header: Text(filerSection)) {
                 SingleWorkoutPlanRowView(item: singleWorkoutItem)
             }
         }

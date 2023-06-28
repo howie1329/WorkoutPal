@@ -8,37 +8,36 @@
 import SwiftUI
 
 struct CalorieRowView: View {
-    @EnvironmentObject var model:DataModel
-    var item:FoodItemEntity
+    @EnvironmentObject var model: DataModel
+    var item: FoodItemEntity
     @Binding var totalCal: Int
     @Binding var proCount: Int
     @Binding var carbCount: Int
     @Binding var fatCount: Int
     var body: some View {
-        HStack{
-            VStack{
-                HStack{
+        HStack {
+            VStack {
+                HStack {
                     Text(item.name ?? "")
                 }
-                .frame(maxWidth:.infinity, alignment: .leading)
-                HStack{
+                .frame(maxWidth: .infinity, alignment: .leading)
+                HStack {
                     Text("\(item.protien) g protein")
                     Text("\(item.carb) g carbs")
                     Text("\(item.fat) g fat")
                 }
-                .frame(maxWidth:.infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
             Spacer()
-            VStack{
+            VStack {
                 Text("\(item.totalCal ) cals")
             }
         }
-        .onAppear(perform:{
+        .onAppear(perform: {
             totalCal += Int(item.totalCal)
             proCount += Int(item.protien)
             carbCount += Int(item.carb)
             fatCount += Int(item.fat)
         })
-        
     }
 }

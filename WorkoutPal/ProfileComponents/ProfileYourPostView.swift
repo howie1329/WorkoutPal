@@ -9,35 +9,32 @@ import SwiftUI
 
 /// View that shows only the users post
 struct ProfileYourPostView: View {
-    @State var userHandle:String
-    @EnvironmentObject var feedModel:FeedDataModel
+    @State var userHandle: String
+    @EnvironmentObject var feedModel: FeedDataModel
     var body: some View {
-        List{
-            ForEach(feedModel.yourPost){item in
+        List {
+            ForEach(feedModel.yourPost) {item in
                 PostView(postItem: item)
                 .swipeActions {
-                    Button(role:.destructive){
-                        Task{
-                            await feedModel.deleteMessage(messageId:item.id )
+                    Button(role: .destructive) {
+                        Task {
+                            await feedModel.deleteMessage(messageId: item.id )
                         }
                     } label: {
                         Image(systemName: "minus.circle")
                     }
-                    
                 }
-                
             }
         }
         .refreshable {
             /// Pull down refresh
             feedModel.sortFeedMessages(userHandle: userHandle)
-            
         }
         .onAppear(perform: {
             /// To be done when view first appears
             feedModel.sortFeedMessages(userHandle: userHandle)
         })
-        .frame(maxWidth: .infinity, maxHeight:.infinity, alignment:.top)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
 }
 

@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct FeedStartView: View {
-    @EnvironmentObject var userModel:UserDataModel
+    @EnvironmentObject var userModel: UserDataModel
     var body: some View {
-        VStack{
-            if userModel.appState == .signedOut{
+        VStack {
+            if userModel.appState == .signedOut {
                 OnboardingSelectionView()
-            } else if userModel.appState == .signedIn{
+            } else if userModel.appState == .signedIn {
                 FeedMainView()
             }
         }

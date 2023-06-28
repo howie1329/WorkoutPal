@@ -9,29 +9,29 @@ import SwiftUI
 import Charts
 
 struct HomeMainView: View {
-    @EnvironmentObject var model:DataModel
-    @State var weekStats = weekModel(totalCal: 0, protein: 0, carbs: 0, fats: 0, dayInfo: [])
+    @EnvironmentObject var model: DataModel
+    @State var weekStats = WeekModel(totalCal: 0, protein: 0, carbs: 0, fats: 0, dayInfo: [])
     var body: some View {
-        NavigationStack{
-            VStack{
+        NavigationStack {
+            VStack {
                 Text("Today is \(model.currentDate.formatted(date: .abbreviated, time: .omitted)) Week: \(model.weekNumber)")
                 Text("\(weekStats.totalCal) cals \(weekStats.protein)g protien \(weekStats.carbs)g carbs \(weekStats.fats)g fat")
                 Divider()
-                Chart{
-                    ForEach(model.dayLogTrackerLog){item in
-                        if item.date?.findWeekNumber() == model.weekNumber{
+                Chart {
+                    ForEach(model.dayLogTrackerLog) {item in
+                        if item.date?.findWeekNumber() == model.weekNumber {
                             BarMark(x: .value("Day", (item.date?.formatted(date: .numeric, time: .omitted))!),
                                      y: .value("Calories", item.totalCal))
                         }
                     }
                 }
-                .frame(maxWidth:.infinity, maxHeight: 200)
+                .frame(maxWidth: .infinity, maxHeight: 200)
                 .padding()
                 Divider()
-                if weekStats.dayInfo.isEmpty{
+                if weekStats.dayInfo.isEmpty {
                     Text("No Data")
-                }else{
-                    VStack{
+                } else {
+                    VStack {
                         ScrollViewHome(weekStats: weekStats)
                         HomeStatsView(weekData: weekStats)
                     }.padding(.horizontal)

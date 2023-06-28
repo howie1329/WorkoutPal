@@ -16,10 +16,9 @@ enum AuthErrors: Error {
     case failedUpdate
 }
 
-extension AuthErrors: LocalizedError{
-    
-    var errorDescription: String?{
-        switch self{
+extension AuthErrors: LocalizedError {
+    var errorDescription: String? {
+        switch self {
         case .noProfilePic:
             return NSLocalizedString("No Profile Picture Selected", comment: "No Profile Picture Selected")
         case .wrongPassword:
@@ -33,9 +32,5 @@ extension AuthErrors: LocalizedError{
         case .failedUpdate:
             return NSLocalizedString("Failed Update", comment: "Failed Update")
         }
-   
     }
 }
-
-
-

@@ -17,15 +17,14 @@ struct Comment: Identifiable {
     var date = Timestamp(date: Date.now)
 }
 
-struct MessageFeed: Identifiable{
-    
+struct MessageFeed: Identifiable {
     var id: String
     var body: String
     var authorId: String
     var authorProfileURL: String?
     var mediaURL: String?
-    var comments : [Comment]
-    var likeCounter : Int = 0
+    var comments: [Comment]
+    var likeCounter: Int = 0
     var userLike: Bool = false
     var date = Timestamp(date: Date.now)
 

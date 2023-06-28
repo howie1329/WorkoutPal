@@ -9,25 +9,24 @@ import SwiftUI
 
 /// The feed the gets showed to the user which represents a "For You Feed"
 struct ForYouFeedView: View {
-    @State var userHandle:String
-    @EnvironmentObject var feedModel:FeedDataModel
+    @State var userHandle: String
+    @EnvironmentObject var feedModel: FeedDataModel
     var body: some View {
-        List{
+        List {
             switch feedModel.isLoading {
             case.loading:
-                ForEach(feedModel.placeholderArr){item in
+                ForEach(feedModel.placeholderArr) {item in
                     PostView(postItem: item)
                         .redacted(reason: .placeholder)
                 }
             case .success:
-                ForEach(feedModel.forYouArr){item in
+                ForEach(feedModel.forYouArr) {item in
                     NavigationLink {
                         CommentView(post: item)
                     } label: {
                         PostView(postItem: item)
                     }
                 }
-                
             }
         }
         .refreshable {
@@ -38,7 +37,7 @@ struct ForYouFeedView: View {
             /// To be done when view first appears
             feedModel.sortFeedMessages(userHandle: userHandle)
         })
-        .frame(maxWidth: .infinity, maxHeight:.infinity, alignment:.top)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
 }
 

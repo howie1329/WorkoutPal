@@ -9,15 +9,15 @@ import SwiftUI
 
 /// View To Be Displayed When View Is Loading
 struct LoadingView: View {
-    @EnvironmentObject var userModel:UserDataModel
+    @EnvironmentObject var userModel: UserDataModel
     var body: some View {
-        ZStack{
-            VStack{
+        ZStack {
+            VStack {
                 ProgressView()
                     .animation(.easeIn(duration: 0.25), value: true)
             }
         }
-        .frame(maxWidth:.infinity,maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
