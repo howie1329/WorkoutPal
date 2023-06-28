@@ -209,6 +209,13 @@ class DataModel: ObservableObject {
     func deleteCalorieEntry(indexSet: IndexSet){
         guard let index = indexSet.first else {return}
         let entity = foodItemTrackerLog[index]
+        let day = dayLogTrackerLog.first { DayLogEntity in
+            DayLogEntity.id == entity.dateID
+        }
+        day?.totalCal -= entity.totalCal
+        day?.totalCarbs -= entity.carb
+        day?.totalFat -= entity.fat
+        day?.totalProtein -= entity.protien
         container.viewContext.delete(entity)
         saveData()
     }
