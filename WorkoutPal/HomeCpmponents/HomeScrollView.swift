@@ -12,34 +12,33 @@ struct HomeScrollView: View {
     
     @State var showAlert = false
     @State var showCreateView = false
-    @State var selectedDate = 0
+    var weekData: weekModel
     
     var body: some View {
         ScrollView(.horizontal){
             HStack{
-                ForEach(model.weekDayData, id:\.0){item in
-                    
+                ForEach(weekData.dayInfo){item in
                     Button {
-                        if item.5 {
-                            print("debug: \(item.0)")
-                            selectedDate = item.0
+                        if item.isCompleted{
+                            model.currentDate = item.date
+                            //selectedDate = item
                             showAlert.toggle()
                         }else {
-                            print("debug: \(item.0)")
-                            selectedDate = item.0
+                            //selectedDate = item
+                            model.currentDate = item.date
                             showCreateView.toggle()
                         }
                         
                     } label: {
                         VStack(spacing:7){
                             VStack{
-                                Text("\(item.0)")
+                                Text("\(item.date)")
                                     .font(.title)
                                     .bold()
-                                Text("\(item.1)")
+                                Text("\(item.date)")
                                     .font(.headline)
                             }
-                            if item.5{
+                            if item.isCompleted{
                                 Image(systemName: "circle.fill")
                                     .foregroundColor(.green)
                             }else{
@@ -48,28 +47,19 @@ struct HomeScrollView: View {
                             }
                         }
                     }
-                    
                     .buttonStyle(.borderedProminent)
                     .alert(isPresented:$showAlert){
                         Alert(title: Text("Are You Sure"),message: Text("This will delete this days workout data"), primaryButton: .cancel(), secondaryButton: .destructive(Text("Delete")){
-                            model.deleteDayWorkout(dayNumber: selectedDate)
+                            model.deleteDayWorkout(id: item.id)
                         })
                     }
                     .sheet(isPresented: $showCreateView, content: {
-                        HomeWorkoutView(workoutDate: selectedDate, viewState: $showCreateView)
+                        HomeWorkoutView(workoutDate: model.currentDate, viewState: $showCreateView)
                     })
                 }
             }
         }
-        .scrollIndicators(.hidden)
+        //.scrollIndicators(.hidden)
         .padding()
-    }
-}
-
-
-struct HomeScrollView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeScrollView()
-            .environmentObject(DataModel())
     }
 }

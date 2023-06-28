@@ -9,12 +9,12 @@ import SwiftUI
 
 struct WorkoutPlanRowView: View {
     @EnvironmentObject var model:DataModel
-    @State var planItem:WorkoutPlansEntity
+    @State var planItem: MasterWorkoutPlansEntity
     @State var newWorkoutView = false
     var body: some View {
         VStack{
             List{
-                ForEach(model.singleWorkoutsLog){item in
+                ForEach(model.singleWorkoutLog){item in
                     if item.ownerID == planItem.id{
                         WorkoutSectionView(filerSection: "Full Body", singleWorkoutItem: item)
                         WorkoutSectionView(filerSection: "Upper Body", singleWorkoutItem: item)

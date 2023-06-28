@@ -21,58 +21,81 @@ func findTotalCal(protien:Int, fats: Int, carbs: Int) -> Int{
     return totalCalories
 }
 
-func gatherDayCalStates(currentDay: Int, mealsArr: [CalorieTrackerEntity], dayWorkoutArr:[DayWorkoutEntity]) -> [(Int,Int,Int,Int,Int,Bool)]{
-    
-    var weekData: [(Int,Int,Int,Int,Int,Bool)] = []
-    
-    
-    for day in currentDay-3...currentDay+3{
-        var totalCal = 0
-        var proteinCount = 0
-        var carbCount = 0
-        var fatCount = 0
-        var workoutDayIsCompleted = false
-
-        for workout in dayWorkoutArr{
-            if workout.dayNumber == day{
-                workoutDayIsCompleted = workout.isCompleted
-            }
-        }
-        
-        for item in mealsArr{
-            if item.dayNumber == day {
-                totalCal += Int(item.totalCal)
-                proteinCount += Int(item.protien)
-                carbCount += Int(item.carb)
-                fatCount += Int(item.fat)
-            }
-        }
-        
-        weekData.append((day,totalCal,proteinCount,carbCount ,fatCount, workoutDayIsCompleted))
-    }
-    
-    
-    
-    return weekData
-}
-
-func gatherWeekCalStats(currentDay: Date, mealsArr: [CalorieTrackerEntity]) -> (Int,Int,Int,Int){
-    let weekNumber = currentDay.findWeekNumber()
-    
+func getWeekStats(currentDate: Date, foodItem: [FoodItemEntity], dayStats: [DayLogEntity]) -> weekModel{
+    var dayLogArr: [dayModel] = []
+    var weekArr: [dayModel] = []
+    var totalCarbs = 0
+    var totalFats = 0
+    var totalProtien = 0
     var totalCal = 0
-    var proteinCount = 0
-    var carbCount = 0
-    var fatCount = 0
+    var start = true
+    var mod = -3
     
-    for item in mealsArr{
-        if item.weekNumber == weekNumber {
-            totalCal += Int(item.totalCal)
-            proteinCount += Int(item.protien)
-            carbCount += Int(item.carb)
-            fatCount += Int(item.fat)
+    let currentWeekNumber = currentDate.findWeekNumber()
+    
+    for logItem in dayStats{
+        if logItem.date?.findWeekNumber() == currentWeekNumber {
+            let stats = getDayStats(currentDate: logItem.date!, foodItems: foodItem, day: dayStats)
+            weekArr.append(stats)
         }
     }
     
-    return (totalCal,proteinCount,carbCount ,fatCount)
+    for info in weekArr{
+        totalCal += Int(info.totalCal)
+        totalFats += Int(info.fats)
+        totalProtien += Int(info.protein)
+        totalCarbs += Int(info.carbs)
+    }
+    
+    return weekModel(totalCal: totalCal, protein: totalProtien, carbs: totalCarbs, fats: totalFats, dayInfo: weekArr)
+   
+    
+    while start {
+        if mod == 0{
+            mod += 1
+        }
+        let day = currentDate.addingTimeInterval(TimeInterval(mod))
+        print(day)
+        let model = getDayStats(currentDate: day, foodItems: foodItem, day: dayStats)
+        weekArr.append(model)
+        mod += 1
+        if mod == 7 {
+            start = false
+        }
+        
+        
+        
+       
+    }
 }
 
+func getDayStats(currentDate: Date, foodItems:[FoodItemEntity], day: [DayLogEntity]) -> dayModel{
+    var dayInfo: [FoodItemEntity] = []
+    for item in foodItems {
+        if item.date?.formatted(date: .numeric, time: .omitted) == currentDate.formatted(date: .numeric, time: .omitted){
+            dayInfo.append(item)
+        }
+            
+    }
+    
+    let dayitem = day.first { DayLogEntity in
+        DayLogEntity.date?.formatted(date: .numeric, time: .omitted) == currentDate.formatted(date: .numeric, time: .omitted)
+    }
+    
+    
+    var totalCarbs = 0
+    var totalFats = 0
+    var totalProtien = 0
+    var totalCal = 0
+    
+    for info in dayInfo{
+        totalCal += Int(info.totalCal)
+        totalFats += Int(info.fat)
+        totalProtien += Int(info.protien)
+        totalCarbs += Int(info.carb)
+    }
+    
+    return dayModel(totalCal: totalCal, date: currentDate, protein: totalProtien, carbs: totalCarbs, fats: totalFats, isCompleted: dayitem?.isWorkoutCompleted ?? false)
+    
+    
+}

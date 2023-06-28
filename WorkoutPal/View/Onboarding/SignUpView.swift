@@ -14,6 +14,7 @@ struct SignUpView: View {
     @State var name:String = ""
     @State var handle:String = ""
     @State var gender:userGenderID = .none
+    @State var bio:String = ""
     @State var email:String = ""
     @State var password:String = ""
     @State var confirmPassword:String = ""
@@ -48,33 +49,37 @@ struct SignUpView: View {
                             await userModel.getProfilePhoto()
                         }
                     }
-                    TextField("Name", text: $name)
-                    TextField("@Handle",text:$handle)
-                    
-                    
-                    Picker("Gender", selection: $gender) {
-                        ForEach(userGenderID.allCases, id:\.self){
-                            Text($0.rawValue)
-                            
+                    ScrollView{
+                        TextField("Name", text: $name)
+                        TextField("@Handle",text:$handle)
+                        Picker("Gender", selection: $gender) {
+                            ForEach(userGenderID.allCases, id:\.self){
+                                Text($0.rawValue)
+                                
+                            }
                         }
+                        .pickerStyle(.segmented)
+                        TextField("Bio", text: $bio)
+                        TextField("Email", text: $email)
+                        TextField("Password", text: $password)
+                        TextField("Comfirm Password", text: $confirmPassword)
                     }
-                    .pickerStyle(.segmented)
-                    TextField("Email", text: $email)
-                    TextField("Password", text: $password)
-                    TextField("Comfirm Password", text: $confirmPassword)
+                    .frame(maxWidth: .infinity)
+                    .frame(height:350)
                 }
                 .textFieldStyle(.roundedBorder)
-                .padding()
+                .padding(.horizontal)
                 Divider()
                 
                 if showSiginUp {
                     Button {
                         Task{
-                            await userModel.emailSignUp(name: name, email: email, password: password, gender: gender, handle: handle)
+                            await userModel.emailSignUp(name: name, email: email, password: password, gender: gender, handle: handle, bio: bio)
                         }
                         
                     } label: {
-                        Text("Sign Up!!")
+                        Text("SIGN UP!!")
+                            .font(.headline)
                             .frame(maxWidth:.infinity, maxHeight: 35)
                     }
                     .buttonStyle(.borderedProminent)
@@ -84,11 +89,12 @@ struct SignUpView: View {
                         userModel.errorMessage = userModel.setErrorMessage(errorCode: AuthErrors.failedSignup)
                         
                     } label: {
-                        Text("Sign Up!!")
-                            .frame(maxWidth:.infinity, maxHeight: 35)
+                        Text("SIGN UP!!")
+                            .font(.headline)
+                            .frame(maxWidth:.infinity, maxHeight: 30)
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(.black)
+                    .tint(.gray)
                 }
             }
             .alert(userModel.errorMessage, isPresented: $userModel.isError, actions: {})

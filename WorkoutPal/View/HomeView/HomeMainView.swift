@@ -10,30 +10,37 @@ import Charts
 
 struct HomeMainView: View {
     @EnvironmentObject var model:DataModel
-    @State var weekStats = (0,0,0,0)
+    @State var weekStats = weekModel(totalCal: 0, protein: 0, carbs: 0, fats: 0, dayInfo: [])
     var body: some View {
         NavigationStack{
             VStack{
                 Text("Today is \(model.currentDate.formatted(date: .abbreviated, time: .omitted)) Week: \(model.weekNumber)")
-                Text("\(weekStats.0) cals \(weekStats.1)g protien \(weekStats.2)g carbs \(weekStats.3)g fat")
+                Text("\(weekStats.totalCal) cals \(weekStats.protein)g protien \(weekStats.carbs)g carbs \(weekStats.fats)g fat")
                 Divider()
                 Chart{
-                    ForEach(model.weekDayData,id:\.0){item in
-                        LineMark(x: .value("Day", item.0),
-                                 y: .value("Calories", item.1))
+                    ForEach(model.dayLogTrackerLog){item in
+                        if item.date?.findWeekNumber() == model.weekNumber{
+                            BarMark(x: .value("Day", (item.date?.formatted(date: .numeric, time: .omitted))!),
+                                     y: .value("Calories", item.totalCal))
+                        }
                     }
                 }
                 .frame(maxWidth:.infinity, maxHeight: 200)
                 .padding()
                 Divider()
-                HomeScrollView()
-                HomeStatsView()
+                if weekStats.dayInfo.isEmpty{
+                    Text("No Data")
+                }else{
+                    VStack{
+                        ScrollViewHome(weekStats: weekStats)
+                        HomeStatsView(weekData: weekStats)
+                    }.padding(.horizontal)
+                }
                 Spacer()
                 Divider()
             }
             .onAppear(perform: {
-                weekStats = gatherWeekCalStats(currentDay: model.currentDate, mealsArr: model.calorieTrackerLog)
-                model.updateWeekDayData()
+                weekStats = getWeekStats(currentDate: model.currentDate, foodItem: model.foodItemTrackerLog, dayStats: model.dayLogTrackerLog)
             })
             .navigationTitle("Workout Pal")
             Spacer()

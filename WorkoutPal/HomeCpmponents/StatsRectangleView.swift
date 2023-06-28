@@ -8,28 +8,22 @@
 import SwiftUI
 
 struct StatsRectangleView: View {
-    @State var itemData: (Int,Int,Int,Int,Int,Bool)
+    @State var itemData: dayModel
     var body: some View {
         ZStack{
             VStack{
-                Text("\(itemData.0)")
+                Text("\(itemData.date.formatted(date: .abbreviated, time: .omitted))")
                     .font(.title2)
-                Text("\(itemData.1) cals")
+                Text("\(itemData.totalCal) cals")
                 HStack{
-                    Text("\(itemData.2)g")
-                    Text("\(itemData.3)g")
-                    Text("\(itemData.4)g")
+                    Text("\(itemData.protein)g")
+                    Text("\(itemData.fats)g")
+                    Text("\(itemData.carbs)g")
                 }
             }
         }
         .frame(width:200,height: 120)
         .background(Color.gray)
         .cornerRadius(20)
-    }
-}
-
-struct StatsRectangleView_Previews: PreviewProvider {
-    static var previews: some View {
-        StatsRectangleView(itemData: (0,1,100,200,300,true))
     }
 }

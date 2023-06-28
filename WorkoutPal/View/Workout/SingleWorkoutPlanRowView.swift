@@ -12,7 +12,7 @@ struct SingleWorkoutPlanRowView: View {
     var body: some View {
         HStack{
             HStack{
-                Text(item.workoutTitle ?? "")
+                Text(item.title ?? "")
             }
             .frame(maxWidth:.infinity, alignment:.leading)
             HStack{
@@ -20,7 +20,7 @@ struct SingleWorkoutPlanRowView: View {
                 Text("•")
                 Text("\(item.reps)")
                 Text("•")
-                Text("\(item.weight) lbs")
+                Text("\(item.weights) lbs")
             }
             .frame(maxWidth:.infinity, alignment:.trailing)
         }

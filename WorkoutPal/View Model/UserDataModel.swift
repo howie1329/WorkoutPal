@@ -12,9 +12,9 @@ import FirebaseAuth
 import _PhotosUI_SwiftUI
 
 enum userGenderID: String, CaseIterable{
+    case none = "None"
     case male = "Male"
     case female = "Female"
-    case none = "None"
 }
 
 enum appStates{
@@ -33,6 +33,8 @@ class UserDataModel: ObservableObject {
     @Published var userPickerImage: PhotosPickerItem? = nil
     @Published var userUrl:String = ""
     @Published var userLikedPost :[String] = []
+    @Published var userBio: String = ""
+    @Published var userDocID: String = ""
     
     @Published var isLoading: Bool = false
     
@@ -75,6 +77,7 @@ class UserDataModel: ObservableObject {
                             for doc in snapShot.documents{
                                 let data = doc.data()
                                 
+                                self.userDocID = doc.documentID
                                 self.userName = data["user_name"] as! String
                                 self.userID = data["user_id"] as! String
                                 self.userEmail = data["user_email"] as! String
@@ -82,6 +85,7 @@ class UserDataModel: ObservableObject {
                                 self.userHandle = data["user_handle"] as! String
                                 self.userUrl = data["user_profileURL"] as! String
                                 self.userLikedPost = data["liked_post"] as! [String]
+                                self.userBio = data["user_bio"] as? String ?? "No Bio Please Update"
                                 
                                 self.appState = .signedIn
                             }
@@ -96,6 +100,15 @@ class UserDataModel: ObservableObject {
                     userRef.remove()
                 }
             }
+        }
+    }
+    
+    @MainActor
+    func updateBio(newBio: String) async{
+        do{
+            let userRef = try await Firestore.firestore().collection("users").document(self.userDocID).setData(["user_bio" : newBio], merge: true)
+        } catch{
+            self.errorMessage = setErrorMessage(errorCode: AuthErrors.failedUpdate)
         }
     }
     
@@ -123,6 +136,7 @@ class UserDataModel: ObservableObject {
                         for doc in snapShot.documents{
                             let data = doc.data()
                             
+                            self.userDocID = doc.documentID
                             self.userName = data["user_name"] as! String
                             self.userID = data["user_id"] as! String
                             self.userEmail = data["user_email"] as! String
@@ -130,6 +144,7 @@ class UserDataModel: ObservableObject {
                             self.userHandle = data["user_handle"] as! String
                             self.userUrl = data["user_profileURL"] as! String
                             self.userLikedPost = data["liked_post"] as! [String]
+                            self.userBio = data["user_bio"] as? String ?? "No Bio Please Update"
                             
                             self.isLoading = false
                             self.appState = .signedIn
@@ -155,7 +170,7 @@ class UserDataModel: ObservableObject {
     
     // Email Signup Function
     @MainActor
-    func emailSignUp(name:String, email:String, password:String, gender:userGenderID, handle:String) async {
+    func emailSignUp(name:String, email:String, password:String, gender:userGenderID, handle:String, bio: String) async {
         self.isLoading = true
         do{
             if userPickerImage == nil {
@@ -171,7 +186,7 @@ class UserDataModel: ObservableObject {
             let downloadURL = try await storageRef.downloadURL()
             
             
-            let _ = Firestore.firestore().collection("users").addDocument(data: ["user_name" : name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle, "user_profileURL": downloadURL.absoluteString, "liked_post": ["none"]])
+            let _ = Firestore.firestore().collection("users").addDocument(data: ["user_name" : name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle, "user_profileURL": downloadURL.absoluteString, "liked_post": ["none"], "user_bio": bio])
             
             await checkLogin()
             self.isLoading = false

@@ -13,6 +13,7 @@ enum AuthErrors: Error {
     case failedSignup
     case failedSignIn
     case failedReset
+    case failedUpdate
 }
 
 extension AuthErrors: LocalizedError{
@@ -29,6 +30,12 @@ extension AuthErrors: LocalizedError{
             return NSLocalizedString("Failed Sign In", comment: "Failed Sign In")
         case .failedReset:
             return NSLocalizedString("Reset Password Fail", comment: "Reset Password Fail")
+        case .failedUpdate:
+            return NSLocalizedString("Failed Update", comment: "Failed Update")
         }
+   
     }
 }
+
+
+

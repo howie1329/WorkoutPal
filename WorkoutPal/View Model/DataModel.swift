@@ -12,86 +12,105 @@ import Foundation
 class DataModel: ObservableObject {
     
     let container: NSPersistentContainer
-    @Published var calorieTrackerLog: [CalorieTrackerEntity] = []
-    @Published var workoutPlansLog: [WorkoutPlansEntity] = []
-    @Published var singleWorkoutsLog: [SingleWorkoutEntity] = []
-    @Published var dayWorkoutLog: [DayWorkoutEntity] = []
+    @Published var foodItemTrackerLog: [FoodItemEntity] = []
+    @Published var dayLogTrackerLog: [DayLogEntity] = []
+    @Published var masterWorkoutPlanLog: [MasterWorkoutPlansEntity] = []
+    @Published var singleWorkoutLog: [SingleWorkoutEntity] = []
     var currentDate = Date.now
-    @Published var currentMonth: Int = 0
-    @Published var currentDay: Int = 0
+    
     @Published var weekNumber = 0
-    @Published var weekDayData: [(Int,Int,Int,Int,Int,Bool)] = []
     
     init(){
-        container = NSPersistentContainer(name: "WorkoutContainer")
+        container = NSPersistentContainer(name: "WorkoutPalContainer")
         container.loadPersistentStores { (description, error) in
             if let error = error{
                 print("Error Loading Container \(error)")
             }
         }
-        currentMonth = currentDate.findMonthNumber()
-        currentDay = currentDate.findDayNumber()
         weekNumber = currentDate.findWeekNumber()
         
-        fetchCalorieTracker()
-        fetchWorkoutPlans()
+        
+        
+        fetchFoodItem()
+        fetchMasterWorkoutPlans()
         fetchSingleWorkout()
         fetchDayWorkout()
         
-        weekDayData = gatherDayCalStates(currentDay: currentDay, mealsArr: calorieTrackerLog, dayWorkoutArr: dayWorkoutLog)
+        let item = dayLogTrackerLog.first { DayLogEntity in
+            DayLogEntity.date?.formatted(date: .numeric, time: .omitted) == currentDate.formatted(date: .numeric, time: .omitted)
+        }
+        
+        if let entry = item {
+            print("Item Found")
+            print("Item \(item)")
+        }else{
+            createDayWorkout(date: currentDate, workoutPlanId: UUID())
+        }
         
     }
     
-    func updateWeekDayData(){
-        weekDayData = gatherDayCalStates(currentDay: currentDay, mealsArr: calorieTrackerLog, dayWorkoutArr: dayWorkoutLog)
-    }
-    
     func fetchDayWorkout(){
-        let request = NSFetchRequest<DayWorkoutEntity>(entityName: "DayWorkoutEntity")
+        let request = NSFetchRequest<DayLogEntity>(entityName: "DayLogEntity")
         do{
-            dayWorkoutLog = try container.viewContext.fetch(request)
+            dayLogTrackerLog = try container.viewContext.fetch(request)
         } catch let error{
             print("Error fetching day workout data \(error.localizedDescription)")
         }
     }
     
-    func createDayWorkout(day:Int, workoutPlanId: UUID){
-        let newDay = DayWorkoutEntity(context: container.viewContext)
+    func createDayWorkout(date: Date, workoutPlanId: UUID){
+        let newDay = DayLogEntity(context: container.viewContext)
         newDay.id = UUID()
-        newDay.isCompleted = true
-        newDay.dayNumber = Int16(day)
-        newDay.monthNumber = Int16(currentMonth)
-        newDay.workoutPlanId = workoutPlanId
+        newDay.date = date
+        newDay.isWorkoutCompleted = false
+        newDay.masterPlanID = workoutPlanId
+        newDay.totalCal = 0
+        newDay.totalFat = 0
+        newDay.totalCarbs = 0
+        newDay.totalProtein = 0
         saveData()
         
     }
     
-    func deleteDayWorkout(dayNumber: Int){
-        print("\(dayWorkoutLog)")
-        print("DayNumber: \(dayNumber)")
-        let item = dayWorkoutLog.firstIndex { DayWorkoutEntity in
-            DayWorkoutEntity.dayNumber == Int16(dayNumber) && DayWorkoutEntity.monthNumber == Int16(currentMonth)
+    func deleteQuickDay(indexSet: IndexSet){
+        guard let index = indexSet.first else {return}
+        let entity = dayLogTrackerLog[index]
+        container.viewContext.delete(entity)
+        saveData()
+    }
+    
+    func deleteDayWorkout(id: UUID){
+        let item = dayLogTrackerLog.firstIndex { DayLogEntity in
+            DayLogEntity.id == id
         }
         
         if let index = item{
-            let entity = dayWorkoutLog[index]
+            let entity = dayLogTrackerLog[index]
             container.viewContext.delete(entity)
-            print("Index: \(index)")
             saveData()
         }
     }
     
-    func updateDayWorkout(dayNumber: Int){
-        let item = dayWorkoutLog.firstIndex { DayWorkoutEntity in
-            DayWorkoutEntity.dayNumber == Int16(dayNumber) && DayWorkoutEntity.monthNumber == Int16(currentMonth)
+    func updateDayWorkout(workoutPlan: UUID){
+        let item = dayLogTrackerLog.firstIndex { DayLogEntity in
+            DayLogEntity.date?.formatted(date: .numeric, time: .omitted) == currentDate.formatted(date: .numeric, time: .omitted)
         }
         
         if let index = item {
-            print("item found")
-            dayWorkoutLog[index].isCompleted = true
+            let entity = dayLogTrackerLog[index]
+            entity.masterPlanID = workoutPlan
+            entity.isWorkoutCompleted.toggle()
             saveData()
         }
+    }
+    
+    func updateDayLogFood(entry:DayLogEntity,totalCal: Int, totalFat:Int, totalProtein: Int, totalCarbs: Int){
+        entry.totalCal += Int16(totalCal)
+        entry.totalFat += Int16(totalFat)
+        entry.totalCarbs += Int16(totalCarbs)
+        entry.totalProtein += Int16(totalProtein)
         
+        saveData()
     }
     
     //MARK: Single Workout Code
@@ -99,7 +118,7 @@ class DataModel: ObservableObject {
     func fetchSingleWorkout(){
         let request = NSFetchRequest<SingleWorkoutEntity>(entityName: "SingleWorkoutEntity")
         do{
-            singleWorkoutsLog = try container.viewContext.fetch(request)
+            singleWorkoutLog = try container.viewContext.fetch(request)
         } catch let error{
             print("Error fetching single workouts \(error)")
         }
@@ -110,33 +129,33 @@ class DataModel: ObservableObject {
         newWorkout.id = UUID()
         newWorkout.ownerID = plansID
         newWorkout.focusGroup = focusGroup
-        newWorkout.reps = Int32(reps)
-        newWorkout.sets = Int32(sets)
-        newWorkout.weight = Int32(weights)
-        newWorkout.workoutTitle = title
+        newWorkout.reps = Int16(reps)
+        newWorkout.sets = Int16(sets)
+        newWorkout.weights = Int16(weights)
+        newWorkout.title = title
         saveData()
     }
     // Delete a single workout
     func deleteSingleWorkout(indexSet: IndexSet){
         guard let index = indexSet.first else {return}
-        let entity = singleWorkoutsLog[index]
+        let entity = singleWorkoutLog[index]
         container.viewContext.delete(entity)
         saveData()
     }
     
     //MARK: WORKOUT PLAN CODE
     // Fetch all workout plans
-    func fetchWorkoutPlans(){
-        let request = NSFetchRequest<WorkoutPlansEntity>(entityName: "WorkoutPlansEntity")
+    func fetchMasterWorkoutPlans(){
+        let request = NSFetchRequest<MasterWorkoutPlansEntity>(entityName: "MasterWorkoutPlansEntity")
         do{
-            workoutPlansLog = try container.viewContext.fetch(request)
+            masterWorkoutPlanLog = try container.viewContext.fetch(request)
         } catch let error{
             print("Error Loading workout plans \(error)")
         }
     }
     // Create New Workout Plan
     func createWorkoutPlan(title:String,iconString:String){
-        let newPlan = WorkoutPlansEntity(context: container.viewContext)
+        let newPlan = MasterWorkoutPlansEntity(context: container.viewContext)
         newPlan.id = UUID()
         newPlan.focusTitle = title
         newPlan.icon = iconString
@@ -145,7 +164,7 @@ class DataModel: ObservableObject {
     // Delete Workout Plan
     func deleteWorkoutPlan(indexSet:IndexSet){
         guard let index = indexSet.first else {return}
-        let entity = workoutPlansLog[index]
+        let entity = masterWorkoutPlanLog[index]
         container.viewContext.delete(entity)
         saveData()
     }
@@ -153,34 +172,43 @@ class DataModel: ObservableObject {
     //MARK: Calorie Tracker CODE
     ///Fetch all data from calorie tracker entity
     ///CalorieTrackerEntity holds all meal information/Data
-    func fetchCalorieTracker(){
-        let request = NSFetchRequest<CalorieTrackerEntity>(entityName: "CalorieTrackerEntity")
+    func fetchFoodItem(){
+        let request = NSFetchRequest<FoodItemEntity>(entityName: "FoodItemEntity")
         do{
-            calorieTrackerLog = try container.viewContext.fetch(request)
+            foodItemTrackerLog = try container.viewContext.fetch(request)
         } catch let error{
             print("Error Fetching Calories Tracker Data \(error)")
         }
     }
     
     // create and save a entry to container
-    func createCalorieEntry(name:String, protien:Int, carbs:Int, fats:Int, mealType:String){
-        let trackerEntry = CalorieTrackerEntity(context: container.viewContext)
-        trackerEntry.id = UUID()
-        trackerEntry.name = name
-        trackerEntry.protien = Int32(protien)
-        trackerEntry.carb = Int32(carbs)
-        trackerEntry.fat = Int32(fats)
-        trackerEntry.dayNumber = Int32(currentDate.findDayNumber())
-        trackerEntry.monthNumber = Int32(currentDate.findMonthNumber())
-        trackerEntry.type = mealType
-        trackerEntry.totalCal = Int32(findTotalCal(protien: protien, fats: fats, carbs: carbs))
-        trackerEntry.weekNumber = Int32(currentDate.findWeekNumber())
+    func createCalorieEntry(name:String, protien:Int, carbs:Int, fats:Int, mealType:String, date: Date){
+        
+        let item = dayLogTrackerLog.first { DayLogEntity in
+            DayLogEntity.date?.formatted(date: .numeric, time: .omitted) == currentDate.formatted(date: .numeric, time: .omitted)
+        }
+        
+        let newFoodItem = FoodItemEntity(context: container.viewContext)
+        newFoodItem.id = UUID()
+        newFoodItem.name = name
+        newFoodItem.date = date
+        newFoodItem.dateID = item?.id
+        newFoodItem.protien = Int16(protien)
+        newFoodItem.carb = Int16(carbs)
+        newFoodItem.fat = Int16(fats)
+        newFoodItem.type = mealType
+        newFoodItem.totalCal = Int16(findTotalCal(protien: protien, fats: fats, carbs: carbs))
+        
+        if let item = item {
+            updateDayLogFood(entry: item, totalCal: Int(newFoodItem.totalCal), totalFat: Int(newFoodItem.fat), totalProtein: Int(newFoodItem.protien), totalCarbs: Int(newFoodItem.carb))
+        }
+        
         saveData()
     }
     // Delete Calorie Entry
     func deleteCalorieEntry(indexSet: IndexSet){
         guard let index = indexSet.first else {return}
-        let entity = calorieTrackerLog[index]
+        let entity = foodItemTrackerLog[index]
         container.viewContext.delete(entity)
         saveData()
     }
@@ -189,11 +217,10 @@ class DataModel: ObservableObject {
     func saveData(){
         do{
             try container.viewContext.save()
-            fetchCalorieTracker()
-            fetchWorkoutPlans()
+            fetchFoodItem()
+            fetchMasterWorkoutPlans()
             fetchSingleWorkout()
             fetchDayWorkout()
-            updateWeekDayData()
         }catch let error{
             print("Error Saving/fetching from Container \(error)")
         }
@@ -202,10 +229,19 @@ class DataModel: ObservableObject {
     //MARK: Service Code
     func redoCurrentDates(updatedDate: Date){
         print("REDO CURRENT DATES RAN")
+        
+        let item = dayLogTrackerLog.first { DayLogEntity in
+            DayLogEntity.date?.formatted(date: .numeric, time: .omitted) == updatedDate.formatted(date: .numeric, time: .omitted)
+        }
+        
+        if let entry = item {
+            print("Item Found")
+            print("Item \(item)")
+        }else{
+            createDayWorkout(date: updatedDate, workoutPlanId: UUID())
+        }
+        
         currentDate = updatedDate
-        currentMonth = currentDate.findMonthNumber()
-        currentDay = currentDate.findDayNumber()
         weekNumber = currentDate.findWeekNumber()
-        updateWeekDayData()
     }
 }

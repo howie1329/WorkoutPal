@@ -22,7 +22,7 @@ struct NewWorkoutPlanView: View {
             VStack(spacing:25){
                 TextField("Plan Title", text: $planTitle)
                     .padding(5)
-                    .background(RoundedRectangle(cornerRadius:10).fill(Color.gray))
+                    .textFieldStyle(.roundedBorder)
                     
                 Picker("Icon", selection: $iconString) {
                     ForEach(iconArr, id:\.self){item in
