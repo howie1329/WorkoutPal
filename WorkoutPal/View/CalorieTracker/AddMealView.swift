@@ -26,11 +26,20 @@ struct AddMealView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             TextField("Meal Title", text: $mealTitle)
                 .padding(5)
-            HStack {
-                TextField("Proteins: \(proteinCount)", value: $proteinCount, format: .number)
-                TextField("Fats: \(fatCount)", value: $fatCount, format: .number)
-                TextField("Carbs: \(carbCount)", value: $carbCount, format: .number)
+            ScrollView(.horizontal){
+                HStack {
+                    Section(header: Text("Proteins:")){
+                        TextField("Proteins: \(proteinCount)", value: $proteinCount, format: .number)
+                    }
+                    Section(header: Text("Fats:")){
+                        TextField("Fats: \(fatCount)", value: $fatCount, format: .number)
+                    }
+                    Section(header: Text("Carbs:")){
+                        TextField("Carbs: \(carbCount)", value: $carbCount, format: .number)
+                    }
+                }
             }
+            .scrollIndicators(.hidden)
             Picker("Meal Type", selection: $mealType) {
                 ForEach(mealTypes, id: \.self) {item in
                     Text(item)
@@ -48,7 +57,7 @@ struct AddMealView: View {
             }
             .buttonStyle(.borderedProminent)
             .padding(.vertical)
-
+            
         }
         .frame(maxHeight: .infinity, alignment: .top)
         .padding()

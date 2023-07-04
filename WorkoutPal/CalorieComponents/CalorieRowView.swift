@@ -34,6 +34,10 @@ struct CalorieRowView: View {
             }
         }
         .onAppear(perform: {
+            totalCal = 0
+            proCount = 0
+            carbCount = 0
+            fatCount = 0
             totalCal += Int(item.totalCal)
             proCount += Int(item.protien)
             carbCount += Int(item.carb)
