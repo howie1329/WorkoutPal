@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalorieTrackerView: View {
-    @EnvironmentObject var model:DataModel
+    @EnvironmentObject var model: DataModel
     @State var newMealView = false
     @State var dateChoice = Date.now
     @State var totalCalories = 0
@@ -16,16 +16,16 @@ struct CalorieTrackerView: View {
     @State var fatCount = 0
     @State var carbCount = 0
     var body: some View {
-        NavigationView{
+        NavigationView {
             VStack {
-                HStack{
+                HStack {
                     Text("Total Calories: \(totalCalories)")
                     Text("Proteins: \(protienCount)")
                     Text("Fats: \(fatCount)")
                     Text("Carbs: \(carbCount)")
                 }
-                HStack{
-                    DatePicker("", selection: $dateChoice,displayedComponents: .date)
+                HStack {
+                    DatePicker("", selection: $dateChoice, displayedComponents: .date)
                     Button {
                         dateChoice = Date.now
                     } label: {
@@ -34,7 +34,7 @@ struct CalorieTrackerView: View {
                     .buttonStyle(.borderedProminent)
                 }
                 .labelsHidden()
-                .frame(maxWidth: .infinity,alignment: .center)
+                .frame(maxWidth: .infinity, alignment: .center)
                 .onChange(of: dateChoice) { _ in
                     model.redoCurrentDates(updatedDate: dateChoice)
                     totalCalories = 0
@@ -44,8 +44,8 @@ struct CalorieTrackerView: View {
                 }
                 .padding(.horizontal)
                 List {
-                    ForEach(model.foodItemTrackerLog){item in
-                        if item.date?.formatted(date: .numeric, time: .omitted) == model.currentDate.formatted(date: .numeric, time: .omitted){
+                    ForEach(model.foodItemTrackerLog) {item in
+                        if item.date?.formatted(date: .numeric, time: .omitted) == model.currentDate.formatted(date: .numeric, time: .omitted) {
                             CalorieSectionView(filterSelection: "Breakfast", foodItem: item, totalCalories: $totalCalories, protienCount: $protienCount, fatCount: $fatCount, carbCount: $carbCount)
                             CalorieSectionView(filterSelection: "Lunch", foodItem: item, totalCalories: $totalCalories, protienCount: $protienCount, fatCount: $fatCount, carbCount: $carbCount)
                             CalorieSectionView(filterSelection: "Dinner", foodItem: item, totalCalories: $totalCalories, protienCount: $protienCount, fatCount: $fatCount, carbCount: $carbCount)
@@ -67,7 +67,6 @@ struct CalorieTrackerView: View {
                 } label: {
                     Image(systemName: "plus.circle")
                 }
-                
             }
         }
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct dayModel: Identifiable {
+struct DayModel: Identifiable {
     var id = UUID()
     var totalCal: Int
     var stringDate: String {
@@ -23,11 +23,11 @@ struct dayModel: Identifiable {
     var isCompleted: Bool
 }
 
-struct weekModel: Identifiable {
+struct WeekModel: Identifiable {
     var id = UUID()
     var totalCal: Int
     var protein: Int
     var carbs: Int
     var fats: Int
-    var dayInfo: [dayModel]
+    var dayInfo: [DayModel]
 }

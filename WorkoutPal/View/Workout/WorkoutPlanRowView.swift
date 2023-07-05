@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct WorkoutPlanRowView: View {
-    @EnvironmentObject var model:DataModel
+    @EnvironmentObject var model: DataModel
     @State var planItem: MasterWorkoutPlansEntity
     @State var newWorkoutView = false
     var body: some View {
-        VStack{
-            List{
-                ForEach(model.singleWorkoutLog){item in
-                    if item.ownerID == planItem.id{
+        VStack {
+            List {
+                ForEach(model.singleWorkoutLog) {item in
+                    if item.ownerID == planItem.id {
                         WorkoutSectionView(filerSection: "Full Body", singleWorkoutItem: item)
                         WorkoutSectionView(filerSection: "Upper Body", singleWorkoutItem: item)
                         WorkoutSectionView(filerSection: "Lower Body", singleWorkoutItem: item)
@@ -34,7 +34,6 @@ struct WorkoutPlanRowView: View {
             } label: {
                 Image(systemName: "plus.circle")
             }
-            
         })
         .navigationTitle(planItem.focusTitle ?? "")
     }

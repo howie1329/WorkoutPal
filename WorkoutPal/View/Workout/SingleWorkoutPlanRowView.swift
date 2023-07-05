@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct SingleWorkoutPlanRowView: View {
-    var item:SingleWorkoutEntity
+    var item: SingleWorkoutEntity
     var body: some View {
-        HStack{
-            HStack{
+        HStack {
+            HStack {
                 Text(item.title ?? "")
             }
-            .frame(maxWidth:.infinity, alignment:.leading)
-            HStack{
+            .frame(maxWidth: .infinity, alignment: .leading)
+            HStack {
                 Text("\(item.sets)")
                 Text("•")
                 Text("\(item.reps)")
                 Text("•")
                 Text("\(item.weights) lbs")
             }
-            .frame(maxWidth:.infinity, alignment:.trailing)
+            .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
 }

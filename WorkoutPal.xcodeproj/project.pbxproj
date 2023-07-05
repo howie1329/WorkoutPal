@@ -40,7 +40,7 @@
 		F36AF0C52A32E6C60057C9D4 /* NewCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0C42A32E6C60057C9D4 /* NewCommentView.swift */; };
 		F36AF0CC2A4377980057C9D4 /* WorkoutPalContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0CA2A4377980057C9D4 /* WorkoutPalContainer.xcdatamodeld */; };
 		F36AF0CE2A47CC080057C9D4 /* StatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0CD2A47CC080057C9D4 /* StatsModel.swift */; };
-		F36AF0D02A48028B0057C9D4 /* testLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0CF2A48028B0057C9D4 /* testLogView.swift */; };
+		F36AF0D02A48028B0057C9D4 /* TestLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0CF2A48028B0057C9D4 /* TestLogView.swift */; };
 		F36AF0D22A4826280057C9D4 /* ScrollViewHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0D12A4826280057C9D4 /* ScrollViewHome.swift */; };
 		F36AF0D42A4944880057C9D4 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AF0D32A4944880057C9D4 /* EditProfileView.swift */; };
 		F37CB3942A2DB620005E3E82 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37CB3932A2DB620005E3E82 /* DateExtensions.swift */; };
@@ -90,7 +90,7 @@
 		F36AF0C42A32E6C60057C9D4 /* NewCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentView.swift; sourceTree = "<group>"; };
 		F36AF0CB2A4377980057C9D4 /* WorkoutPalContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkoutPalContainer.xcdatamodel; sourceTree = "<group>"; };
 		F36AF0CD2A47CC080057C9D4 /* StatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsModel.swift; sourceTree = "<group>"; };
-		F36AF0CF2A48028B0057C9D4 /* testLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testLogView.swift; sourceTree = "<group>"; };
+		F36AF0CF2A48028B0057C9D4 /* TestLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLogView.swift; sourceTree = "<group>"; };
 		F36AF0D12A4826280057C9D4 /* ScrollViewHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewHome.swift; sourceTree = "<group>"; };
 		F36AF0D32A4944880057C9D4 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		F37CB3932A2DB620005E3E82 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
@@ -281,7 +281,7 @@
 				F310FFF52A0AA8970093365E /* Workout */,
 				F310FFEA2A0A02390093365E /* CalorieTracker */,
 				F310FFE82A0A01360093365E /* MainTabView.swift */,
-				F36AF0CF2A48028B0057C9D4 /* testLogView.swift */,
+				F36AF0CF2A48028B0057C9D4 /* TestLogView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -437,7 +437,7 @@
 				F33B44042A17367C00B83FFA /* HomeStatsView.swift in Sources */,
 				F3AD77B62A1DD85900499545 /* ProfileYourPostView.swift in Sources */,
 				F36AF0D22A4826280057C9D4 /* ScrollViewHome.swift in Sources */,
-				F36AF0D02A48028B0057C9D4 /* testLogView.swift in Sources */,
+				F36AF0D02A48028B0057C9D4 /* TestLogView.swift in Sources */,
 				F32DBD082A1B3481007ECFFC /* SignInView.swift in Sources */,
 				F310FFEE2A0A29EE0093365E /* NewWorkoutPlanView.swift in Sources */,
 				F32DBD062A1B2C69007ECFFC /* SignUpView.swift in Sources */,

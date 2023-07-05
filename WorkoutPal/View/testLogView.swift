@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct testLogView: View {
+struct TestLogView: View {
     @EnvironmentObject var dataModel: DataModel
     var body: some View {
-        VStack{
-            List{
-                ForEach(dataModel.dayLogTrackerLog){item in
-                    VStack{
+        VStack {
+            List {
+                ForEach(dataModel.dayLogTrackerLog) {item in
+                    VStack {
                         Text("Date: \(item.date ?? Date.now)")
                         Text("Cal \(item.totalCal)")
                         if let id = item.id {
@@ -22,7 +22,6 @@ struct testLogView: View {
                     }
                 }.onDelete(perform: dataModel.deleteQuickDay)
             }
-            
         }
     }
 }

@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct ProfileMainView: View {
-    @EnvironmentObject var model:DataModel
-    @EnvironmentObject var userModel:UserDataModel
-    
+    @EnvironmentObject var model: DataModel
+    @EnvironmentObject var userModel: UserDataModel
     var body: some View {
-        VStack{
+        VStack {
             ProfileHeaderComp(userHandle: userModel.userHandle)
-            
             ProfileYourPostView(userHandle: userModel.userHandle)
         }
     }

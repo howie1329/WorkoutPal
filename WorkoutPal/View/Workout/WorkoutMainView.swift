@@ -8,35 +8,33 @@
 import SwiftUI
 
 struct WorkoutMainView: View {
-    @EnvironmentObject var model:DataModel
-    private let viewChoice = ["Plans","Single"]
+    @EnvironmentObject var model: DataModel
+    private let viewChoice = ["Plans", "Single"]
     @State var newPlanView = false
     @State var viewSelection = "Plans"
     var body: some View {
-        NavigationStack{
-            VStack{
+        NavigationStack {
+            VStack {
                 Picker("view picker", selection: $viewSelection) {
-                    ForEach(viewChoice,id:\.self){
+                    ForEach(viewChoice, id: \.self) {
                         Text($0)
                     }
                 }
                 .pickerStyle(.segmented)
                 if viewSelection == "Plans"{
                     List {
-                        ForEach(model.masterWorkoutPlanLog){item in
-                            NavigationLink(destination: WorkoutPlanRowView(planItem:item)) {
-                                HStack{
+                        ForEach(model.masterWorkoutPlanLog) {item in
+                            NavigationLink(destination: WorkoutPlanRowView(planItem: item)) {
+                                HStack {
                                     Image(systemName: item.icon ?? "figure.run")
                                     Text(item.focusTitle ?? "")
                                 }
-                            }
-                            
-                        }
+                            }                        }
                     }
                     .listStyle(.inset)
                 } else if viewSelection == "Single"{
-                    List{
-                        ForEach(model.singleWorkoutLog){item in
+                    List {
+                        ForEach(model.singleWorkoutLog) {item in
                             WorkoutSectionView(filerSection: "Full Body", singleWorkoutItem: item)
                             WorkoutSectionView(filerSection: "Upper Body", singleWorkoutItem: item)
                             WorkoutSectionView(filerSection: "Lower Body", singleWorkoutItem: item)
@@ -58,9 +56,7 @@ struct WorkoutMainView: View {
 
             })
             .navigationTitle("Workout Plans")
-            
         }
-        
     }
 }
 

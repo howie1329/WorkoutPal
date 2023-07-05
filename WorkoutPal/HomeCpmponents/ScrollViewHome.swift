@@ -9,24 +9,24 @@ import SwiftUI
 
 struct ScrollViewHome: View {
     @EnvironmentObject var model: DataModel
-    @State var weekStats: weekModel
+    @State var weekStats: WeekModel
     @State var dayLogView = false
     var body: some View {
-        ScrollView(.horizontal){
-            HStack{
-                ForEach(model.dayLogTrackerLog){item in
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(model.dayLogTrackerLog) {item in
                     Button {
                         model.currentDate = item.date!
                         if !item.isWorkoutCompleted {
                             dayLogView.toggle()
-                        }else {
+                        } else {
                             model.currentDate = item.date!
                             model.updateDayWorkout(workoutPlan: UUID())
                         }
                     } label: {
-                        VStack{
+                        VStack {
                             Text("\((item.date?.formatted(date: .numeric, time: .omitted))!)")
-                            if item.isWorkoutCompleted{
+                            if item.isWorkoutCompleted {
                                 Image(systemName: "circle.fill")
                                     .foregroundColor(.green)
                             } else {
@@ -34,18 +34,17 @@ struct ScrollViewHome: View {
                                     .foregroundColor(.red)
                             }
                             if item.isWorkoutCompleted {
-                                ForEach(model.masterWorkoutPlanLog){masterItem in
-                                    if masterItem.id == item.masterPlanID{
+                                ForEach(model.masterWorkoutPlanLog) { masterItem in
+                                    if masterItem.id == item.masterPlanID {
                                         Text("\(masterItem.focusTitle ?? "")")
                                     }
                                 }
-                            } else{
+                            } else {
                                 Text("No Workout")
                             }
                         }
                     }
                     .buttonStyle(.borderedProminent)
-                    
                 }
             }
         }

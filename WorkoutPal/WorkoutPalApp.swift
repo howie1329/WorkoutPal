@@ -13,11 +13,9 @@ struct WorkoutPalApp: App {
     @StateObject var dataModel = DataModel()
     @StateObject var userModel = UserDataModel()
     @StateObject var feedModel = FeedDataModel()
-    
-    init(){
+    init() {
         FirebaseApp.configure()
     }
-    
     var body: some Scene {
         WindowGroup {
             MainTabView()

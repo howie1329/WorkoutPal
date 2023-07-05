@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct HomeWorkoutView: View {
-    @EnvironmentObject var model:DataModel
+    @EnvironmentObject var model: DataModel
     @Binding var viewState: Bool
     var body: some View {
-        VStack{
+        VStack {
             Text("Your Plans")
                 .font(.title.bold())
                 .padding(.top)
             List {
-                ForEach(model.masterWorkoutPlanLog){item in
-                    HStack{
+                ForEach(model.masterWorkoutPlanLog) {item in
+                    HStack {
                         Image(systemName: item.icon ?? "")
                         Text(item.focusTitle ?? "")
                             .bold()

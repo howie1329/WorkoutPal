@@ -8,21 +8,20 @@
 import SwiftUI
 
 struct SignInView: View {
-    @EnvironmentObject var userModel:UserDataModel
-    @State var email:String = ""
-    @State var password:String = ""
+    @EnvironmentObject var userModel: UserDataModel
+    @State var email: String = ""
+    @State var password: String = ""
     var body: some View {
-        if userModel.isLoading{
+        if userModel.isLoading {
             LoadingView()
-        }else{
-            VStack{
+        } else {
+            VStack {
                 Text("Sign In")
                     .font(.largeTitle.bold())
                 Divider()
-                VStack(spacing:20){
+                VStack(spacing: 20) {
                     TextField("Email", text: $email)
                         .font(.headline)
-    
                     TextField("Password", text: $password)
                         .font(.headline)
                 }
@@ -31,18 +30,17 @@ struct SignInView: View {
                 Divider()
                 if email != "" && password != ""{
                     Button {
-                        Task{
+                        Task {
                             await userModel.emailLogin(email: email, password: password)
                         }
                     } label: {
                         Text("SIGN IN!!")
                             .font(.headline)
-                            .frame(maxWidth:.infinity, maxHeight: 35)
+                            .frame(maxWidth: .infinity, maxHeight: 35)
                     }
-                    
                     .buttonStyle(.borderedProminent)
                     .tint(.black)
-                }else{
+                } else {
                     Button {
                         userModel.errorMessage = userModel.setErrorMessage(errorCode: AuthErrors.failedSignup)
                     } label: {
@@ -52,10 +50,9 @@ struct SignInView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.gray)
-                    
                 }
                 Button {
-                    Task{
+                    Task {
                         await userModel.resetPassword(email: email)
                     }
                 } label: {
