@@ -61,6 +61,7 @@ struct FeedMainView: View {
                             }
                         }.padding(.trailing)
                     }
+                 
             }
         }
         .navigationTitle("PAL")

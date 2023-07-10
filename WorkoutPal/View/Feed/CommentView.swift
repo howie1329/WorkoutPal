@@ -19,14 +19,14 @@ struct CommentView: View {
                 PostView(postItem: post)
                     .padding(.horizontal)
                 Divider()
-                if post.comments.isEmpty {
+                if post.comments == nil {
                     Text("No Comments")
                     Spacer()
                 } else {
-                    List(post.comments) { comment in
+                    List(post.comments!) { comment in
                         VStack {
                             HStack {
-                                WebImage(url: URL(string: comment.authorProfileURL ?? "" )).placeholder(content: {
+                                WebImage(url: URL(string: comment.author_Url ?? "" )).placeholder(content: {
                                     Circle()
                                         .fill(.black)
                                         .frame(width: 50, height: 50)
@@ -37,13 +37,13 @@ struct CommentView: View {
                                 .frame(width: 50, height: 50)
                                 .cornerRadius(100)
                                 .clipped()
-                                Text("@\(comment.authorId)")
+                                Text("@\(comment.author_Id)")
                                     .font(.caption)
                                     .foregroundColor(.gray)
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             HStack {
-                                Text(comment.body)
+                                Text(comment.message)
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                             HStack {

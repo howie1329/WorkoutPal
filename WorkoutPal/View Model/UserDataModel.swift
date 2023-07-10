@@ -160,7 +160,7 @@ class UserDataModel: ObservableObject {
             let storageRef = Storage.storage().reference().child("profile_images").child(id)
             _ = try await storageRef.putDataAsync(imageData)
             let downloadURL = try await storageRef.downloadURL()
-            _ = Firestore.firestore().collection("users").addDocument(data: ["user_name": name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle, "user_profileURL": downloadURL.absoluteString, "liked_post": ["none"], "user_bio": bio])
+            _ = try await Firestore.firestore().collection("users").addDocument(data: ["user_name": name, "user_email": email, "user_id": id, "user_gender": gender.rawValue, "user_handle": handle, "user_profileURL": downloadURL.absoluteString, "liked_post": ["none"], "user_bio": bio])
             await checkLogin()
             self.isLoading = false
         } catch {
@@ -174,7 +174,7 @@ class UserDataModel: ObservableObject {
                     for doc in snapShot.documents {
                         let documentID = doc.documentID
                         _ = Firestore.firestore().collection("users").document(documentID)
-                        Firestore.firestore().collection("feed").document(post.id).getDocument { DocumentSnapshot, Error in
+                        Firestore.firestore().collection("feed").document(post.id!).getDocument { DocumentSnapshot, Error in
                             if Error == nil {
                                 if let doc = DocumentSnapshot {
                                     if let data = doc.data() {
@@ -183,7 +183,7 @@ class UserDataModel: ObservableObject {
                                         if oldLikeCount <= 0 {
                                             oldLikeCount = 0
                                         }
-                                        Firestore.firestore().collection("feed").document(post.id).updateData(["feed_like_count": oldLikeCount])
+                                        Firestore.firestore().collection("feed").document(post.id!).updateData(["feed_like_count": oldLikeCount])
                                         
                                         /// Remove Like from user like array
                                     }
@@ -202,7 +202,7 @@ class UserDataModel: ObservableObject {
                     for doc in snapShot.documents {
                         let documentID = doc.documentID
                         Firestore.firestore().collection("users").document(documentID).updateData(["liked_post": FieldValue.arrayUnion([post.id])])
-                        Firestore.firestore().collection("feed").document(post.id).getDocument { DocumentSnapshot, Error in
+                        Firestore.firestore().collection("feed").document(post.id!).getDocument { DocumentSnapshot, Error in
                             if Error == nil {
                                 if let doc = DocumentSnapshot {
                                     if let data = doc.data() {
@@ -211,7 +211,7 @@ class UserDataModel: ObservableObject {
                                         if oldLikeCount <= 0 {
                                             oldLikeCount = 0
                                         }
-                                        Firestore.firestore().collection("feed").document(post.id).updateData(["feed_like_count": oldLikeCount])
+                                        Firestore.firestore().collection("feed").document(post.id!).updateData(["feed_like_count": oldLikeCount])
                                     }
                                 }
                             }

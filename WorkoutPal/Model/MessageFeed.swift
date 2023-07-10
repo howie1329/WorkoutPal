@@ -8,24 +8,24 @@
 import Foundation
 import Firebase
 import PhotosUI
+import FirebaseFirestoreSwift
 
-struct Comment: Identifiable {
-    var id: String
-    var authorId: String
-    var body: String
-    var authorProfileURL: String?
+struct Comment: Codable, Identifiable {
+    @DocumentID var id: String?
+    var author_Id: String
+    var message: String
+    var author_Url: String?
     var date = Timestamp(date: Date.now)
 }
 
-struct MessageFeed: Identifiable {
-    var id: String
-    var body: String
-    var authorId: String
-    var authorProfileURL: String?
-    var mediaURL: String?
-    var comments: [Comment]
-    var likeCounter: Int = 0
-    var userLike: Bool = false
-    var date = Timestamp(date: Date.now)
-
+struct MessageFeed: Codable, Identifiable {
+    @DocumentID var id: String?
+    var feed_body: String
+    var feed_author_id: String
+    var feed_author_url: String?
+    var feed_media: String?
+    var comments: [Comment]?
+    var feed_like_count: Int = 0
+    var userLike: Bool?
+    var feed_timestamp = Timestamp(date: Date.now)
 }

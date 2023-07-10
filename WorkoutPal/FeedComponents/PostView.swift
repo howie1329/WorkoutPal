@@ -16,7 +16,7 @@ struct PostView: View {
         VStack {
             HStack {
                 // MARK: Creators Profile Picture
-                if let url = postItem.authorProfileURL {
+                if let url = postItem.feed_author_url {
                     WebImage(url: URL(string: url)).placeholder(content: {
                         Circle().fill(.black)
                             .frame(width: 50, height: 50)
@@ -32,14 +32,14 @@ struct PostView: View {
                         .frame(width: 50, height: 50)
                         .cornerRadius(100)
                 }
-                Text("@\(postItem.authorId)")
+                Text("@\(postItem.feed_author_id)")
                     .font(.caption)
                     .foregroundColor(.gray)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             VStack(spacing: 20) {
                 VStack {
-                    if let image = postItem.mediaURL {
+                    if let image = postItem.feed_media {
                         WebImage(url: URL(string: image))
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -47,7 +47,7 @@ struct PostView: View {
                             .cornerRadius(20)
                             .clipped()
                     }
-                    Text(postItem.body)
+                    Text(postItem.feed_body)
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
                 HStack {
@@ -63,18 +63,18 @@ struct PostView: View {
                             .foregroundColor(.gray)
                     }
                     */
-                    Text("\(postItem.likeCounter)")
+                    Text("\(postItem.feed_like_count)")
                         .font(.caption2)
                         .foregroundColor(.gray)
                     Image(systemName: "message")
                         .resizable()
                         .frame(width: 13, height: 13)
                         .foregroundColor(.gray)
-                    Text("\(postItem.comments.count)")
+                    /*Text("\(postItem.comments.count)")
                         .font(.caption2)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.gray) */
                     Spacer()
-                    Text("\(postItem.date.dateValue().formatted(date: .abbreviated, time: .shortened))")
+                    Text("\(postItem.feed_timestamp.dateValue().formatted(date: .abbreviated, time: .shortened))")
                         .font(.caption2)
                         .foregroundColor(.gray)
                 }

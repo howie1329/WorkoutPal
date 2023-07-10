@@ -31,6 +31,7 @@
 		F33B441A2A19E3DC00B83FFA /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B44192A19E3DC00B83FFA /* UserDataModel.swift */; };
 		F34847982A5A6EA5004139CB /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847972A5A6EA5004139CB /* WeekView.swift */; };
 		F348479A2A5A6F23004139CB /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847992A5A6F23004139CB /* DayView.swift */; };
+		F348479C2A5BAA22004139CB /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F348479B2A5BAA22004139CB /* FirebaseFirestoreSwift */; };
 		F34E6A012A0B8301002B5A53 /* HomeMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A002A0B8301002B5A53 /* HomeMainView.swift */; };
 		F34E6A032A0B84EB002B5A53 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A022A0B84EB002B5A53 /* Service.swift */; };
 		F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */; };
@@ -116,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F348479C2A5BAA22004139CB /* FirebaseFirestoreSwift in Frameworks */,
 				F3DE2AD62A25A252000EE848 /* SDWebImageSwiftUI in Frameworks */,
 				F33B44132A19E22A00B83FFA /* FirebaseAuth in Frameworks */,
 				F33B44152A19E22A00B83FFA /* FirebaseFirestore in Frameworks */,
@@ -353,6 +355,7 @@
 				F33B44142A19E22A00B83FFA /* FirebaseFirestore */,
 				F33B44172A19E24600B83FFA /* FirebaseStorage */,
 				F3DE2AD52A25A252000EE848 /* SDWebImageSwiftUI */,
+				F348479B2A5BAA22004139CB /* FirebaseFirestoreSwift */,
 			);
 			productName = WorkoutPal;
 			productReference = F366614B2A04CFEC00166299 /* WorkoutPal.app */;
@@ -698,6 +701,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F33B44112A19E22A00B83FFA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		F348479B2A5BAA22004139CB /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F33B44112A19E22A00B83FFA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
 		};
 		F3DE2AD52A25A252000EE848 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

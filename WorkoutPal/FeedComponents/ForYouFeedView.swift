@@ -28,7 +28,7 @@ struct ForYouFeedView: View {
                         } label: {
                             PostView(postItem: item)
                         }
-                        if userModel.userLikedPost.contains(item.id) {
+                        if userModel.userLikedPost.contains(item.id!) {
                             Button {
                                 userModel.removeLike(post: item)
                             } label: {
@@ -51,7 +51,6 @@ struct ForYouFeedView: View {
                 }
             }
         }
-        .listStyle(.inset)
         .refreshable {
             /// Pull down refresh
             feedModel.sortFeedMessages(userHandle: userHandle)

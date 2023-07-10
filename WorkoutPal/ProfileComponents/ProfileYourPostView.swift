@@ -18,7 +18,7 @@ struct ProfileYourPostView: View {
                 .swipeActions {
                     Button(role: .destructive) {
                         Task {
-                            await feedModel.deleteMessage(messageId: item.id )
+                            await feedModel.deleteMessage(messageId: item.id! )
                         }
                     } label: {
                         Image(systemName: "minus.circle")
