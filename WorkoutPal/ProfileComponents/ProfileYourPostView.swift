@@ -26,6 +26,7 @@ struct ProfileYourPostView: View {
                 }
             }
         }
+        .listStyle(.inset)
         .refreshable {
             /// Pull down refresh
             feedModel.sortFeedMessages(userHandle: userHandle)

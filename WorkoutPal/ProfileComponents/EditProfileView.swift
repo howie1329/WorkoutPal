@@ -14,6 +14,7 @@ struct EditProfileView: View {
     var body: some View {
         VStack {
             TextField("Bio", text: $userBio)
+                .textFieldStyle(.roundedBorder)
             Button {
                 Task {
                     await userModel.updateBio(newBio: userBio)
@@ -23,7 +24,7 @@ struct EditProfileView: View {
                 Text("Update")
             }
             .buttonStyle(.borderedProminent)
-
         }
+        .padding()
     }
 }

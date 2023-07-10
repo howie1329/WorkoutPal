@@ -219,4 +219,24 @@ class DataModel: ObservableObject {
         currentDate = updatedDate
         weekNumber = currentDate.findWeekNumber()
     }
+    
+    func testFunc(date: Date) -> DayModel {
+        var testModel = DayModel(totalCal: 0, date: date, protein: 0, carbs: 0, fats: 0, isCompleted: false)
+        
+        let item = dayLogTrackerLog.first { DayLogEntity in
+            DayLogEntity.date?.formatted(date: .numeric, time: .omitted) == date.formatted(date: .numeric, time: .omitted)
+        }
+        
+        if let item = item {
+            testModel.totalCal = Int(item.totalCal)
+            testModel.carbs = Int(item.totalCarbs)
+            testModel.protein = Int(item.totalProtein)
+            testModel.fats = Int(item.totalFat)
+            testModel.isCompleted = item.isWorkoutCompleted
+            return testModel
+        }else {
+            return testModel
+        }
+        
+    }
 }

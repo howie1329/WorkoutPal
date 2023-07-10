@@ -13,6 +13,7 @@ struct ProfileMainView: View {
     var body: some View {
         VStack {
             ProfileHeaderComp(userHandle: userModel.userHandle)
+            Divider()
             ProfileYourPostView(userHandle: userModel.userHandle)
         }
     }

@@ -15,6 +15,21 @@ struct WorkoutMainView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                HStack{
+                    Text("Workout Plans")
+                        .font(.title)
+                        .bold()
+                    Spacer()
+                    Button {
+                        newPlanView = true
+                    } label: {
+                        Image(systemName: "plus.circle")
+                            .resizable()
+                            .frame(width:20, height: 20)
+                    }.tint(.black)
+                }
+                .frame(maxWidth: .infinity, alignment:.leading)
+                .padding([.top,.horizontal])
                 Picker("view picker", selection: $viewSelection) {
                     ForEach(viewChoice, id: \.self) {
                         Text($0)
@@ -47,15 +62,6 @@ struct WorkoutMainView: View {
                 NewWorkoutPlanView(viewState: $newPlanView)
                     .presentationDetents([.fraction(3/8)])
             })
-            .toolbar(content: {
-                Button {
-                    newPlanView = true
-                } label: {
-                    Image(systemName: "plus.circle")
-                }
-
-            })
-            .navigationTitle("Workout Plans")
         }
     }
 }

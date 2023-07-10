@@ -184,6 +184,8 @@ class UserDataModel: ObservableObject {
                                             oldLikeCount = 0
                                         }
                                         Firestore.firestore().collection("feed").document(post.id).updateData(["feed_like_count": oldLikeCount])
+                                        
+                                        /// Remove Like from user like array
                                     }
                                 }
                             }

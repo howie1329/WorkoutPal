@@ -29,6 +29,8 @@
 		F33B44152A19E22A00B83FFA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F33B44142A19E22A00B83FFA /* FirebaseFirestore */; };
 		F33B44182A19E24600B83FFA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F33B44172A19E24600B83FFA /* FirebaseStorage */; };
 		F33B441A2A19E3DC00B83FFA /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B44192A19E3DC00B83FFA /* UserDataModel.swift */; };
+		F34847982A5A6EA5004139CB /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847972A5A6EA5004139CB /* WeekView.swift */; };
+		F348479A2A5A6F23004139CB /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847992A5A6F23004139CB /* DayView.swift */; };
 		F34E6A012A0B8301002B5A53 /* HomeMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A002A0B8301002B5A53 /* HomeMainView.swift */; };
 		F34E6A032A0B84EB002B5A53 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A022A0B84EB002B5A53 /* Service.swift */; };
 		F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */; };
@@ -78,6 +80,8 @@
 		F33B440C2A185D5E00B83FFA /* HomeWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWorkoutView.swift; sourceTree = "<group>"; };
 		F33B440F2A19E11400B83FFA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F33B44192A19E3DC00B83FFA /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
+		F34847972A5A6EA5004139CB /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
+		F34847992A5A6F23004139CB /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
 		F34E6A002A0B8301002B5A53 /* HomeMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainView.swift; sourceTree = "<group>"; };
 		F34E6A022A0B84EB002B5A53 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		F366614B2A04CFEC00166299 /* WorkoutPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +200,8 @@
 				F33B44032A17367C00B83FFA /* HomeStatsView.swift */,
 				F33B44052A17372D00B83FFA /* StatsRectangleView.swift */,
 				F36AF0D12A4826280057C9D4 /* ScrollViewHome.swift */,
+				F34847972A5A6EA5004139CB /* WeekView.swift */,
+				F34847992A5A6F23004139CB /* DayView.swift */,
 			);
 			path = HomeCpmponents;
 			sourceTree = "<group>";
@@ -408,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F36AF0D42A4944880057C9D4 /* EditProfileView.swift in Sources */,
+				F348479A2A5A6F23004139CB /* DayView.swift in Sources */,
 				F310FFF42A0A349C0093365E /* SingleWorkoutPlanRowView.swift in Sources */,
 				F3CD92FF2A25E83700EE4125 /* CustomErrors.swift in Sources */,
 				F36661512A04CFEC00166299 /* CalorieTrackerView.swift in Sources */,
@@ -422,6 +429,7 @@
 				F3DE2AD02A24AE45000EE848 /* MessageFeed.swift in Sources */,
 				F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */,
 				F33B44062A17372D00B83FFA /* StatsRectangleView.swift in Sources */,
+				F34847982A5A6EA5004139CB /* WeekView.swift in Sources */,
 				F310FFEC2A0A02500093365E /* WorkoutMainView.swift in Sources */,
 				F33B441A2A19E3DC00B83FFA /* UserDataModel.swift in Sources */,
 				F36661602A04D11B00166299 /* DataModel.swift in Sources */,

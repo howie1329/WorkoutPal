@@ -18,6 +18,7 @@ struct CommentView: View {
             VStack {
                 PostView(postItem: post)
                     .padding(.horizontal)
+                Divider()
                 if post.comments.isEmpty {
                     Text("No Comments")
                     Spacer()

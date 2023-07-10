@@ -18,6 +18,22 @@ struct CalorieTrackerView: View {
     var body: some View {
         NavigationView {
             VStack {
+                HStack{
+                    Text("Calorie Tracker")
+                        .font(.title)
+                        .bold()
+                    Spacer()
+                    Button {
+                        newMealView = true
+                    } label: {
+                        Image(systemName: "plus.circle")
+                            .resizable()
+                            .frame(width:20, height: 20)
+                    }
+                    .tint(.black)
+                }
+                .frame(maxWidth:.infinity, alignment:.leading)
+                .padding([.top,.horizontal])
                 HStack {
                     Text("Total Calories: \(totalCalories)")
                     Text("Proteins: \(protienCount)")
@@ -56,17 +72,12 @@ struct CalorieTrackerView: View {
                 }
                 .listStyle(.inset)
             }
-            .navigationTitle("Calorie Tracker")
             .sheet(isPresented: $newMealView, content: {
                 AddMealView(viewState: $newMealView)
                     .presentationDetents([.medium])
             })
             .toolbar {
-                Button {
-                    newMealView = true
-                } label: {
-                    Image(systemName: "plus.circle")
-                }
+                
             }
         }
     }

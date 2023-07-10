@@ -6,27 +6,37 @@
 //
 
 import SwiftUI
-import Charts
 
 struct HomeMainView: View {
+    enum SelectionsView: String, CaseIterable {
+        case WeekView = "WeekView"
+        case DayView = "DayView"
+    }
     @EnvironmentObject var model: DataModel
     @State var weekStats = WeekModel(totalCal: 0, protein: 0, carbs: 0, fats: 0, dayInfo: [])
+    @State var viewSelector: SelectionsView = .WeekView
     var body: some View {
         NavigationStack {
+            HStack{
+                Text("Workout Pal")
+                    .font(.title)
+                    .bold()
+            }
+            .frame(maxWidth: .infinity,alignment: .leading)
+            .padding([.vertical,.horizontal])
             VStack {
-                Text("Today is \(model.currentDate.formatted(date: .abbreviated, time: .omitted)) Week: \(model.weekNumber)")
-                Text("\(weekStats.totalCal) cals \(weekStats.protein)g protien \(weekStats.carbs)g carbs \(weekStats.fats)g fat")
-                Divider()
-                Chart {
-                    ForEach(model.dayLogTrackerLog) {item in
-                        if item.date?.findWeekNumber() == model.weekNumber {
-                            BarMark(x: .value("Day", (item.date?.formatted(date: .numeric, time: .omitted))!),
-                                     y: .value("Calories", item.totalCal))
-                        }
+                Picker("", selection: $viewSelector) {
+                    ForEach(SelectionsView.allCases, id: \.self) { item in
+                        Text("\(item.rawValue)")
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: 200)
-                .padding()
+                .pickerStyle(.segmented)
+                switch viewSelector {
+                case .WeekView:
+                    WeekView(model: model, weekStats: weekStats)
+                case .DayView:
+                    DayView()
+                }
                 Divider()
                 if weekStats.dayInfo.isEmpty {
                     Text("No Data")
@@ -42,7 +52,6 @@ struct HomeMainView: View {
             .onAppear(perform: {
                 weekStats = getWeekStats(currentDate: model.currentDate, foodItem: model.foodItemTrackerLog, dayStats: model.dayLogTrackerLog)
             })
-            .navigationTitle("Workout Pal")
             Spacer()
         }
     }

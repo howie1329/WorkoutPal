@@ -38,19 +38,20 @@ struct PostView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             VStack(spacing: 20) {
-                HStack {
-                    Text(postItem.body)
+                VStack {
                     if let image = postItem.mediaURL {
                         WebImage(url: URL(string: image))
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(maxWidth: .infinity, maxHeight: 200)
+                            .cornerRadius(20)
                             .clipped()
                     }
+                    Text(postItem.body)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .center)
                 HStack {
-                    if userModel.userLikedPost.contains(postItem.id) {
+                    /*if userModel.userLikedPost.contains(postItem.id) {
                         Image(systemName: "heart.fill")
                             .resizable()
                             .frame(width: 13, height: 13)
@@ -61,6 +62,7 @@ struct PostView: View {
                             .frame(width: 13, height: 13)
                             .foregroundColor(.gray)
                     }
+                    */
                     Text("\(postItem.likeCounter)")
                         .font(.caption2)
                         .foregroundColor(.gray)
@@ -79,23 +81,6 @@ struct PostView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
-        .swipeActions {
-            if userModel.userLikedPost.contains(postItem.id) {
-                Button {
-                    userModel.removeLike(post: postItem)
-                } label: {
-                    Image(systemName: "heart.slash.fill")
-                        .foregroundColor(.red)
-                }
-                .tint(.red)
-            } else {
-                Button {
-                    userModel.likePost(post: postItem)
-                } label: {
-                    Image(systemName: "heart.fill")
-                }
-                .tint(.red)
-            }
-        }
+        .padding(.horizontal)
     }
 }

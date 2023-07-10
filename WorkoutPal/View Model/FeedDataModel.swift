@@ -63,7 +63,7 @@ class FeedDataModel: ObservableObject {
     }
     // Method to look for new messages
     func updateFetch() {
-        let dbRef = Firestore.firestore().collection("feed").addSnapshotListener { QuerySnapshot, Error in
+        let dbRef = Firestore.firestore().collection("feed").order(by: "feed_timestamp", descending: true).addSnapshotListener { QuerySnapshot, Error in
             if Error == nil {
                 if let snapShot = QuerySnapshot {
                     self.isLoading = .loading
