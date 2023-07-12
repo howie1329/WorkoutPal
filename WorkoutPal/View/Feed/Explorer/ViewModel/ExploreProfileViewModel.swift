@@ -14,7 +14,7 @@ class ExploreProfileViewModel: ObservableObject {
     @Published var feed: [MessageFeed] = []
     
     func fetchProfilePost(user: UserModel){
-        Firestore.firestore().collection("feed").whereField("feed_author_id", isEqualTo: user.user_handle).getDocuments { QuerySnapshot, Error in
+        Firestore.firestore().collection("feed").whereField("feed_author_id", isEqualTo: user.user_id).getDocuments { QuerySnapshot, Error in
             
             guard let documents = QuerySnapshot?.documents else {return }
             

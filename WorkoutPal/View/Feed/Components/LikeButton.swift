@@ -25,7 +25,7 @@ struct LikeButton: View {
                         .foregroundColor(.red)
                 }
             }
-            .tint(.red)
+            .buttonStyle(.plain)
         } else {
             Button {
                 Task{
@@ -37,9 +37,10 @@ struct LikeButton: View {
                         .font(.caption2)
                         .foregroundColor(.gray)
                     Image(systemName: "heart")
+                        .foregroundColor(.gray)
                 }
             }
-            .tint(.red)
+            .buttonStyle(.plain)
         }
     }
 }

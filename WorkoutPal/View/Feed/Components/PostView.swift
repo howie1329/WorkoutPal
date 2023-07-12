@@ -27,8 +27,8 @@ struct PostView: View {
                 .cornerRadius(100)
                 .clipped()
                 Text("@\(postItem.feed_author_handle)")
-                    .font(.caption)
-                    .foregroundColor(.gray)
+                    .font(.subheadline)
+                    .bold()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             VStack(spacing: 20) {
@@ -42,6 +42,8 @@ struct PostView: View {
                             .clipped()
                     }
                     Text(postItem.feed_body)
+                        .font(.subheadline)
+                        .multilineTextAlignment(.leading)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
@@ -50,14 +52,14 @@ struct PostView: View {
                         .foregroundColor(.gray)
                     Image(systemName: "message")
                         .resizable()
-                        .frame(width: 13, height: 13)
+                        .frame(width: 18, height: 18)
                         .foregroundColor(.gray)
                     if postItem.feed_author_id != userModel.userInfo.id!{
                         LikeButton(item: postItem)
                     }
                     Spacer()
                     Text("\(postItem.feed_timestamp.dateValue().formatted(date: .abbreviated, time: .shortened))")
-                        .font(.caption2)
+                        .font(.caption)
                         .foregroundColor(.gray)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

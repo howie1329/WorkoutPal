@@ -14,7 +14,10 @@ struct EditProfileView: View {
     var body: some View {
         VStack {
             TextField("Bio", text: $userBio)
-                .textFieldStyle(.roundedBorder)
+                .font(.subheadline)
+                .padding(12)
+                .background(Color(.systemGray6))
+                .cornerRadius(10)
             Button {
                 Task {
                     userModel.updateBio(newBio: userBio)

@@ -18,8 +18,14 @@ struct ExploreRowComponent: View {
                 .frame(width: 50, height: 50)
                 .cornerRadius(100)
                 .clipped()
-            Text("@\(user.user_handle)")
-                .bold()
+            VStack{
+                Text("\(user.user_name)")
+                    .font(.subheadline)
+                    .bold()
+                Text("@\(user.user_handle)")
+                    .font(.caption)
+                    .foregroundColor(Color(.systemGray))
+            }
         }
         .frame(maxWidth: .infinity,alignment: .leading)
         .padding([.horizontal])

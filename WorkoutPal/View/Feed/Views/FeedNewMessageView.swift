@@ -29,18 +29,24 @@ struct FeedNewMessageView: View {
                     .frame(width: 50, height: 50)
                     .cornerRadius(100)
                     .clipped()
+                    Text("\(userModel.userInfo.user_name)")
+                        .font(.subheadline)
+                        .bold()
                     Text("@\(userModel.userInfo.user_handle)")
+                        .font(.caption)
+                        .foregroundColor(.gray)
                 }.frame(maxWidth: .infinity, alignment: .leading)
                 PhotosPicker(selection: $newMessageModel.feedPhotoPickerItem, matching: .images) {
                     if newMessageModel.feedUIImage == nil {
-                        Image(systemName: "photo.on.rectangle")
+                        Image(systemName: "photo.artframe")
                             .resizable()
-                            .frame(maxWidth: 50, maxHeight: 50)
+                            .frame(maxWidth: 100, maxHeight: 100)
+                            .foregroundColor(Color(.systemGray6))
                     } else {
                         if let image = newMessageModel.feedUIImage {
                             Image(uiImage: image)
                                 .resizable()
-                                .frame(maxWidth: 50, maxHeight: 50)
+                                .frame(maxWidth: 100, maxHeight: 100)
                                 .clipped()
                         }
                     }
@@ -63,7 +69,7 @@ struct FeedNewMessageView: View {
                     } label: {
                         Text("Post")
                             .bold()
-                            .padding([.horizontal])
+                            .padding(.horizontal, 6)
                     }
                     .buttonStyle(.borderedProminent)
                 }

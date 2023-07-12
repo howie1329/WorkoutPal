@@ -27,8 +27,8 @@ struct ForYouFeedView: View {
                             CommentView(post: item)
                         } label: {
                             PostView(postItem: item)
-                                .foregroundColor(.black)
                         }
+                        .buttonStyle(.plain)
                         Divider()
                         
                     }

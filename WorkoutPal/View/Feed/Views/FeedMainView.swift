@@ -50,12 +50,12 @@ struct FeedMainView: View {
                             newMessageViewState = true
                         } label: {
                             ZStack {
-                                Circle().frame(maxWidth: 50)
+                                Circle().frame(width: 56, height: 56)
                                 Image(systemName: "plus")
                                     .bold()
                                     .foregroundColor(.white)
                             }
-                        }.padding(.trailing)
+                        }.padding([.bottom,.trailing])
                     }
                  
             }

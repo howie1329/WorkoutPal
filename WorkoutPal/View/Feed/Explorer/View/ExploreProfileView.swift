@@ -32,8 +32,8 @@ struct ExploreProfileView: View {
                     Spacer()
                     HStack(spacing:25){
                         VStack{
-                            Text("\(searchUser.liked_post.count)")
-                            Text("Likes")
+                            Text("\(profileModel.feed.count)")
+                            Text("Post")
                         }
                         VStack{
                             Text("\(searchUser.following.count)")

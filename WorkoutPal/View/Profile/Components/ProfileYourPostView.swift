@@ -12,21 +12,23 @@ struct ProfileYourPostView: View {
     @State var userID: String
     @EnvironmentObject var feedModel: FeedViewModel
     var body: some View {
-        List {
-            ForEach(feedModel.yourPost) {item in
-                PostView(postItem: item)
-                .swipeActions {
-                    Button(role: .destructive) {
-                        Task {
-                            await feedModel.deleteMessage(item.id!)
+        ScrollView{
+            LazyVStack{
+                ForEach(feedModel.yourPost) {item in
+                    PostView(postItem: item)
+                    /// TODO: Swipe Action does not work
+                    .swipeActions {
+                        Button(role: .destructive) {
+                            Task {
+                                await feedModel.deleteMessage(item.id!)
+                            }
+                        } label: {
+                            Image(systemName: "minus.circle")
                         }
-                    } label: {
-                        Image(systemName: "minus.circle")
                     }
                 }
             }
         }
-        .listStyle(.inset)
         .refreshable {
             /// Pull down refresh
             feedModel.sortFeedMessages(userID: userID)

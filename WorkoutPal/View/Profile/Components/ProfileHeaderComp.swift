@@ -50,12 +50,16 @@ struct ProfileHeaderComp: View {
             }
             .frame(maxWidth: .infinity, alignment: .center)
             HStack {
-                Text("\(userModel.userInfo.user_handle)")
+                Text("\(userModel.userInfo.user_name)")
+                    .font(.subheadline)
                     .bold()
+                Text("@\(userModel.userInfo.user_handle)")
+                    .font(.caption)
+                    .foregroundColor(.gray)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             HStack {
-                Text("\(userModel.userInfo.user_bio ?? "No Bio")")
+                Text("\(userModel.userInfo.user_bio )")
                     .font(.body)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -64,14 +68,14 @@ struct ProfileHeaderComp: View {
                     editView.toggle()
                 } label: {
                     Text("Edit Profile")
-                        .font(.system(size: 15))
+                        .font(.subheadline)
                         .bold()
-                        .padding(.horizontal)
+                        .padding(.horizontal, 6)
                 }
                 .tint(.gray)
                 .buttonStyle(.borderedProminent)
             }
-            .frame(maxWidth: .infinity, alignment: .center)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
         .sheet(isPresented: $editView, content: {
             EditProfileView(viewState: $editView)
