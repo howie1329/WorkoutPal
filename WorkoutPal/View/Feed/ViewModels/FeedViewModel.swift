@@ -14,7 +14,7 @@ import FirebaseFirestoreSwift
 
 class FeedViewModel: ObservableObject {
     let placeholderArr: [MessageFeed] = [
-        MessageFeed(id: "", feed_body: "", feed_author_id: "", feed_author_url: "", feed_media: "", comments: [], feed_like_count: 0)
+        MessageFeed(id: "", feed_body: "", feed_author_id: "", feed_author_handle: "", feed_author_url: "", feed_media: "", comments: [], feed_like_count: 0)
     ]
     @Published var feedArr: [MessageFeed] = []
     @Published var forYouArr: [MessageFeed] = []
@@ -48,13 +48,13 @@ class FeedViewModel: ObservableObject {
         return errorCode.localizedDescription
     }
     /// Sort messages from feed array
-    func sortFeedMessages(userHandle: String) {
+    func sortFeedMessages(userID: String) {
         var youArr: [MessageFeed] = []
         var newFeedArr: [MessageFeed] = []
         for message in feedArr {
-            if message.feed_author_id == userHandle {
+            if message.feed_author_id == userID {
                 youArr.append(message)
-            } else if message.feed_author_id != userHandle {
+            } else if message.feed_author_id != userID {
                 newFeedArr.append(message)
             }
         }

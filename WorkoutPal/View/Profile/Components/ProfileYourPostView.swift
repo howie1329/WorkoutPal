@@ -9,7 +9,7 @@ import SwiftUI
 
 /// View that shows only the users post
 struct ProfileYourPostView: View {
-    @State var userHandle: String
+    @State var userID: String
     @EnvironmentObject var feedModel: FeedViewModel
     var body: some View {
         List {
@@ -29,11 +29,11 @@ struct ProfileYourPostView: View {
         .listStyle(.inset)
         .refreshable {
             /// Pull down refresh
-            feedModel.sortFeedMessages(userHandle: userHandle)
+            feedModel.sortFeedMessages(userID: userID)
         }
         .onAppear(perform: {
             /// To be done when view first appears
-            feedModel.sortFeedMessages(userHandle: userHandle)
+            feedModel.sortFeedMessages(userID: userID)
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
@@ -41,7 +41,7 @@ struct ProfileYourPostView: View {
 
 struct ProfileYourPostView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileYourPostView(userHandle: "")
+        ProfileYourPostView(userID: "")
             .environmentObject(FeedViewModel())
     }
 }

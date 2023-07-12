@@ -44,7 +44,7 @@ struct FeedMainView: View {
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Divider()
-                ForYouFeedView(userHandle: userModel.userInfo.user_handle)
+                ForYouFeedView(userID: userModel.userInfo.user_id)
                     .overlay(alignment: .bottomTrailing) {
                         Button {
                             newMessageViewState = true

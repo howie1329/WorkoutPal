@@ -15,10 +15,10 @@ struct UserModel: Codable, Identifiable {
     var user_email: String
     var user_handle: String
     var user_gender: String
-    var user_bio: String?
+    var user_bio: String
     var user_id: String
     var user_profileURL: String
     var liked_post: [String]
-    var followed: [String]?
-    var following: [String]?
+    var followed: [String]
+    var following: [String]
 }

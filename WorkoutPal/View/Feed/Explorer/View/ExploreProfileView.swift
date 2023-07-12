@@ -36,11 +36,11 @@ struct ExploreProfileView: View {
                             Text("Likes")
                         }
                         VStack{
-                            Text("\(searchUser.following?.count ?? 0)")
+                            Text("\(searchUser.following.count)")
                             Text("Followers")
                         }
                         VStack{
-                            Text("\(searchUser.followed?.count ?? 0)")
+                            Text("\(searchUser.followed.count)")
                             Text("Following")
                         }
                     }
@@ -54,31 +54,30 @@ struct ExploreProfileView: View {
                         .foregroundColor(.gray)
                 }.frame(maxWidth: .infinity,alignment:.leading)
                 HStack{
-                    Text("\(searchUser.user_bio ?? "No Bio")")
+                    Text("\(searchUser.user_bio )")
                 }
                 .padding([.top],2)
                 .frame(maxWidth: .infinity, alignment:.leading)
                 HStack{
-                    if let followedArr = userModel.userInfo.followed{
-                        if followedArr.contains(searchUser.id!){
-                            Button {
-                                userModel.unFollow(searchUser)
-                            } label: {
-                                Text("UnFollow")
-                            }
-                            .tint(.gray)
-                            .buttonBorderShape(.roundedRectangle)
-                            .buttonStyle(.bordered)
-                        } else {
-                            Button {
-                                userModel.follow(searchUser)
-                            } label: {
-                                Text("Follow")
-                            }
-                            .buttonBorderShape(.roundedRectangle)
-                            .buttonStyle(.borderedProminent)
+                    if userModel.userInfo.followed.contains(searchUser.id!){
+                        Button {
+                            userModel.unFollow(searchUser)
+                        } label: {
+                            Text("UnFollow")
                         }
+                        .tint(.gray)
+                        .buttonBorderShape(.roundedRectangle)
+                        .buttonStyle(.bordered)
+                    } else {
+                        Button {
+                            userModel.follow(searchUser)
+                        } label: {
+                            Text("Follow")
+                        }
+                        .buttonBorderShape(.roundedRectangle)
+                        .buttonStyle(.borderedProminent)
                     }
+
                 }
                 
             }

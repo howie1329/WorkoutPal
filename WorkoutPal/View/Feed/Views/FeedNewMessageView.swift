@@ -56,7 +56,7 @@ struct FeedNewMessageView: View {
                 ToolbarItem {
                     Button {
                         Task {
-                            let message = MessageFeed(id: "", feed_body: feedMessage, feed_author_id: userModel.userInfo.user_handle, feed_author_url: userModel.userInfo.user_profileURL, feed_like_count: 0)
+                            let message = MessageFeed(id: "", feed_body: feedMessage, feed_author_id: userModel.userInfo.id!, feed_author_handle: userModel.userInfo.user_handle, feed_author_url: userModel.userInfo.user_profileURL, feed_like_count: 0)
                             await newMessageModel.uploadMessage(_: message)
                         }
                         viewState = false

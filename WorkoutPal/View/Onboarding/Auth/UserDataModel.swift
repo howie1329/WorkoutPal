@@ -23,7 +23,7 @@ enum AppStates {
 }
 
 class UserDataModel: ObservableObject {
-    @Published var userInfo = UserModel(user_name: "", user_email: "", user_handle: "", user_gender: "", user_id: "", user_profileURL: "", liked_post: [], followed: [])
+    @Published var userInfo = UserModel(user_name: "", user_email: "", user_handle: "", user_gender: "",user_bio: "", user_id: "", user_profileURL: "", liked_post: [], followed: [], following: [])
     @Published var appState: AppStates = .signedOut
     @Published var userProfilePhoto: UIImage?
     @Published var userPickerImage: PhotosPickerItem?
@@ -49,46 +49,24 @@ class UserDataModel: ObservableObject {
         }
     }
     // Check if a user is already logged in
-    @MainActor
-    func checkLogin() async {
+    
+    func checkLogin(){
         let currentUser = Auth.auth().currentUser
         if currentUser != nil {
-            if let userInfo = currentUser {
-                self.userInfo.user_id = userInfo.uid
-                let userRef = Firestore.firestore().collection("users").whereField("user_id", isEqualTo: userInfo.uid).addSnapshotListener { QuerySnapshot, Error in
-                    if Error == nil {
-                        
-                        guard let QuerySnapshot = QuerySnapshot?.documents else {return }
-                        
-                        let userDoc = QuerySnapshot.compactMap({try? $0.data(as: UserModel.self)})
-                        
-                        self.userInfo = userDoc[0]
-                        self.isLoading = false
-                        self.appState = .signedIn
-                    } else {
-                        self.errorMessage = self.setErrorMessage(errorCode: AuthErrors.failedSignIn)
-                        try! Auth.auth().signOut()
-                        self.appState = .signedOut
-                    }
-                }
-                if Auth.auth().currentUser == nil {
-                    userRef.remove()
+            if let id = currentUser?.uid{
+                self.userInfo.user_id = id
+                let userRef = Firestore.firestore().collection("users").document(id).addSnapshotListener { DocumentSnapshot, Error in
+                    guard let doc = try? DocumentSnapshot?.data(as: UserModel.self) else {return }
+                    self.userInfo = doc
+                    self.isLoading = false
+                    self.appState = .signedIn
                 }
             }
         }
     }
+    
     func updateBio(newBio: String) {
-        Firestore.firestore().collection("users").whereField("user_id", isEqualTo: self.userInfo.user_id).getDocuments(completion: { QuerySnapshot, Error in
-            if Error == nil {
-                if let snapShot = QuerySnapshot {
-                    for doc in snapShot.documents{
-                        let id = doc.documentID
-                        
-                        Firestore.firestore().collection("users").document(id).setData(["user_bio": newBio], merge: true)
-                    }
-                }
-            }
-        })
+        Firestore.firestore().collection("users").document(self.userInfo.id!).setData(["user_bio": newBio], merge: true)
     }
     // Reset Password Function
     @MainActor
@@ -99,36 +77,28 @@ class UserDataModel: ObservableObject {
             self.errorMessage = setErrorMessage(errorCode: AuthErrors.failedReset)
         }
     }
-    // Email Login Function
+    
     @MainActor
     func emailLogin(email: String, password: String) async {
         self.isLoading = true
-        do {
+        do{
             let userSignInfo = try await Auth.auth().signIn(withEmail: email, password: password)
             self.userInfo.user_id = userSignInfo.user.uid
-            let userRef = Firestore.firestore().collection("users").whereField("user_id", isEqualTo: userSignInfo.user.uid).addSnapshotListener { QuerySnapshot, Error in
-                if Error == nil {
-                    guard let QuerySnapshot = QuerySnapshot?.documents else {return }
-                    
-                    let userDoc = QuerySnapshot.compactMap({try? $0.data(as: UserModel.self)})
-                    
-                    self.userInfo = userDoc[0]
-                    self.isLoading = false
-                    self.appState = .signedIn
-                    
-                } else {
-                    self.errorMessage = self.setErrorMessage(errorCode: Error!)
-                    try! Auth.auth().signOut()
-                    self.appState = .signedOut
-                }
+            
+            let userRef = Firestore.firestore().collection("users").document(self.userInfo.user_id).addSnapshotListener { DocumentSnapshot, Error in
+                
+                guard let doc = try? DocumentSnapshot?.data(as: UserModel.self) else {return }
+                self.userInfo = doc
+                self.isLoading = false
+                self.appState = .signedIn
             }
-            if Auth.auth().currentUser == nil {
-                userRef.remove()
-            }
-        } catch {
-            self.errorMessage = setErrorMessage(errorCode: error)
+        } catch{
+            self.errorMessage = self.setErrorMessage(errorCode: AuthErrors.failedSignIn)
+            try! Auth.auth().signOut()
+            self.appState = .signedOut
         }
     }
+    
     // Email Signup Function
     @MainActor
     func emailSignUp(user: UserModel, password: String) async {
@@ -147,38 +117,28 @@ class UserDataModel: ObservableObject {
             newUserInfo.user_profileURL = downloadURL.absoluteString
             newUserInfo.user_id = id
             try Firestore.firestore().collection("users").document(id).setData(from: newUserInfo)
-            await checkLogin()
+            checkLogin()
             self.isLoading = false
         } catch {
             self.errorMessage = setErrorMessage(errorCode: error)
         }
     }
-    func removeLike(post: MessageFeed) {
-        Firestore.firestore().collection("users").whereField("user_id", isEqualTo: self.userInfo.user_id).getDocuments { QuerySnapshot, Error in
-            if Error == nil {
-                if let snapShot = QuerySnapshot {
-                    for doc in snapShot.documents {
-                        let documentID = doc.documentID
-                        
-                        Firestore.firestore().collection("users").document(documentID).updateData(["liked_post":FieldValue.arrayRemove([post.id])])
-                        
-                        Firestore.firestore().collection("feed").document(post.id!).getDocument { DocumentSnapshot, Error in
-                            if Error == nil {
-                                if let doc = DocumentSnapshot {
-                                    if let data = doc.data() {
-                                        var oldLikeCount = data["feed_like_count"] as! Int
-                                        oldLikeCount -= 1
-                                        if oldLikeCount <= 0 {
-                                            oldLikeCount = 0
-                                        }
-                                        Firestore.firestore().collection("feed").document(post.id!).updateData(["feed_like_count": oldLikeCount])
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+    
+    func removeLike(post: MessageFeed) async {
+        do{
+            try await Firestore.firestore().collection("users").document(self.userInfo.id!).updateData(["liked_post":FieldValue.arrayRemove([post.id])])
+            
+            var likedMessage = try await Firestore.firestore().collection("feed").document(post.id!).getDocument(as: MessageFeed.self)
+            
+            var editLike = likedMessage
+            
+            editLike.feed_like_count -= 1
+            if editLike.feed_like_count < 0{
+                editLike.feed_like_count = 0
             }
+            try Firestore.firestore().collection("feed").document(post.id!).setData(from: editLike)
+        } catch{
+            print("Error Removing Like")
         }
     }
     
@@ -192,36 +152,30 @@ class UserDataModel: ObservableObject {
         Firestore.firestore().collection("users").document(otherUser.id!).updateData(["following":FieldValue.arrayRemove([self.userInfo.id!])])
     }
     
-    func likePost(post: MessageFeed) {
-        Firestore.firestore().collection("users").whereField("user_id", isEqualTo: self.userInfo.id).getDocuments(completion: { QuerySnapshot, Error in
-            if Error == nil {
-                if let snapShot = QuerySnapshot {
-                    for doc in snapShot.documents {
-                        let documentID = doc.documentID
-                        Firestore.firestore().collection("users").document(documentID).updateData(["liked_post": FieldValue.arrayUnion([post.id])])
-                        
-                        Firestore.firestore().collection("feed").document(post.id!).getDocument { DocumentSnapshot, Error in
-                            if Error == nil {
-                                if let doc = DocumentSnapshot {
-                                    if let data = doc.data() {
-                                        var oldLikeCount = data["feed_like_count"] as! Int
-                                        oldLikeCount += 1
-                                        Firestore.firestore().collection("feed").document(post.id!).updateData(["feed_like_count": oldLikeCount])
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        })
+    func likePost(post: MessageFeed) async {
+        do{
+            try await Firestore.firestore().collection("users").document(self.userInfo.user_id).updateData(["liked_post": FieldValue.arrayUnion([post.id])])
+            
+            var likedPost = try await Firestore.firestore().collection("feed").document(post.id!).getDocument(as: MessageFeed.self)
+            
+            var editPost = likedPost
+            
+            editPost.feed_like_count += 1
+            
+            try Firestore.firestore().collection("feed").document(post.id!).setData(from: editPost)
+        } catch{
+            print("Erorr")
+        }
+            
+        
+        
     }
     // Signout Current User
     func signOutUser() {
         do {
             self.isLoading = true
             try Auth.auth().signOut()
-            self.userInfo = UserModel(user_name: "", user_email: "", user_handle: "", user_gender: "", user_id: "", user_profileURL: "", liked_post: [], followed: [])
+            self.userInfo = UserModel(user_name: "", user_email: "", user_handle: "", user_gender: "",user_bio: "", user_id: "", user_profileURL: "", liked_post: [], followed: [], following: [])
             userProfilePhoto = nil
             userPickerImage = nil
             self.isLoading = false

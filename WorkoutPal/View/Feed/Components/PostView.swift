@@ -16,23 +16,17 @@ struct PostView: View {
         VStack {
             HStack {
                 // MARK: Creators Profile Picture
-                if let url = postItem.feed_author_url {
-                    WebImage(url: URL(string: url)).placeholder(content: {
-                        Circle().fill(.black)
-                            .frame(width: 50, height: 50)
-                            .cornerRadius(100)
-                    })
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 50, height: 50)
-                    .cornerRadius(100)
-                    .clipped()
-                } else {
+                WebImage(url: URL(string: postItem.feed_author_url)).placeholder(content: {
                     Circle().fill(.black)
                         .frame(width: 50, height: 50)
                         .cornerRadius(100)
-                }
-                Text("@\(postItem.feed_author_id)")
+                })
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 50, height: 50)
+                .cornerRadius(100)
+                .clipped()
+                Text("@\(postItem.feed_author_handle)")
                     .font(.caption)
                     .foregroundColor(.gray)
             }
@@ -58,7 +52,7 @@ struct PostView: View {
                         .resizable()
                         .frame(width: 13, height: 13)
                         .foregroundColor(.gray)
-                    if postItem.feed_author_id != userModel.userInfo.user_handle{
+                    if postItem.feed_author_id != userModel.userInfo.id!{
                         LikeButton(item: postItem)
                     }
                     Spacer()

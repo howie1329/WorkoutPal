@@ -44,7 +44,7 @@ struct NewCommentView: View {
             .toolbar {
                 Button {
                     Task {
-                        viewModel.createComment(newComment: Comment(id: "", author_Id: userModel.userInfo.user_handle, message: commentMessage, author_Url: userModel.userInfo.user_profileURL), oringalMessage: orignalMessage)
+                        viewModel.createComment(newComment: Comment(id: "", author_Id: userModel.userInfo.id!, author_handle: userModel.userInfo.user_handle, message: commentMessage, author_Url: userModel.userInfo.user_profileURL), oringalMessage: orignalMessage)
                     }
                     viewState = false
                 } label: {

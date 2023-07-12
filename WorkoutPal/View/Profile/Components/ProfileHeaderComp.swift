@@ -36,12 +36,12 @@ struct ProfileHeaderComp: View {
                         Text("Posts")
                     }
                     VStack {
-                        Text("\(userModel.userInfo.following?.count ?? 0)")
+                        Text("\(userModel.userInfo.following.count)")
                             .bold()
                         Text("Followers")
                     }
                     VStack {
-                        Text("\(userModel.userInfo.followed?.count ?? 0)")
+                        Text("\(userModel.userInfo.followed.count)")
                             .bold()
                         Text("Following")
                     }

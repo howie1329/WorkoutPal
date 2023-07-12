@@ -14,7 +14,7 @@ struct ProfileMainView: View {
         VStack {
             ProfileHeaderComp()
             Divider()
-            ProfileYourPostView(userHandle: userModel.userInfo.user_handle)
+            ProfileYourPostView(userID: userModel.userInfo.user_id)
         }
     }
 }

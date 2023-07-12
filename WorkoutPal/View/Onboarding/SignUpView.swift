@@ -70,7 +70,7 @@ struct SignUpView: View {
                 if showSiginUp {
                     Button {
                         Task {
-                            var userInfo = UserModel(user_name: name, user_email: email, user_handle: handle, user_gender: gender.rawValue, user_bio: bio, user_id: "", user_profileURL: "",liked_post: [], followed: [])
+                            var userInfo = UserModel(user_name: name, user_email: email, user_handle: handle, user_gender: gender.rawValue, user_bio: bio, user_id: "", user_profileURL: "",liked_post: [], followed: [], following: [])
                             await userModel.emailSignUp(user: userInfo, password: password)
                         }
                     } label: {

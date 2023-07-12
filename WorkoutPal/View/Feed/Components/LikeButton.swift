@@ -13,7 +13,9 @@ struct LikeButton: View {
     var body: some View {
         if userModel.userInfo.liked_post.contains(item.id!) {
             Button {
-                userModel.removeLike(post: item)
+                Task{
+                    await userModel.removeLike(post: item)
+                }
             } label: {
                 HStack{
                     Text("\(item.feed_like_count)")
@@ -26,7 +28,9 @@ struct LikeButton: View {
             .tint(.red)
         } else {
             Button {
-                userModel.likePost(post: item)
+                Task{
+                    await userModel.likePost(post: item)
+                }
             } label: {
                 HStack{
                     Text("\(item.feed_like_count)")

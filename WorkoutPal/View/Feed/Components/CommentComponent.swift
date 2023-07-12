@@ -47,6 +47,6 @@ struct CommentComponent: View {
 
 struct CommentComponent_Previews: PreviewProvider {
     static var previews: some View {
-        CommentComponent(comment: Comment(author_Id: "Thomas", message: "Comment"))
+        CommentComponent(comment: Comment(author_Id: "Thomas", author_handle: "Thomas", message: "Comment", author_Url: ""))
     }
 }
