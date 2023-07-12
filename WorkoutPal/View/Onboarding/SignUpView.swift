@@ -20,7 +20,7 @@ struct SignUpView: View {
     @State var showSiginUp = false
     var body: some View {
         if userModel.isLoading {
-            LoadingView()
+            Text("Loading")
         } else {
             VStack {
                 Text("Sign Up")
@@ -70,7 +70,8 @@ struct SignUpView: View {
                 if showSiginUp {
                     Button {
                         Task {
-                            await userModel.emailSignUp(name: name, email: email, password: password, gender: gender, handle: handle, bio: bio)
+                            var userInfo = UserModel(user_name: name, user_email: email, user_handle: handle, user_gender: gender.rawValue, user_bio: bio, user_id: "", user_profileURL: "",liked_post: [], followed: [])
+                            await userModel.emailSignUp(user: userInfo, password: password)
                         }
                     } label: {
                         Text("SIGN UP!!")

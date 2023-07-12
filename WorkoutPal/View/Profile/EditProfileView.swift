@@ -17,7 +17,7 @@ struct EditProfileView: View {
                 .textFieldStyle(.roundedBorder)
             Button {
                 Task {
-                    await userModel.updateBio(newBio: userBio)
+                    userModel.updateBio(newBio: userBio)
                     viewState.toggle()
                 }
             } label: {

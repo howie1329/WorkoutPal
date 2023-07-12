@@ -11,14 +11,13 @@ import SDWebImageSwiftUI
 /// The Header for the profile view
 struct ProfileHeaderComp: View {
     @EnvironmentObject var userModel: UserDataModel
-    @EnvironmentObject var feedModel: FeedDataModel
+    @EnvironmentObject var feedModel: FeedViewModel
     @State var editView = false
-    var userHandle: String
     var body: some View {
         VStack(spacing: 15) {
             HStack {
                 /// Display Profile Picture
-                WebImage(url: URL(string: userModel.userUrl )).placeholder(content: {
+                WebImage(url: URL(string: userModel.userInfo.user_profileURL )).placeholder(content: {
                     Circle()
                         .fill(.black)
                         .frame(width: 50, height: 50)
@@ -37,12 +36,12 @@ struct ProfileHeaderComp: View {
                         Text("Posts")
                     }
                     VStack {
-                        Text("200")
+                        Text("\(userModel.userInfo.following?.count ?? 0)")
                             .bold()
                         Text("Followers")
                     }
                     VStack {
-                        Text("1,000")
+                        Text("\(userModel.userInfo.followed?.count ?? 0)")
                             .bold()
                         Text("Following")
                     }
@@ -51,12 +50,12 @@ struct ProfileHeaderComp: View {
             }
             .frame(maxWidth: .infinity, alignment: .center)
             HStack {
-                Text("\(userModel.userHandle)")
+                Text("\(userModel.userInfo.user_handle)")
                     .bold()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             HStack {
-                Text("\(userModel.userBio)")
+                Text("\(userModel.userInfo.user_bio ?? "No Bio")")
                     .font(.body)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -93,7 +92,7 @@ struct ProfileHeaderComp: View {
 
 struct ProfleHeaderComp_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileHeaderComp(userHandle: "HWT03")
+        ProfileHeaderComp()
             .environmentObject(UserDataModel())
     }
 }

@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 struct NewCommentView: View {
     @EnvironmentObject var userModel: UserDataModel
-    @EnvironmentObject var feedModel: FeedDataModel
+    var viewModel = NewCommentViewModel()
     let orignalMessage: MessageFeed
     @State var commentMessage: String = ""
     @Binding var viewState: Bool
@@ -18,7 +18,7 @@ struct NewCommentView: View {
         NavigationView {
             VStack {
                 HStack {
-                    WebImage(url: URL(string: userModel.userUrl)).placeholder(content: {
+                    WebImage(url: URL(string: userModel.userInfo.user_profileURL)).placeholder(content: {
                         Circle().fill(.black)
                             .frame(width: 50, height: 50)
                             .cornerRadius(100)
@@ -28,7 +28,7 @@ struct NewCommentView: View {
                     .frame(width: 50, height: 50)
                     .cornerRadius(100)
                     .clipped()
-                    Text("@\(userModel.userHandle)")
+                    Text("@\(userModel.userInfo.user_handle)")
                         .font(.caption)
                         .foregroundColor(.gray)
                 }
@@ -44,7 +44,7 @@ struct NewCommentView: View {
             .toolbar {
                 Button {
                     Task {
-                        await feedModel.createComment(newComment: Comment(id: "", author_Id: userModel.userHandle, message: commentMessage, author_Url: userModel.userUrl), oringalMessage: orignalMessage)
+                        viewModel.createComment(newComment: Comment(id: "", author_Id: userModel.userInfo.user_handle, message: commentMessage, author_Url: userModel.userInfo.user_profileURL), oringalMessage: orignalMessage)
                     }
                     viewState = false
                 } label: {

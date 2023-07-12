@@ -11,7 +11,7 @@ import SwiftUI
 struct ForYouFeedView: View {
     @State var userHandle: String
     @EnvironmentObject var userModel: UserDataModel
-    @EnvironmentObject var feedModel: FeedDataModel
+    @EnvironmentObject var feedModel: FeedViewModel
     var body: some View {
         ScrollView {
             switch feedModel.isLoading {
@@ -27,24 +27,8 @@ struct ForYouFeedView: View {
                             CommentView(post: item)
                         } label: {
                             PostView(postItem: item)
+                                .foregroundColor(.black)
                         }
-                        if userModel.userLikedPost.contains(item.id!) {
-                            Button {
-                                userModel.removeLike(post: item)
-                            } label: {
-                                Image(systemName: "heart.slash.fill")
-                                    .foregroundColor(.red)
-                            }
-                            .tint(.red)
-                        } else {
-                            Button {
-                                userModel.likePost(post: item)
-                            } label: {
-                                Image(systemName: "heart.fill")
-                            }
-                            .tint(.red)
-                        }
-                        
                         Divider()
                         
                     }
@@ -66,6 +50,6 @@ struct ForYouFeedView: View {
 struct ForYouFeedView_Previews: PreviewProvider {
     static var previews: some View {
         ForYouFeedView(userHandle: "")
-            .environmentObject(FeedDataModel())
+            .environmentObject(FeedViewModel())
     }
 }

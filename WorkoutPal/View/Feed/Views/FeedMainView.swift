@@ -11,8 +11,9 @@ import SDWebImageSwiftUI
 struct FeedMainView: View {
     @EnvironmentObject var model: DataModel
     @EnvironmentObject var userModel: UserDataModel
-    @EnvironmentObject var feedModel: FeedDataModel
+    @EnvironmentObject var feedModel: FeedViewModel
     @State var newMessageViewState = false
+    @State var explorePageViewState = false
     var body: some View {
         NavigationStack {
             VStack {
@@ -22,16 +23,11 @@ struct FeedMainView: View {
                         .bold()
                     Spacer()
                     HStack(spacing:20){
-                        Image(systemName: "magnifyingglass")
-                            .bold()
-                        Image(systemName: "message")
-                            .bold()
-                        Image(systemName: "bell")
-                            .bold()
+                        FeedMainHeader(explorePageViewState: $explorePageViewState)
                         NavigationLink {
                             ProfileMainView()
                         } label: {
-                            WebImage(url: URL(string: userModel.userUrl )).placeholder(content: {
+                            WebImage(url: URL(string: userModel.userInfo.user_profileURL )).placeholder(content: {
                                 Circle()
                                     .fill(.black)
                                     .frame(width: 35, height: 35)
@@ -48,7 +44,7 @@ struct FeedMainView: View {
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Divider()
-                ForYouFeedView(userHandle: userModel.userHandle)
+                ForYouFeedView(userHandle: userModel.userInfo.user_handle)
                     .overlay(alignment: .bottomTrailing) {
                         Button {
                             newMessageViewState = true
@@ -69,6 +65,9 @@ struct FeedMainView: View {
             FeedNewMessageView(viewState: $newMessageViewState)
                 .presentationDetents([.medium, .large])
         }
+        .sheet(isPresented: $explorePageViewState) {
+           ExploreView()
+        }
     }
 }
 
@@ -77,6 +76,6 @@ struct FeedMainView_Previews: PreviewProvider {
         FeedMainView()
             .environmentObject(DataModel())
             .environmentObject(UserDataModel())
-            .environmentObject(FeedDataModel())
+            .environmentObject(FeedViewModel())
     }
 }

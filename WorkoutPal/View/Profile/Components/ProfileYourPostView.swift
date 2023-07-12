@@ -10,7 +10,7 @@ import SwiftUI
 /// View that shows only the users post
 struct ProfileYourPostView: View {
     @State var userHandle: String
-    @EnvironmentObject var feedModel: FeedDataModel
+    @EnvironmentObject var feedModel: FeedViewModel
     var body: some View {
         List {
             ForEach(feedModel.yourPost) {item in
@@ -18,7 +18,7 @@ struct ProfileYourPostView: View {
                 .swipeActions {
                     Button(role: .destructive) {
                         Task {
-                            await feedModel.deleteMessage(messageId: item.id! )
+                            await feedModel.deleteMessage(item.id!)
                         }
                     } label: {
                         Image(systemName: "minus.circle")
@@ -42,6 +42,6 @@ struct ProfileYourPostView: View {
 struct ProfileYourPostView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileYourPostView(userHandle: "")
-            .environmentObject(FeedDataModel())
+            .environmentObject(FeedViewModel())
     }
 }

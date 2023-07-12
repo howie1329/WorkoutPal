@@ -49,30 +49,18 @@ struct PostView: View {
                     }
                     Text(postItem.feed_body)
                 }
-                .frame(maxWidth: .infinity, alignment: .center)
+                .frame(maxWidth: .infinity, alignment: .leading)
                 HStack {
-                    /*if userModel.userLikedPost.contains(postItem.id) {
-                        Image(systemName: "heart.fill")
-                            .resizable()
-                            .frame(width: 13, height: 13)
-                            .foregroundColor(.red)
-                    } else {
-                        Image(systemName: "heart")
-                            .resizable()
-                            .frame(width: 13, height: 13)
-                            .foregroundColor(.gray)
-                    }
-                    */
-                    Text("\(postItem.feed_like_count)")
+                    Text("\(postItem.comments?.count ?? 0)")
                         .font(.caption2)
                         .foregroundColor(.gray)
                     Image(systemName: "message")
                         .resizable()
                         .frame(width: 13, height: 13)
                         .foregroundColor(.gray)
-                    /*Text("\(postItem.comments.count)")
-                        .font(.caption2)
-                        .foregroundColor(.gray) */
+                    if postItem.feed_author_id != userModel.userInfo.user_handle{
+                        LikeButton(item: postItem)
+                    }
                     Spacer()
                     Text("\(postItem.feed_timestamp.dateValue().formatted(date: .abbreviated, time: .shortened))")
                         .font(.caption2)
@@ -81,6 +69,6 @@ struct PostView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
-        .padding(.horizontal)
+        .padding()
     }
 }

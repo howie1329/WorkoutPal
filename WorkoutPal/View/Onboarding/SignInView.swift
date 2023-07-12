@@ -13,7 +13,7 @@ struct SignInView: View {
     @State var password: String = ""
     var body: some View {
         if userModel.isLoading {
-            LoadingView()
+            Text("Loading")
         } else {
             VStack {
                 Text("Sign In")
