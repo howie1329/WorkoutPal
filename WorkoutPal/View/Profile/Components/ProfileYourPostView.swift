@@ -16,6 +16,7 @@ struct ProfileYourPostView: View {
             LazyVStack{
                 ForEach(feedModel.yourPost) {item in
                     PostView(postItem: item)
+                    Divider()
                     /// TODO: Swipe Action does not work
                     .swipeActions {
                         Button(role: .destructive) {
