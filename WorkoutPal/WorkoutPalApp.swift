@@ -12,7 +12,7 @@ import SwiftUI
 struct WorkoutPalApp: App {
     @StateObject var dataModel = DataModel()
     @StateObject var userModel = UserDataModel()
-    @StateObject var feedModel = FeedDataModel()
+    @StateObject var feedModel = FeedViewModel()
     init() {
         FirebaseApp.configure()
     }

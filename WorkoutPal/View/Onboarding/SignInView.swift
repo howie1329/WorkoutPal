@@ -13,7 +13,7 @@ struct SignInView: View {
     @State var password: String = ""
     var body: some View {
         if userModel.isLoading {
-            LoadingView()
+            Text("Loading")
         } else {
             VStack {
                 Text("Sign In")
@@ -21,12 +21,16 @@ struct SignInView: View {
                 Divider()
                 VStack(spacing: 20) {
                     TextField("Email", text: $email)
-                        .font(.headline)
-                    TextField("Password", text: $password)
-                        .font(.headline)
+                        .font(.subheadline)
+                        .padding(12)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
+                    SecureField("Password", text: $password)
+                        .font(.subheadline)
+                        .padding(12)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(10)
                 }
-                .textFieldStyle(.roundedBorder)
-                .padding()
                 Divider()
                 if email != "" && password != ""{
                     Button {
@@ -49,15 +53,18 @@ struct SignInView: View {
                             .frame(maxWidth: .infinity, maxHeight: 35)
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(.gray)
+                    .tint(Color(.systemGray3))
                 }
-                Button {
-                    Task {
-                        await userModel.resetPassword(email: email)
+                HStack{
+                    Button {
+                        Task {
+                            await userModel.resetPassword(email: email)
+                        }
+                    } label: {
+                        Text("Forgot Password?")
+                            .font(.footnote)
                     }
-                } label: {
-                    Text("Forgotten Password")
-                }
+                }.frame(maxWidth: .infinity, alignment: .trailing)
 
             }
             .alert(userModel.errorMessage, isPresented: $userModel.isError, actions: {})

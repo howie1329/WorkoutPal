@@ -31,6 +31,19 @@
 		F33B441A2A19E3DC00B83FFA /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33B44192A19E3DC00B83FFA /* UserDataModel.swift */; };
 		F34847982A5A6EA5004139CB /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847972A5A6EA5004139CB /* WeekView.swift */; };
 		F348479A2A5A6F23004139CB /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847992A5A6F23004139CB /* DayView.swift */; };
+		F348479C2A5BAA22004139CB /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F348479B2A5BAA22004139CB /* FirebaseFirestoreSwift */; };
+		F34847A02A5BE3C8004139CB /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F348479F2A5BE3C8004139CB /* FeedService.swift */; };
+		F34847A72A5BF1C0004139CB /* NewMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847A62A5BF1C0004139CB /* NewMessageViewModel.swift */; };
+		F34847AA2A5CF9B5004139CB /* NewCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847A92A5CF9B5004139CB /* NewCommentViewModel.swift */; };
+		F34847AC2A5D1BE5004139CB /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847AB2A5D1BE5004139CB /* LikeButton.swift */; };
+		F34847AE2A5D1CAC004139CB /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847AD2A5D1CAC004139CB /* UserModel.swift */; };
+		F34847B42A5D3808004139CB /* CommentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847B32A5D3808004139CB /* CommentComponent.swift */; };
+		F34847B62A5D3C0B004139CB /* FeedMainHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847B52A5D3C0B004139CB /* FeedMainHeader.swift */; };
+		F34847BB2A5D3D24004139CB /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847BA2A5D3D24004139CB /* ExploreViewModel.swift */; };
+		F34847BD2A5D3E1E004139CB /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847BC2A5D3E1E004139CB /* ExploreView.swift */; };
+		F34847C02A5D3ED0004139CB /* ExploreRowComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847BF2A5D3ED0004139CB /* ExploreRowComponent.swift */; };
+		F34847C22A5DD145004139CB /* ExploreProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847C12A5DD145004139CB /* ExploreProfileView.swift */; };
+		F34847C42A5E2D62004139CB /* ExploreProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847C32A5E2D62004139CB /* ExploreProfileViewModel.swift */; };
 		F34E6A012A0B8301002B5A53 /* HomeMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A002A0B8301002B5A53 /* HomeMainView.swift */; };
 		F34E6A032A0B84EB002B5A53 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A022A0B84EB002B5A53 /* Service.swift */; };
 		F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */; };
@@ -49,12 +62,11 @@
 		F3AD77A92A1D9CE700499545 /* ProfileMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77A82A1D9CE700499545 /* ProfileMainView.swift */; };
 		F3AD77AC2A1D9F9500499545 /* ProfileHeaderComp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */; };
 		F3AD77AE2A1DA13300499545 /* FeedMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77AD2A1DA13300499545 /* FeedMainView.swift */; };
-		F3AD77B02A1DAFAD00499545 /* FeedDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77AF2A1DAFAD00499545 /* FeedDataModel.swift */; };
+		F3AD77B02A1DAFAD00499545 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77AF2A1DAFAD00499545 /* FeedViewModel.swift */; };
 		F3AD77B22A1DC0C400499545 /* ForYouFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B12A1DC0C400499545 /* ForYouFeedView.swift */; };
 		F3AD77B42A1DC47900499545 /* FeedNewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */; };
 		F3AD77B62A1DD85900499545 /* ProfileYourPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */; };
 		F3CD92FF2A25E83700EE4125 /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CD92FE2A25E83700EE4125 /* CustomErrors.swift */; };
-		F3DE2AC92A2487F0000EE848 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2AC82A2487F0000EE848 /* LoadingView.swift */; };
 		F3DE2AD02A24AE45000EE848 /* MessageFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2ACF2A24AE45000EE848 /* MessageFeed.swift */; };
 		F3DE2AD32A259E7B000EE848 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DE2AD22A259E7B000EE848 /* PostView.swift */; };
 		F3DE2AD62A25A252000EE848 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = F3DE2AD52A25A252000EE848 /* SDWebImageSwiftUI */; };
@@ -82,6 +94,18 @@
 		F33B44192A19E3DC00B83FFA /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
 		F34847972A5A6EA5004139CB /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
 		F34847992A5A6F23004139CB /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
+		F348479F2A5BE3C8004139CB /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
+		F34847A62A5BF1C0004139CB /* NewMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageViewModel.swift; sourceTree = "<group>"; };
+		F34847A92A5CF9B5004139CB /* NewCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewModel.swift; sourceTree = "<group>"; };
+		F34847AB2A5D1BE5004139CB /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
+		F34847AD2A5D1CAC004139CB /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		F34847B32A5D3808004139CB /* CommentComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentComponent.swift; sourceTree = "<group>"; };
+		F34847B52A5D3C0B004139CB /* FeedMainHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMainHeader.swift; sourceTree = "<group>"; };
+		F34847BA2A5D3D24004139CB /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
+		F34847BC2A5D3E1E004139CB /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		F34847BF2A5D3ED0004139CB /* ExploreRowComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreRowComponent.swift; sourceTree = "<group>"; };
+		F34847C12A5DD145004139CB /* ExploreProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreProfileView.swift; sourceTree = "<group>"; };
+		F34847C32A5E2D62004139CB /* ExploreProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreProfileViewModel.swift; sourceTree = "<group>"; };
 		F34E6A002A0B8301002B5A53 /* HomeMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainView.swift; sourceTree = "<group>"; };
 		F34E6A022A0B84EB002B5A53 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		F366614B2A04CFEC00166299 /* WorkoutPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,12 +125,11 @@
 		F3AD77A82A1D9CE700499545 /* ProfileMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMainView.swift; sourceTree = "<group>"; };
 		F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderComp.swift; sourceTree = "<group>"; };
 		F3AD77AD2A1DA13300499545 /* FeedMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMainView.swift; sourceTree = "<group>"; };
-		F3AD77AF2A1DAFAD00499545 /* FeedDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDataModel.swift; sourceTree = "<group>"; };
+		F3AD77AF2A1DAFAD00499545 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		F3AD77B12A1DC0C400499545 /* ForYouFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForYouFeedView.swift; sourceTree = "<group>"; };
 		F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNewMessageView.swift; sourceTree = "<group>"; };
 		F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileYourPostView.swift; sourceTree = "<group>"; };
 		F3CD92FE2A25E83700EE4125 /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
-		F3DE2AC82A2487F0000EE848 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		F3DE2ACF2A24AE45000EE848 /* MessageFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageFeed.swift; sourceTree = "<group>"; };
 		F3DE2AD22A259E7B000EE848 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F348479C2A5BAA22004139CB /* FirebaseFirestoreSwift in Frameworks */,
 				F3DE2AD62A25A252000EE848 /* SDWebImageSwiftUI in Frameworks */,
 				F33B44132A19E22A00B83FFA /* FirebaseAuth in Frameworks */,
 				F33B44152A19E22A00B83FFA /* FirebaseFirestore in Frameworks */,
@@ -167,11 +191,12 @@
 		F32DBD022A1B2C41007ECFFC /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				F36AF0C22A32DBCE0057C9D4 /* CommentView.swift */,
+				F34847B72A5D3CF6004139CB /* Explorer */,
 				F32DBD092A1B3BAF007ECFFC /* FeedStartView.swift */,
-				F3AD77AD2A1DA13300499545 /* FeedMainView.swift */,
-				F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */,
-				F36AF0C42A32E6C60057C9D4 /* NewCommentView.swift */,
+				F34847A12A5BEA1C004139CB /* ViewModels */,
+				F34847A42A5BEDB1004139CB /* Views */,
+				F34847A52A5BEDD7004139CB /* Components */,
+				F34847A82A5CF8E9004139CB /* Service */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -179,7 +204,9 @@
 		F32DBD032A1B2C4C007ECFFC /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				F34847AF2A5D2940004139CB /* Components */,
 				F3AD77A82A1D9CE700499545 /* ProfileMainView.swift */,
+				F36AF0D32A4944880057C9D4 /* EditProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -187,6 +214,7 @@
 		F32DBD042A1B2C58007ECFFC /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				F34847B02A5D2964004139CB /* Auth */,
 				F32DBD052A1B2C69007ECFFC /* SignUpView.swift */,
 				F32DBD072A1B3480007ECFFC /* SignInView.swift */,
 				F32DBD0B2A1B3E50007ECFFC /* OnboardingSelectionView.swift */,
@@ -222,6 +250,100 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F34847A12A5BEA1C004139CB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F3AD77AF2A1DAFAD00499545 /* FeedViewModel.swift */,
+				F34847A62A5BF1C0004139CB /* NewMessageViewModel.swift */,
+				F34847A92A5CF9B5004139CB /* NewCommentViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		F34847A42A5BEDB1004139CB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F3AD77AD2A1DA13300499545 /* FeedMainView.swift */,
+				F36AF0C22A32DBCE0057C9D4 /* CommentView.swift */,
+				F3AD77B32A1DC47900499545 /* FeedNewMessageView.swift */,
+				F36AF0C42A32E6C60057C9D4 /* NewCommentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F34847A52A5BEDD7004139CB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F3AD77B12A1DC0C400499545 /* ForYouFeedView.swift */,
+				F3DE2AD22A259E7B000EE848 /* PostView.swift */,
+				F34847AB2A5D1BE5004139CB /* LikeButton.swift */,
+				F34847B32A5D3808004139CB /* CommentComponent.swift */,
+				F34847B52A5D3C0B004139CB /* FeedMainHeader.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		F34847A82A5CF8E9004139CB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				F348479F2A5BE3C8004139CB /* FeedService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		F34847AF2A5D2940004139CB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */,
+				F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		F34847B02A5D2964004139CB /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				F33B44192A19E3DC00B83FFA /* UserDataModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		F34847B72A5D3CF6004139CB /* Explorer */ = {
+			isa = PBXGroup;
+			children = (
+				F34847BE2A5D3EBA004139CB /* Components */,
+				F34847B92A5D3D07004139CB /* ViewModel */,
+				F34847B82A5D3CFF004139CB /* View */,
+			);
+			path = Explorer;
+			sourceTree = "<group>";
+		};
+		F34847B82A5D3CFF004139CB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F34847BC2A5D3E1E004139CB /* ExploreView.swift */,
+				F34847C12A5DD145004139CB /* ExploreProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F34847B92A5D3D07004139CB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F34847BA2A5D3D24004139CB /* ExploreViewModel.swift */,
+				F34847C32A5E2D62004139CB /* ExploreProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F34847BE2A5D3EBA004139CB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				F34847BF2A5D3ED0004139CB /* ExploreRowComponent.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		F36661422A04CFEB00166299 = {
 			isa = PBXGroup;
 			children = (
@@ -242,8 +364,6 @@
 		F366614D2A04CFEC00166299 /* WorkoutPal */ = {
 			isa = PBXGroup;
 			children = (
-				F3DE2AD12A2577B8000EE848 /* ProfileComponents */,
-				F3AD77AA2A1D9F7700499545 /* FeedComponents */,
 				F33B44072A173AD900B83FFA /* HomeCpmponents */,
 				F310FFF82A0ABDB40093365E /* WorkoutComponents */,
 				F310FFE52A09FA540093365E /* CalorieComponents */,
@@ -273,6 +393,7 @@
 			children = (
 				F3DE2ACF2A24AE45000EE848 /* MessageFeed.swift */,
 				F36AF0CD2A47CC080057C9D4 /* StatsModel.swift */,
+				F34847AD2A5D1CAC004139CB /* UserModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -296,8 +417,6 @@
 			isa = PBXGroup;
 			children = (
 				F366615F2A04D11B00166299 /* DataModel.swift */,
-				F33B44192A19E3DC00B83FFA /* UserDataModel.swift */,
-				F3AD77AF2A1DAFAD00499545 /* FeedDataModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -310,26 +429,6 @@
 				F3CD92FE2A25E83700EE4125 /* CustomErrors.swift */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		F3AD77AA2A1D9F7700499545 /* FeedComponents */ = {
-			isa = PBXGroup;
-			children = (
-				F3AD77B12A1DC0C400499545 /* ForYouFeedView.swift */,
-				F3DE2AC82A2487F0000EE848 /* LoadingView.swift */,
-				F3DE2AD22A259E7B000EE848 /* PostView.swift */,
-			);
-			path = FeedComponents;
-			sourceTree = "<group>";
-		};
-		F3DE2AD12A2577B8000EE848 /* ProfileComponents */ = {
-			isa = PBXGroup;
-			children = (
-				F3AD77AB2A1D9F9500499545 /* ProfileHeaderComp.swift */,
-				F3AD77B52A1DD85900499545 /* ProfileYourPostView.swift */,
-				F36AF0D32A4944880057C9D4 /* EditProfileView.swift */,
-			);
-			path = ProfileComponents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +452,7 @@
 				F33B44142A19E22A00B83FFA /* FirebaseFirestore */,
 				F33B44172A19E24600B83FFA /* FirebaseStorage */,
 				F3DE2AD52A25A252000EE848 /* SDWebImageSwiftUI */,
+				F348479B2A5BAA22004139CB /* FirebaseFirestoreSwift */,
 			);
 			productName = WorkoutPal;
 			productReference = F366614B2A04CFEC00166299 /* WorkoutPal.app */;
@@ -414,30 +514,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				F36AF0D42A4944880057C9D4 /* EditProfileView.swift in Sources */,
+				F34847C02A5D3ED0004139CB /* ExploreRowComponent.swift in Sources */,
 				F348479A2A5A6F23004139CB /* DayView.swift in Sources */,
 				F310FFF42A0A349C0093365E /* SingleWorkoutPlanRowView.swift in Sources */,
+				F34847AA2A5CF9B5004139CB /* NewCommentViewModel.swift in Sources */,
 				F3CD92FF2A25E83700EE4125 /* CustomErrors.swift in Sources */,
 				F36661512A04CFEC00166299 /* CalorieTrackerView.swift in Sources */,
 				F33B440D2A185D5E00B83FFA /* HomeWorkoutView.swift in Sources */,
 				F310FFFA2A0ABDC60093365E /* WorkoutSectionView.swift in Sources */,
 				F36AF0CC2A4377980057C9D4 /* WorkoutPalContainer.xcdatamodeld in Sources */,
+				F34847BB2A5D3D24004139CB /* ExploreViewModel.swift in Sources */,
 				F34E6A012A0B8301002B5A53 /* HomeMainView.swift in Sources */,
+				F34847AE2A5D1CAC004139CB /* UserModel.swift in Sources */,
 				F32DBD0C2A1B3E50007ECFFC /* OnboardingSelectionView.swift in Sources */,
 				F3AD77B42A1DC47900499545 /* FeedNewMessageView.swift in Sources */,
+				F34847AC2A5D1BE5004139CB /* LikeButton.swift in Sources */,
 				F37CB3942A2DB620005E3E82 /* DateExtensions.swift in Sources */,
-				F3AD77B02A1DAFAD00499545 /* FeedDataModel.swift in Sources */,
+				F3AD77B02A1DAFAD00499545 /* FeedViewModel.swift in Sources */,
 				F3DE2AD02A24AE45000EE848 /* MessageFeed.swift in Sources */,
 				F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */,
+				F34847A72A5BF1C0004139CB /* NewMessageViewModel.swift in Sources */,
 				F33B44062A17372D00B83FFA /* StatsRectangleView.swift in Sources */,
 				F34847982A5A6EA5004139CB /* WeekView.swift in Sources */,
 				F310FFEC2A0A02500093365E /* WorkoutMainView.swift in Sources */,
 				F33B441A2A19E3DC00B83FFA /* UserDataModel.swift in Sources */,
 				F36661602A04D11B00166299 /* DataModel.swift in Sources */,
-				F3DE2AC92A2487F0000EE848 /* LoadingView.swift in Sources */,
 				F36AF0CE2A47CC080057C9D4 /* StatsModel.swift in Sources */,
 				F310FFE72A09FA6A0093365E /* CalorieRowView.swift in Sources */,
+				F34847C22A5DD145004139CB /* ExploreProfileView.swift in Sources */,
 				F32DBD0A2A1B3BAF007ECFFC /* FeedStartView.swift in Sources */,
 				F36AF0C32A32DBCE0057C9D4 /* CommentView.swift in Sources */,
+				F34847C42A5E2D62004139CB /* ExploreProfileViewModel.swift in Sources */,
 				F310FFF22A0A2FC60093365E /* WorkoutPlanRowView.swift in Sources */,
 				F3AD77A92A1D9CE700499545 /* ProfileMainView.swift in Sources */,
 				F34E6A032A0B84EB002B5A53 /* Service.swift in Sources */,
@@ -453,10 +560,14 @@
 				F310FFF72A0AB8FE0093365E /* CalorieSectionView.swift in Sources */,
 				F3DE2AD32A259E7B000EE848 /* PostView.swift in Sources */,
 				F3AD77B22A1DC0C400499545 /* ForYouFeedView.swift in Sources */,
+				F34847B62A5D3C0B004139CB /* FeedMainHeader.swift in Sources */,
 				F310FFF02A0A2B720093365E /* NewSingleWorkoutView.swift in Sources */,
+				F34847BD2A5D3E1E004139CB /* ExploreView.swift in Sources */,
 				F310FFE92A0A01360093365E /* MainTabView.swift in Sources */,
 				F310FFE42A09F4BD0093365E /* AddMealView.swift in Sources */,
 				F3AD77AC2A1D9F9500499545 /* ProfileHeaderComp.swift in Sources */,
+				F34847A02A5BE3C8004139CB /* FeedService.swift in Sources */,
+				F34847B42A5D3808004139CB /* CommentComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,6 +809,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F33B44112A19E22A00B83FFA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		F348479B2A5BAA22004139CB /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F33B44112A19E22A00B83FFA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
 		};
 		F3DE2AD52A25A252000EE848 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

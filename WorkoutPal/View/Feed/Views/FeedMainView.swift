@@ -11,8 +11,9 @@ import SDWebImageSwiftUI
 struct FeedMainView: View {
     @EnvironmentObject var model: DataModel
     @EnvironmentObject var userModel: UserDataModel
-    @EnvironmentObject var feedModel: FeedDataModel
+    @EnvironmentObject var feedModel: FeedViewModel
     @State var newMessageViewState = false
+    @State var explorePageViewState = false
     var body: some View {
         NavigationStack {
             VStack {
@@ -22,16 +23,11 @@ struct FeedMainView: View {
                         .bold()
                     Spacer()
                     HStack(spacing:20){
-                        Image(systemName: "magnifyingglass")
-                            .bold()
-                        Image(systemName: "message")
-                            .bold()
-                        Image(systemName: "bell")
-                            .bold()
+                        FeedMainHeader(explorePageViewState: $explorePageViewState)
                         NavigationLink {
                             ProfileMainView()
                         } label: {
-                            WebImage(url: URL(string: userModel.userUrl )).placeholder(content: {
+                            WebImage(url: URL(string: userModel.userInfo.user_profileURL )).placeholder(content: {
                                 Circle()
                                     .fill(.black)
                                     .frame(width: 35, height: 35)
@@ -48,25 +44,29 @@ struct FeedMainView: View {
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Divider()
-                ForYouFeedView(userHandle: userModel.userHandle)
+                ForYouFeedView(userID: userModel.userInfo.user_id)
                     .overlay(alignment: .bottomTrailing) {
                         Button {
                             newMessageViewState = true
                         } label: {
                             ZStack {
-                                Circle().frame(maxWidth: 50)
+                                Circle().frame(width: 56, height: 56)
                                 Image(systemName: "plus")
                                     .bold()
                                     .foregroundColor(.white)
                             }
-                        }.padding(.trailing)
+                        }.padding([.bottom,.trailing])
                     }
+                 
             }
         }
         .navigationTitle("PAL")
         .sheet(isPresented: $newMessageViewState) {
             FeedNewMessageView(viewState: $newMessageViewState)
                 .presentationDetents([.medium, .large])
+        }
+        .sheet(isPresented: $explorePageViewState) {
+           ExploreView()
         }
     }
 }
@@ -76,6 +76,6 @@ struct FeedMainView_Previews: PreviewProvider {
         FeedMainView()
             .environmentObject(DataModel())
             .environmentObject(UserDataModel())
-            .environmentObject(FeedDataModel())
+            .environmentObject(FeedViewModel())
     }
 }

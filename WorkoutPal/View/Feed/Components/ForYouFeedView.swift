@@ -9,9 +9,9 @@ import SwiftUI
 
 /// The feed the gets showed to the user which represents a "For You Feed"
 struct ForYouFeedView: View {
-    @State var userHandle: String
+    @State var userID: String
     @EnvironmentObject var userModel: UserDataModel
-    @EnvironmentObject var feedModel: FeedDataModel
+    @EnvironmentObject var feedModel: FeedViewModel
     var body: some View {
         ScrollView {
             switch feedModel.isLoading {
@@ -28,37 +28,20 @@ struct ForYouFeedView: View {
                         } label: {
                             PostView(postItem: item)
                         }
-                        if userModel.userLikedPost.contains(item.id) {
-                            Button {
-                                userModel.removeLike(post: item)
-                            } label: {
-                                Image(systemName: "heart.slash.fill")
-                                    .foregroundColor(.red)
-                            }
-                            .tint(.red)
-                        } else {
-                            Button {
-                                userModel.likePost(post: item)
-                            } label: {
-                                Image(systemName: "heart.fill")
-                            }
-                            .tint(.red)
-                        }
-                        
+                        .buttonStyle(.plain)
                         Divider()
                         
                     }
                 }
             }
         }
-        .listStyle(.inset)
         .refreshable {
             /// Pull down refresh
-            feedModel.sortFeedMessages(userHandle: userHandle)
+            feedModel.sortFeedMessages(userID: userID)
         }
         .onAppear(perform: {
             /// To be done when view first appears
-            feedModel.sortFeedMessages(userHandle: userHandle)
+            feedModel.sortFeedMessages(userID: userID)
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }
@@ -66,7 +49,7 @@ struct ForYouFeedView: View {
 
 struct ForYouFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        ForYouFeedView(userHandle: "")
-            .environmentObject(FeedDataModel())
+        ForYouFeedView(userID: "")
+            .environmentObject(FeedViewModel())
     }
 }

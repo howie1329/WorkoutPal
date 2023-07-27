@@ -12,9 +12,9 @@ struct ProfileMainView: View {
     @EnvironmentObject var userModel: UserDataModel
     var body: some View {
         VStack {
-            ProfileHeaderComp(userHandle: userModel.userHandle)
+            ProfileHeaderComp()
             Divider()
-            ProfileYourPostView(userHandle: userModel.userHandle)
+            ProfileYourPostView(userID: userModel.userInfo.user_id)
         }
     }
 }

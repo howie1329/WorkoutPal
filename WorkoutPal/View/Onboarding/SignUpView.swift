@@ -20,7 +20,7 @@ struct SignUpView: View {
     @State var showSiginUp = false
     var body: some View {
         if userModel.isLoading {
-            LoadingView()
+            Text("Loading")
         } else {
             VStack {
                 Text("Sign Up")
@@ -31,12 +31,13 @@ struct SignUpView: View {
                         if userModel.userProfilePhoto == nil {
                             Image(systemName: "person.circle")
                                 .resizable()
+                                .foregroundColor(Color(.systemGray3))
                                 .frame(maxWidth: 50, maxHeight: 50)
                         } else {
                             if let image = userModel.userProfilePhoto {
                                 Image(uiImage: image)
                                     .resizable()
-                                    .frame(maxWidth: 100, maxHeight: 100)
+                                    .frame(maxWidth: 50, maxHeight: 50)
                                     .cornerRadius(100)
                                     .aspectRatio(contentMode: .fill)
                             }
@@ -49,28 +50,50 @@ struct SignUpView: View {
                     }
                     ScrollView {
                         TextField("Name", text: $name)
+                            .font(.subheadline)
+                            .padding(12)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(10)
                         TextField("@Handle", text: $handle)
+                            .font(.subheadline)
+                            .padding(12)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(10)
                         Picker("Gender", selection: $gender) {
                             ForEach(UserGenderID.allCases, id: \.self) {
                                 Text($0.rawValue)
                             }
                         }
                         .pickerStyle(.segmented)
-                        TextField("Bio", text: $bio)
+                        TextField("Bio", text: $bio,axis: .vertical)
+                            .font(.subheadline)
+                            .padding(12)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(10)
                         TextField("Email", text: $email)
-                        TextField("Password", text: $password)
-                        TextField("Comfirm Password", text: $confirmPassword)
+                            .font(.subheadline)
+                            .padding(12)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(10)
+                        SecureField("Password", text: $password)
+                            .font(.subheadline)
+                            .padding(12)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(10)
+                        SecureField("Comfirm Password", text: $confirmPassword)
+                            .font(.subheadline)
+                            .padding(12)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(10)
                     }
                     .frame(maxWidth: .infinity)
-                    .frame(height: 350)
                 }
-                .textFieldStyle(.roundedBorder)
-                .padding(.horizontal)
                 Divider()
                 if showSiginUp {
                     Button {
                         Task {
-                            await userModel.emailSignUp(name: name, email: email, password: password, gender: gender, handle: handle, bio: bio)
+                            var userInfo = UserModel(user_name: name, user_email: email, user_handle: handle, user_gender: gender.rawValue, user_bio: bio, user_id: "", user_profileURL: "",liked_post: [], followed: [], following: [])
+                            await userModel.emailSignUp(user: userInfo, password: password)
                         }
                     } label: {
                         Text("SIGN UP!!")
@@ -88,7 +111,7 @@ struct SignUpView: View {
                             .frame(maxWidth: .infinity, maxHeight: 30)
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(.gray)
+                    .tint(Color(.systemGray3))
                 }
             }
             .alert(userModel.errorMessage, isPresented: $userModel.isError, actions: {})
