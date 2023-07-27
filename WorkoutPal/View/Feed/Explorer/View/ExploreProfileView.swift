@@ -33,28 +33,34 @@ struct ExploreProfileView: View {
                     HStack(spacing:25){
                         VStack{
                             Text("\(profileModel.feed.count)")
-                            Text("Post")
+                                .bold()
+                            Text("Posts")
                         }
                         VStack{
                             Text("\(searchUser.following.count)")
+                                .bold()
                             Text("Followers")
                         }
                         VStack{
                             Text("\(searchUser.followed.count)")
+                                .bold()
                             Text("Following")
                         }
                     }
                     Spacer()
                 }
                 .frame(maxWidth: .infinity, alignment:.leading)
-                VStack{
+                HStack{
                     Text("\(searchUser.user_name)")
+                        .font(.subheadline)
+                        .bold()
                     Text("@\(searchUser.user_handle)")
                         .font(.footnote)
                         .foregroundColor(.gray)
                 }.frame(maxWidth: .infinity,alignment:.leading)
                 HStack{
                     Text("\(searchUser.user_bio )")
+                        .font(.body)
                 }
                 .padding([.top],2)
                 .frame(maxWidth: .infinity, alignment:.leading)
@@ -63,22 +69,27 @@ struct ExploreProfileView: View {
                         Button {
                             userModel.unFollow(searchUser)
                         } label: {
-                            Text("UnFollow")
+                            Text("Unfollow")
+                                .font(.subheadline)
+                                .bold()
+                                .padding(.horizontal, 6)
                         }
                         .tint(.gray)
-                        .buttonBorderShape(.roundedRectangle)
                         .buttonStyle(.bordered)
                     } else {
                         Button {
                             userModel.follow(searchUser)
                         } label: {
                             Text("Follow")
+                                .font(.subheadline)
+                                .bold()
+                                .padding(.horizontal, 6)
                         }
-                        .buttonBorderShape(.roundedRectangle)
                         .buttonStyle(.borderedProminent)
                     }
 
                 }
+                .frame(maxWidth: .infinity, alignment:.leading)
                 
             }
             .padding()
@@ -88,6 +99,7 @@ struct ExploreProfileView: View {
                 LazyVStack{
                     ForEach(profileModel.feed){item in
                         PostView(postItem: item)
+                        Divider()
                     }
                 }
             }
