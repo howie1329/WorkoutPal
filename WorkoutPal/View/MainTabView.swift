@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainTabView: View {
     @State var tabSelection = 2
+    var mode = false
     var body: some View {
         TabView(selection: $tabSelection) {
             FeedStartView()
@@ -32,10 +33,12 @@ struct MainTabView: View {
                     Image(systemName: "dumbbell.fill")
                     Text("Workout")
                 }.tag(3)
-            TestLogView()
-                .tabItem {
-                    Text("Debug")
-                }.tag(4)
+            if mode{
+                TestLogView()
+                    .tabItem {
+                        Text("Debug")
+                    }.tag(4)
+            }
         }
     }
 }

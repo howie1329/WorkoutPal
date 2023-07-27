@@ -22,7 +22,7 @@ struct WorkoutPalApp: App {
                 .environmentObject(dataModel)
                 .environmentObject(userModel)
                 .environmentObject(feedModel)
-                .preferredColorScheme(.light)
+                .preferredColorScheme(.dark)
         }
     }
 }

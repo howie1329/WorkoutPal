@@ -19,7 +19,7 @@ struct ExploreView: View {
                                 ExploreProfileView(searchUser: userItem)
                             } label: {
                                 ExploreRowComponent(user: userItem)
-                                    .tint(.black)
+                                    .tint(.white)
                             }
                             
                         }

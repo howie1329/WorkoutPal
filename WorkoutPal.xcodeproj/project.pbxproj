@@ -46,6 +46,7 @@
 		F34847C42A5E2D62004139CB /* ExploreProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34847C32A5E2D62004139CB /* ExploreProfileViewModel.swift */; };
 		F34E6A012A0B8301002B5A53 /* HomeMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A002A0B8301002B5A53 /* HomeMainView.swift */; };
 		F34E6A032A0B84EB002B5A53 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34E6A022A0B84EB002B5A53 /* Service.swift */; };
+		F353213E2A722F940088BD4F /* Kapture 2023-07-27 at 00.31.56.gif in Resources */ = {isa = PBXBuildFile; fileRef = F353213D2A722F940088BD4F /* Kapture 2023-07-27 at 00.31.56.gif */; };
 		F366614F2A04CFEC00166299 /* WorkoutPalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */; };
 		F36661512A04CFEC00166299 /* CalorieTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36661502A04CFEC00166299 /* CalorieTrackerView.swift */; };
 		F36661532A04CFEC00166299 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36661522A04CFEC00166299 /* Assets.xcassets */; };
@@ -108,6 +109,7 @@
 		F34847C32A5E2D62004139CB /* ExploreProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreProfileViewModel.swift; sourceTree = "<group>"; };
 		F34E6A002A0B8301002B5A53 /* HomeMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMainView.swift; sourceTree = "<group>"; };
 		F34E6A022A0B84EB002B5A53 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		F353213D2A722F940088BD4F /* Kapture 2023-07-27 at 00.31.56.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Kapture 2023-07-27 at 00.31.56.gif"; sourceTree = "<group>"; };
 		F366614B2A04CFEC00166299 /* WorkoutPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F366614E2A04CFEC00166299 /* WorkoutPalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPalApp.swift; sourceTree = "<group>"; };
 		F36661502A04CFEC00166299 /* CalorieTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalorieTrackerView.swift; sourceTree = "<group>"; };
@@ -344,9 +346,18 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		F353213C2A722F4D0088BD4F /* GIFS */ = {
+			isa = PBXGroup;
+			children = (
+				F353213D2A722F940088BD4F /* Kapture 2023-07-27 at 00.31.56.gif */,
+			);
+			path = GIFS;
+			sourceTree = "<group>";
+		};
 		F36661422A04CFEB00166299 = {
 			isa = PBXGroup;
 			children = (
+				F353213C2A722F4D0088BD4F /* GIFS */,
 				F366614D2A04CFEC00166299 /* WorkoutPal */,
 				F366614C2A04CFEC00166299 /* Products */,
 				F33B44162A19E24600B83FFA /* Frameworks */,
@@ -503,6 +514,7 @@
 				F36661562A04CFEC00166299 /* Preview Assets.xcassets in Resources */,
 				F36661532A04CFEC00166299 /* Assets.xcassets in Resources */,
 				F33B44102A19E11400B83FFA /* GoogleService-Info.plist in Resources */,
+				F353213E2A722F940088BD4F /* Kapture 2023-07-27 at 00.31.56.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

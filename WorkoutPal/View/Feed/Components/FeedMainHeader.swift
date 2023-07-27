@@ -16,9 +16,7 @@ struct FeedMainHeader: View {
             Image(systemName: "magnifyingglass")
                 .bold()
         }
-        .tint(.black)
-
-       
+        .buttonStyle(.plain)
         Image(systemName: "message")
             .bold()
         Image(systemName: "bell")
